@@ -41,8 +41,6 @@
 |birth_month|string|null: false|
 |birth_day|string|null: false|
 |mobile|string|null: false, unique: true, index: true|
-|seller_id|references|null :false, foreign_key :true|
-|buyer_id|references|null :true, foreign_key :true|
 ### Association
  - has_many :items, dependent: :destroy
  - has_many :buyer_items, class_name: 'Item', :foreign_key => 'buyer_id'
@@ -72,7 +70,6 @@
 |street_number|string|null :false|
 |building_name|string|null :false|
 ### Association
- - has_one :addresses, dependent: :destroy
  - belongs_to :ship
 
 
@@ -86,9 +83,11 @@
 |delivery_fee|integer|null:false|
 |shipping_origin|integer|null:false|
 |days_to_ship|integer|null:false|
-|categories_id|references|foreign_key true,null:false|
+|categorｙ_id|references|foreign_key true,null:false|
 |brand_id|references|foreign_key true,null:true|
 |user_id|references|foreign_key true,null:false|
+|buyer_id|references|foreign_key true,null:true|
+|seller_id|references|foreign_key true,null:false|
 ### Association
  - has_many: images, dependent: :destroy
  - has_many :comments ,dependent: :destroy
@@ -130,6 +129,5 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null:false|
-|item_id|references|foreign_key true,null:false|
 ### Association
  - has_many: items
