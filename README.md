@@ -33,45 +33,47 @@
 |reset_password_token|string|
 |reset_password_sent_at|datetime
 |remember_created_at|datetime|
-|last_name|string|null: false|
+|family_name|string|null: false|
 |first_name|string|null: false|
-|last_name_kana|string|null: false|
+|family_name_kana|string|null: false|
 |first_name_kana|string|null: false|
 |birth_year|string|null: false|
 |birth_month|string|null: false|
 |birth_day|string|null: false|
-|postal_code|integer|null: true|
-|prefecture|integer|null: true|
-|city|string|null: true|
-|address|string|null: true|
-|building_name|string|null: true|
-|profile_content|text|null: true|
-|deleted_at|datetime|null: true|
 |mobile|string|null: false, unique: true, index: true|
+|seller_id|references|null :false, foreign_key :true|
+|buyer_id|references|null :true, foreign_key :true|
 ### Association
- - has_many :items
- - has_one :shipping_destinations
- - has_one :profile
- - has_one :credit_card
+ - has_many :items, dependent: :destroy
+ - has_many :buyer_items, class_name: 'Item', :foreign_key => 'buyer_id'
+ - has_many :seller_items, class_name: 'Item', :foreign_key => 'seller_id'
+ - has_one :ships, dependent: :destroy
+ - has_one :profile, dependent: :destroy
+ - has_one :credit_card, dependent: :destroy
 
 
-## shipping_addresses テーブル
+## ships テーブル
 |Column|Type|Options|
 |------|----|-------|
 |shipping_family_name|string|null: false|
 |shipping_first_name|string|null: false|
 |shipping_family_name_kana|string|null: false|
 |shipping_first_name_kana|string|null: false|
+|mobile|string|null :false|
+|user_id|references|null: false, unique: true, index: true|
+### Association
+ - has_one :addresses, dependent: :destroy
+ - belongs_to :user
+
+## addresses テーブル
 |post_code|integer(7)|null:false|
 |prefecture|string|null:false|
 |city|string|null :false|
 |street_number|string|null :false|
 |building_name|string|null :false|
-|mobile|string|null :false|
-|user_id|references|null: false, unique: true, index: true|
 ### Association
- - has_many :orders
- - belongs_to :user
+ - has_one :addresses, dependent: :destroy
+ - belongs_to :ship
 
 
 ## items テーブル
@@ -88,13 +90,13 @@
 |brand_id|references|foreign_key true,null:true|
 |user_id|references|foreign_key true,null:false|
 ### Association
- - has_many: images
- - has_many :comments
- - has_one :order
+ - has_many: images, dependent: :destroy
+ - has_many :comments ,dependent: :destroy
  - belongs_to :user
+ - belongs_to :buyer, class_name: 'User', :foreign_key => 'buyer_id'
+ - belongs_to :seller, class_name: 'User', :foreign_key => 'seller_id'
  - belongs_to :brand
  - belongs_to :category
-
 
 ## comments テーブル
 |Column|Type|Options|
@@ -113,7 +115,7 @@
 |image|string|null:false|
 |item_id|references|foreign_key true,null:false|
 ### Association
- - has_many: images
+ - belongs_to :item
 
 
 ## categories テーブル
@@ -131,15 +133,3 @@
 |item_id|references|foreign_key true,null:false|
 ### Association
  - has_many: items
-
-
-## orders テーブル
-|Column|Type|Options|
-|------|----|-------|
-|user_id|references|null :false, foreign_key: true|
-|shipping_addresse_id|references|null :false, foreign_key: true|
-|item_id|references|null :false, foreign_key: true|
-### Association
- - belongs_to :user
- - belongs_to :shipping_addresse
- - belongs_to :item
