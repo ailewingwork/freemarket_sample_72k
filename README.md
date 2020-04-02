@@ -83,7 +83,7 @@
 |delivery_fee|integer|null:false|
 |shipping_origin|integer|null:false|
 |days_to_ship|integer|null:false|
-|categorｙ_id|references|foreign_key true,null:false|
+|category_id|references|foreign_key true,null:false|
 |brand_id|references|foreign_key true,null:true|
 |user_id|references|foreign_key true,null:false|
 |buyer_id|references|foreign_key true,null:true|
