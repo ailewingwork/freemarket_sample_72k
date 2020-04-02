@@ -1,0 +1,28 @@
+.TopHeader
+  .TopHeader__Inner
+    .TopHeader__Inner__Main
+      .TopIcon
+        -# aタグにスタイルを設定すると他のビューに影響が出そうなのでTopImgLinkクラスを設定
+        = link_to "/", {class: "TopImgLink"} do
+          %img{alt: "furima", class: "TopIcon__Image", src: "assets/logo.png"}
+      .SearchForm
+        %input{type: "text", class: "SearchForm__Input", placeholder: "キーワードから探す"}
+        = link_to "#" do
+          %button{type: "submit", class: "SearchForm__Input__Button"}
+            %img{alt: "search", class: "SearchForm__Input__Button__Icon", src: "assets/icon-search.png"}
+    .TopHeader__Inner__Lists
+      .TopHeader__Inner__Lists__Left
+        .TopHeader__Inner__Lists__Left__Category
+          -# aタグにスタイルを設定すると他のビューに影響が出そうなのでTopLinkクラスを設定
+          = link_to "#", {class: "TopLink LeftColor"} do
+            カテゴリー
+        .TopHeader__Inner__Lists__Left__Brand
+          = link_to "#", {class: "TopLink LeftColor"} do
+            ブランド
+      .TopHeader__Inner__Lists__Right
+        .TopHeader__Inner__Lists__Right__Signin
+          = link_to "#", {class: "TopLink"} do
+            ログイン
+        .TopHeader__Inner__Lists__Right__Signup
+          = link_to "#", {class: "TopLink"} do
+            新規会員登録
