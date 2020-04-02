@@ -1,162 +1,156 @@
-body{
-  min-height: 100vh;
-  background-color: #efefef;
-  padding: 0px;
-  margin: 0px;
-}
+  .HeaderSignin{
+    width: 100%;
+    padding:37px 0;
+    text-align: center;
+    &__Logo{
+      padding-top:30px;
+      padding-bottom: 12px;
 
-.HeaderSignin{
-  width: 100%;
-  padding:37px 0;
-  text-align: center;
-  &__Logo{
-    padding-top:30px;
-    padding-bottom: 12px;
-
-    img{
-      width:185px;
-    }
-  }
-}
-
-.ContentSignin{
-  &__Upper{
-    width:456px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    border-bottom: solid 1px #eeeeee;
-    &__Area{
-      padding: 32px 64px;
-      &--Text{
-        text-align: center;
-        font-size: 14px;
-        margin-bottom:8px;
-      }
-      &__Signup{
-        background-color: #0099E8;
-        height: 42px;
-        text-align: center;
-
-        &--Btn{
-          font-size:14px;
-          color: #ffffff;
-          text-decoration: none;
-          line-height: 42px;
-        }
+      img{
+        width:185px;
       }
     }
   }
-  &__Under{
-    width: 456px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    &__BtnArea{
-      padding: 32px 64px;
-      background-color: #ffffff;
-      &--Facebook{
-        width: 100%;
-        height: 50px;
-        display: block;
-        font-size:14px;
-        background-color: #385185;
-        text-align: center;
-        line-height: 50px;
-        text-decoration: none;
-        color: white;
-        position: relative;
-        i{
-          line-height: 50px;
-          font-size:30px;
-          position: absolute;
-          left:20px;
-        }
-      }
-      &--Google{
-        width: 100%;
-        height: 48px;
-        display: block;
-        font-size:14px;
-        background-color: #ffffff;
-        border: 1px #333333 solid;
-        text-align: center;
-        line-height: 50px;
-        text-decoration: none;
-        color: #666666;
-        margin-top: 16px;
-        position: relative;
-        i{
-          line-height: 50px;
-          font-size:20px;
-          position: absolute;
-          left:20px;
-        }
-      }
-    }
-    &__Form{
-      padding: 32px 64px 16px;
-      &__Field{
-        width: 100%;
-        height: 48px;
-        padding: 10px 16px 8px;
-        margin-bottom: 24px;
-        border: 1px solid #cccccc;
-        border-radius: 3px;
-      }
-      &__Action{
-        font-size: 14px;
-        width: 100%;
-        height: 50px;
-        text-align: center;
-        color: white;
-        background-color: #EA352D;
-        border: 0px;
-      }
-      &--ForgetPW{
-        margin-top: 40px;
-        a{
-          text-decoration: none;
-          color: #0099E8;
-          font-size: 14px;
-        }
-      }
-    }
-  }
-}
 
-.FooterSignin{
-  width: 456px;
-  bottom: 0px;
-  margin:0 auto;
-  &__Infomation{
-    padding:40px 0;
-    font-size: 12px;
-    ul{
-      display: flex;
-      justify-content: space-around;
-      padding:10px 20px;
-      li{
-        font-size: 12px;
-        a{
-          text-decoration: none;
-          color:#333333;
-          text-align: center;
-        }
-      }
-    }
-  }
-  &__Logo{
-    margin: 0 auto;
-    width: 100px;
-    img{
+  .ContentSignin{
+    &__Upper{
+      width:456px;
       margin: 0 auto;
-      display: block;
+      background-color: #ffffff;
+      border-bottom: solid 1px #eeeeee;
+      &__Area{
+        padding: 32px 64px;
+        &--Text{
+          text-align: center;
+          font-size: 14px;
+          margin-bottom:8px;
+        }
+        &__Signup{
+          background-color: #0099E8;
+          height: 42px;
+          text-align: center;
+
+          &--Btn{
+            font-size:14px;
+            color: #ffffff;
+            text-decoration: none;
+            line-height: 42px;
+          }
+        }
+      }
     }
-    &__CopyRight{
-      p{
-        margin-top:8px;
-        text-align: center;
-        font-size: 12px;
+    &__Under{
+      width: 456px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      &__BtnArea{
+        padding: 32px 64px;
+        background-color: #ffffff;
+        &--Facebook{
+          width: 100%;
+          height: 50px;
+          display: block;
+          font-size:14px;
+          background-color: #385185;
+          text-align: center;
+          line-height: 50px;
+          text-decoration: none;
+          color: white;
+          position: relative;
+          i{
+            line-height: 50px;
+            font-size:30px;
+            position: absolute;
+            left:20px;
+          }
+        }
+        &--Google{
+          width: 100%;
+          height: 48px;
+          display: block;
+          font-size:14px;
+          background-color: #ffffff;
+          border: 1px #333333 solid;
+          text-align: center;
+          line-height: 50px;
+          text-decoration: none;
+          color: #666666;
+          margin-top: 16px;
+          position: relative;
+          i{
+            line-height: 50px;
+            font-size:20px;
+            position: absolute;
+            left:20px;
+          }
+        }
+      }
+      &__Form{
+        padding: 32px 64px 16px;
+        &__Field{
+          width: 100%;
+          height: 48px;
+          padding: 10px 16px 8px;
+          margin-bottom: 24px;
+          border: 1px solid #cccccc;
+          border-radius: 3px;
+        }
+        &__Action{
+          font-size: 14px;
+          width: 100%;
+          height: 50px;
+          text-align: center;
+          color: white;
+          background-color: #EA352D;
+          border: 0px;
+        }
+        &--ForgetPW{
+          margin-top: 40px;
+          a{
+            text-decoration: none;
+            color: #0099E8;
+            font-size: 14px;
+          }
+        }
       }
     }
   }
-}
+
+  .FooterSignin{
+    width: 456px;
+    bottom: 0px;
+    margin:0 auto;
+    &__Infomation{
+      padding:40px 0;
+      font-size: 12px;
+      ul{
+        display: flex;
+        justify-content: space-around;
+        padding:10px 20px;
+        li{
+          font-size: 12px;
+          a{
+            text-decoration: none;
+            color:#333333;
+            text-align: center;
+          }
+        }
+      }
+    }
+    &__Logo{
+      margin: 0 auto;
+      width: 100px;
+      img{
+        margin: 0 auto;
+        display: block;
+      }
+      &__CopyRight{
+        p{
+          margin-top:8px;
+          padding-bottom:40px;
+          text-align: center;
+          font-size: 12px;
+        }
+      }
+    }
+  }
