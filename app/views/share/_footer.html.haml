@@ -1,0 +1,33 @@
+.Footer
+  .Contents
+    .Contents__Content
+      .Contents__Content__Head
+        FURIMAについて
+      %ul
+        %li 会社概要(運営会社)   
+        %li プライバシーポリシー
+        %li FURIMA利用規約
+        %li ポイントに関する特約
+    .Contents__Content
+      .Contents__Content__Head
+        FURIMAを見る
+      %ul
+        %li カテゴリー一覧    
+        %li ブランド一覧
+    .Contents__Content
+      .Contents__Content__Head
+        ヘルプ&ガイド
+      %ul
+        %li FURIMAガイド    
+        %li FURIMAロゴ利用ガイドライン
+        %li お知らせ
+  .Logo
+    .Logo__Icon
+      = link_to image_tag("logo-white.png", alt: "w-logo"), class: "Logo"
+  .p
+    @FURIMA
+  .SellBtn
+    .SellBtn__Text
+      出品する
+    .SellBtn__Icon
+      = link_to image_tag("icon_camera.png", alt: "w-camera"), class: "Icon"
