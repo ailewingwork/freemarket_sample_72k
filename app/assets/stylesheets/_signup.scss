@@ -13,6 +13,7 @@ body{
   background-color: rgb(238, 235, 235);
 }
 
+
 .content{
   width: 700px;
   margin: 0 auto;
@@ -122,4 +123,195 @@ body{
       }
     }
   }
+}
+
+//アカウント情報入力画面向けのscss
+.ContentSignUp{
+  width: 700px;
+  margin: 0 auto;
+  padding-bottom: 10px;
+  background-color: #ffffff;
+  &__Title{
+    background-color: #ffffff;
+    padding: 32px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    border-bottom:1px solid #eee;
+  }
+  &__Infomation{
+    width:348px;
+    margin: 0 auto;
+    // ここから2ndViewの表示に該当するCSS
+    &__CommonEntry{
+      background-color: #ffffff;
+      padding-top:26px;
+      &__Area{
+        display:flex;
+
+      }
+      &__Confirm{
+        padding-top:10px;
+      }
+    }
+    &__Comfirm{
+      padding-top: 32px;
+      &--Title{
+        font-weight: bold;
+        font-size: 16px;
+      }
+      &--Body{
+        margin-top: 8px;
+        font-size:14px;
+      }
+    }
+    // ここから3rdViewの表示に該当するCSS
+
+    &__ProfileText{
+      margin-top: 24px;
+      &__Title{
+        display: flex;
+      }
+
+    }
+
+
+
+    &__NameEntry{
+      margin-top: 24px;
+      &__Title{
+        display: flex;
+      }
+      &__Form{
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+    &__Birth{
+      margin-top: 24px;
+      &__Title{
+        display: flex;
+      }
+    }
+    &__Attention{
+      margin-top:8px;
+      color: #888888;
+      font-size: 14px;
+    }
+    &__Action{
+      margin-top: 40px;
+      font-size: 14px;
+      &__Attention{
+        width: 100%;
+        text-align: center;
+      }
+      &__Btn{
+        font-size: 14px;
+        width: 100%;
+        height: 50px;
+        margin-top: 24px;
+        text-align: center;
+        color: white;
+        background-color: #EA352D;
+        border: 0px;
+      }
+    }
+    &__Link{
+      margin: 24px 0;
+      text-align: right;
+      font-size: 14px;
+    }
+    &__Caution{
+      line-height: 18px;
+      margin-top: 24px;
+      margin-bottom: 40px;
+      padding: 8px 16px;
+      color: #888888;
+      font-size: 11px;
+
+      background-color: #F5F5F5;
+    }
+  }
+}
+// 〜〜SignUp画面に対してパーツ単位で共有しているスタイル〜〜
+// 入力フォーム上部の文言へ実装するスタイル
+.SignUpTitle{
+  font-size: 14px;
+  font-weight: bold;
+}
+// 入力フォーム上部の「必須」アイコンへ実装するスタイル
+.SignUpRequired{
+  width: 32px;
+  height:19px;
+  color:#ffffff;
+  background-color: #EA352D;
+  border-radius: 2px;
+  padding: 2px 4px;
+  margin-left: 8px;
+  font-size: 12px;
+  line-height: 19px;
+}
+// 入力フォーム上部の「任意」アイコンへ実装するスタイル
+.SignUpOptional{
+  width: 32px;
+  height:19px;
+  color:#515151;
+  background-color: #dddddd;
+  border-radius: 2px;
+  padding: 2px 4px;
+  margin-left: 8px;
+  font-size: 12px;
+  line-height: 19px;
+}
+// 各種入力フォームに実装するスタイル
+.SinUpInputForm{
+  width: 100%;
+  padding: 10px 16px 8px;
+  margin: 8px 8px 0 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+// 並列で並ぶ入力フォームに実装するスタイル
+.SinUpInputFlexForm{
+  width: 47%;
+  padding: 10px 16px 8px;
+  margin: 8px 0 0 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+// プロフィール入力蘭のスタイル（一度しか表示しない為IDで指定）
+#SinUpInputProfileForm{
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 200px;
+  padding: 10px 16px 8px;
+  margin: 8px 8px 0 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+// 生年月日のプルダウンフォームに実装するスタイル
+.SinUpBirthdayForm{
+  width: 76px;
+  height: 48px;
+  padding: 10px 0;
+  margin: 8px 0 0;
+  font-size:12px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+// パスワード入力フォーム下部の注意文言に実装するスタイル
+#SignUpPassWordCaution{
+  display: block;
+  font-size:14px;
+  color: #888888;
+  margin-top: 8px;
+}
+
+// リンク共通で実装するスタイル
+.SignUpLink{
+  text-decoration: none;
+  color: #0099E8;
 }

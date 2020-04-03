@@ -1,7 +1,5 @@
 %body
-  .HeaderSignin
-    =link_to '#',class: "HeaderSignin__Logo" do
-      =image_tag 'logo.png'
+  = render "devise/shared/devise_header"
   .ContentSignin
     .ContentSignin__Upper
       .ContentSignin__Upper__Area
@@ -27,20 +25,4 @@
         .ContentSignin__Under__Form--ForgetPW
           = link_to "パスワードをお忘れの方", new_password_path(resource_name)
   .FooterSignin
-    .FooterSignin__Infomation
-      %ul
-        %li
-          =link_to "#" do
-            プライバシーポリシー
-        %li
-          =link_to "#" do
-            メルカリ利用規約
-        %li
-          =link_to "#" do
-            特定商取引に関する表記
-    .FooterSignin__Logo
-      = link_to root_path, class: "single_footer_logo" do
-        = image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?2845599746", height: "68px")
-      .FooterSignin__Logo__CopyRight
-        %p
-          © Furima, Inc.
+    = render "devise/shared/devise_footer"
