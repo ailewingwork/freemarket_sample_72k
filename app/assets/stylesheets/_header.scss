@@ -1,0 +1,95 @@
+.TopHeader{
+  padding: 0 60px;
+
+  &__Inner{
+    max-width: 1000px;
+    width: 100%;
+    min-height: 82px;
+    margin: 0 auto;
+    padding: 15px 0 0;
+
+    &__Main{
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      .TopIcon{
+        padding-bottom: 10px;
+        margin-right: 20px;
+        border-radius: 4px;
+
+        .TopImgLink{
+          height: 35px;
+          width: 120px;
+        }
+        &__Image{
+          height: 35px;
+          width: 120px;
+        }
+      }
+      
+      .SearchForm{
+        margin-left: auto;
+        background-color: white;
+        position: relative;
+        width: 100%;
+        padding-bottom: 10px;
+
+        &__Input{
+          width: 100%;
+          height: 30px;
+          padding: 0 0 0 5px;
+
+          &__Button{
+            height: 30px;
+            width: 30px;
+            cursor: pointer;
+            background-color: #3CCACE;
+            padding: 5px;
+            position: absolute;
+            right: 0;
+            text-align:center;
+            
+            &__Icon{
+              height: 20px;
+              width: 20px;
+            }
+          }
+        }
+      }
+    }
+
+    &__Lists{
+      font-size: 14px;
+      margin-bottom: 10px;
+      display: flex;
+      .TopLink{
+        display: flex;
+        color: #333;
+        text-decoration: none;
+      }
+      .LeftColor:hover {
+        color: orange;
+      }
+
+      &__Left{
+        display: flex;
+        &__Category{
+
+        }
+        &__Brand{
+          padding-left: 16px;
+        }
+      }
+      &__Right{
+        margin-left: auto;
+        display: flex;
+        &__Signin{
+        }
+        &__Signup{
+          padding-left: 16px;          
+        }
+      }
+    }
+  }
+}

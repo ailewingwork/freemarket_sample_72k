@@ -7,6 +7,14 @@
 |------|----|-------|
 |profile|text|null :true|
 |prof_image|string|null :true|
+|family_name|string|null: false|
+|first_name|string|null: false|
+|family_name_kana|string|null: false|
+|first_name_kana|string|null: false|
+|birth_year|string|null: false|
+|birth_month|string|null: false|
+|birth_day|string|null: false|
+|mobile|string|null: false, unique: true, index: true|
 |user_id|references|null :false, foreign_key :true|
 ### Association
  - belongs_to :user
@@ -33,14 +41,6 @@
 |reset_password_token|string|
 |reset_password_sent_at|datetime
 |remember_created_at|datetime|
-|family_name|string|null: false|
-|first_name|string|null: false|
-|family_name_kana|string|null: false|
-|first_name_kana|string|null: false|
-|birth_year|string|null: false|
-|birth_month|string|null: false|
-|birth_day|string|null: false|
-|mobile|string|null: false, unique: true, index: true|
 ### Association
  - has_many :items, dependent: :destroy
  - has_many :buyer_items, class_name: 'Item', :foreign_key => 'buyer_id'

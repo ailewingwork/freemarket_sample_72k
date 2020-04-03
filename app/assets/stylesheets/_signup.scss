@@ -1,0 +1,125 @@
+//新規登録＃＃＃＃ログインページ
+.header{
+  width: 100%;
+  height: 128px;
+  display: flex;
+  justify-content: center;
+
+  &__logo{
+    margin: auto 0;
+  }
+}
+// body{
+//   background-color: rgb(238, 235, 235);
+// }
+
+.content{
+  width: 700px;
+  margin: 0 auto;
+  &__upper{
+    height:97px;
+    background-color: #ffffff;
+    text-align: center;
+    line-height: 97px;
+    width: 100%;
+    font-size: 22px;
+    font-weight: bold;
+    color: #333333;
+  }
+  &__under{
+    background-color: #ffffff;
+    border-top: 1px solid rgb(238, 235, 235);
+    padding: 40px 40px 64px;
+    
+    &__btn{
+        width: 343px;
+        margin: 0 auto;
+        &__text{
+          margin: 0 auto;
+        }
+        .icon{
+          margin: auto 0 auto 25px;
+          display: block;
+          font-size: 20px;
+        }
+        &__email{
+          text-align: center;
+          width: 100%;
+          height:48px;
+          display: block;
+          margin: 0 auto;
+          background-color: #ea352d;
+          border-radius: 4px;
+          line-height: 48px;
+          text-decoration: none;
+          color: #ffffff;
+          display: flex;
+        }
+        &__facebook{
+          text-align: center;
+          width: 100%;
+          display: block;
+          margin: 16px auto 0;
+          background-color: #385185;
+          border-radius: 4px;
+          line-height: 48px;
+          text-decoration: none;
+          color: #ffffff;
+          display: flex;
+        }
+        &__gmail{
+          text-align: center;
+          width: 100%;
+          display: block;
+          margin: 16px auto 0;
+          background-color: white;
+          border-radius: 4px;
+          line-height: 48px;
+          border: solid 1px;
+          text-decoration: none;
+          color: black;
+          display: flex;
+        }
+    }
+  }
+}
+.footer{
+  &__center{
+    padding: 40px 0;
+    margin: 0 auto;
+    width: 456px;
+    height: 220px;
+
+    &__content{
+      margin: 0 auto;
+
+      &__text{
+        font-size:12px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-around;
+          .linkformat{
+            text-decoration: none;
+            color: gray;
+          }
+      }
+      &__img{
+        margin: 40px auto;
+        width: 100%;
+        position: relative;
+
+        &__logo{
+          margin: 0 auto;
+          width: 185px;
+        }
+
+        &__copylight{
+          font-size: small;
+          white-space: nowrap;
+          margin: 0 auto;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

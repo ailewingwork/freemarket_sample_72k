@@ -1,0 +1,80 @@
+.Footer {
+  height: 354.34px;
+  width: 100%;
+  background-color: #272727;
+  padding: 60px 0;
+  text-align: center;
+  position: relative;
+  .Contents {
+    height: 172px;
+    max-width: 840px;
+    margin: 0 auto;
+    display: flex;
+    // background-color: yellow;
+    &__Content {
+      height: 172px;
+      width: calc(1 / 3 *100%);
+      flex-direction: column;
+      margin: 0 2% 0 0;
+      // background-color: powderblue;
+      &__Head {
+        height: 24px;
+        width: 263.2;
+        // background-color: red;
+        margin: 0 0 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;        
+      }
+      ul {
+        color: white;
+        font-size: 12px;
+        line-height: 32px;
+      }
+    }
+  }
+  .Logo {
+    height: 46.34px;
+    max-width: 160px;
+    width: 100%;
+    margin: 0 auto;
+    // background-color: springgreen;
+    img {
+      height: 46px;
+      width: 160px;
+    }
+  }
+  .p {
+    height: 16px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 16px;
+    color: white;
+  }
+  .SellBtn {
+    height: 116px;
+    width: 120px;
+    background-color: #3CCACE;
+    text-align: center;
+    border-radius: 4%;
+    bottom: 32px;
+    right: 32px;
+    position: absolute;
+    text-align: center;
+    position: fixed;
+    &__Text {
+      color: white;
+      font-size: 18px;
+      display: block;
+      margin: 15px 0 0 0;
+    }
+    &__Icon {
+      img {
+        height: 54px;
+        width: 54px;
+        margin:5px 5px 0 5px;
+        vertical-align: bottom;
+      }
+    }
+  }
+}
