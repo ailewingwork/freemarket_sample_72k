@@ -112,6 +112,12 @@ body{
         &__logo{
           margin: 0 auto;
           width: 185px;
+          .FooterLogo{
+            margin: 0 auto;
+            width: 80px;
+            height: 65px;
+            display: block;
+          }
         }
 
         &__copylight{
