@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_02_042557) do
+ActiveRecord::Schema.define(version: 2020_04_06_062524) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "product_name", null: false
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2020_04_02_042557) do
     t.bigint "seller_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "buyer_id"
+    t.index ["buyer_id"], name: "index_items_on_buyer_id"
     t.index ["seller_id"], name: "index_items_on_seller_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
@@ -59,6 +61,7 @@ ActiveRecord::Schema.define(version: 2020_04_02_042557) do
   end
 
   add_foreign_key "items", "users"
+  add_foreign_key "items", "users", column: "buyer_id"
   add_foreign_key "items", "users", column: "seller_id"
   add_foreign_key "profiles", "users"
 end

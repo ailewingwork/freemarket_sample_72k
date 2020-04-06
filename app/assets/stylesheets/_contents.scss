@@ -14,7 +14,7 @@
   .MainVisual {
     height: 560px;
     width: 100vw;
-    background-image: url(bg-mainVisual-pict_pc.jpg);
+    background-image: image-url("bg-mainVisual-pict_pc.jpg");
     background-size: cover;
     background-position: top center;
     padding: 0 60px;
@@ -144,7 +144,7 @@
   .TopMiddleDl {
     height: 400px;
     width: 100%;
-    background-image: url(bg-topMiddleDl-pict.jpg);
+    background-image: image-url("bg-topMiddleDl-pict.jpg");
     background-size: cover;
     background-position: bottom right;
     position: relative;
@@ -282,12 +282,24 @@
         justify-content: space-around;
         &__ProductList {
           width: 220px;
-          display: inline-block;
-          img  {
-            height: 245px;
+          &__ProductImage {
             width: 220px;
+            display: inline-block;
+            img  {
+              height: 245px;
+              width: 220px;
+            }
+          }  
+          &__ProductName {
+            font-size: 20px;
           }
-        }
+          &__ProductPrice {
+            font-size: 19px;
+          }
+          &__Tax {
+            font-size: small;
+          }
+        }        
       }
     }
   }
@@ -320,18 +332,31 @@
         justify-content: space-around;
         &__ProductList {
           width: 220px;
-          display: inline-block;
-          img {
-            height: 245px;
+          &__ProductImage {
             width: 220px;
+            display: inline-block;
+            img  {
+              height: 245px;
+              width: 220px;
+            }
+          }  
+          &__ProductName {
+            font-size: 20px;
           }
-        }     
+          &__ProductPrice {
+            font-size: 19px;
+          }
+          &__Tax {
+            font-size: small;
+          }
+        }        
       }
     }
-  }    
+  }
+    
   .AppBanner {
     height: 359.33px;
-    background-image: url(bg-appBanner-pict.jpg);
+    background-image: image-url("bg-appBanner-pict.jpg");
     width: 100%;
     background-size: cover;
     background-position: center;
