@@ -20,9 +20,15 @@
           = link_to "#", {class: "TopLink LeftColor"} do
             ブランド
       .TopHeader__Inner__Lists__Right
-        .TopHeader__Inner__Lists__Right__Signin
-          = link_to "#", {class: "TopLink"} do
-            ログイン
-        .TopHeader__Inner__Lists__Right__Signup
-          = link_to "#", {class: "TopLink"} do
-            新規会員登録
+        -if user_signed_in?
+          -# 動作確認のため、ログアウト導線を仮置き
+          .TopHeader__Inner__Lists__Right__Signin
+            = link_to destroy_user_session_path, method: :delete,class: "TopLink" do
+              ログアウト
+        -else
+          .TopHeader__Inner__Lists__Right__Signin
+            = link_to new_user_session_path , {class: "TopLink"} do
+              ログイン
+          .TopHeader__Inner__Lists__Right__Signup
+            = link_to users_path, {class: "TopLink"} do
+              新規会員登録

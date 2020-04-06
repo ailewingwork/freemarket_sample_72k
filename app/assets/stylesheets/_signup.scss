@@ -143,7 +143,7 @@ body{
   &__Infomation{
     width:348px;
     margin: 0 auto;
-    // ここから2ndViewの表示に該当するCSS
+    // ここからcreate_profile.html.haml以降に表示するCSS
     &__CommonEntry{
       background-color: #ffffff;
       padding-top:26px;
@@ -175,8 +175,49 @@ body{
       }
 
     }
+    &__PostCode{
+      margin-top: 24px;
+      &__Title{
+        display: flex;
+      }
+      &__Form{
+        display: flex;
+        line-height: 46px;
+        p{
+          margin-top:8px;
+          margin-right:8px;
+        }
+      }
+    }
+    &__Prefecture{
+      margin-top: 24px;
+      &__Title{
+        display: flex;
+      }
+      &__Form{
+        line-height: 46px;
+      }
+    }
 
+    &__StreetNumber{
+      margin-top: 24px;
+      &__Title{
+        display: flex;
+      }
+      &__Form{
+        line-height: 46px;
+      }
+    }
 
+    &__BuildingName{
+      margin-top: 24px;
+      &__Title{
+        display: flex;
+      }
+      &__Form{
+        line-height: 46px;
+      }
+    }
 
     &__NameEntry{
       margin-top: 24px;
@@ -213,7 +254,7 @@ body{
         margin-top: 24px;
         text-align: center;
         color: white;
-        background-color: #EA352D;
+        background-color: #3CCACE;
         border: 0px;
       }
     }
@@ -245,7 +286,7 @@ body{
   width: 32px;
   height:19px;
   color:#ffffff;
-  background-color: #EA352D;
+  background-color: #3CCACE;
   border-radius: 2px;
   padding: 2px 4px;
   margin-left: 8px;
@@ -268,7 +309,7 @@ body{
 .SinUpInputForm{
   width: 100%;
   padding: 10px 16px 8px;
-  margin: 8px 8px 0 0;
+  margin: 8px 0 0 0;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
@@ -292,7 +333,7 @@ body{
 }
 
 // 生年月日のプルダウンフォームに実装するスタイル
-.SinUpBirthdayForm{
+#profile_birth_day_1i{
   width: 76px;
   height: 48px;
   padding: 10px 0;
@@ -302,6 +343,29 @@ body{
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+#profile_birth_day_2i{
+  width: 76px;
+  height: 48px;
+  padding: 10px 0;
+  margin: 8px 0 0;
+  font-size:12px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+#profile_birth_day_3i{
+  width: 76px;
+  height: 48px;
+  padding: 10px 0;
+  margin: 8px 0 0;
+  font-size:12px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
 // パスワード入力フォーム下部の注意文言に実装するスタイル
 #SignUpPassWordCaution{
   display: block;
@@ -313,5 +377,16 @@ body{
 // リンク共通で実装するスタイル
 .SignUpLink{
   text-decoration: none;
-  color: #0099E8;
+  color: #3CCACE;
+}
+
+// 都道府県セレクトフォームに実装するスタイル
+#SinUpInputPrefectureForm{
+    width: 100%;
+    height:38px;
+    padding: 10px 16px 8px;
+    margin: 8px 8px 0 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
 }
