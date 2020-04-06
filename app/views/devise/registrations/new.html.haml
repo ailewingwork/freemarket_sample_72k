@@ -1,19 +1,18 @@
 -# 新規会員登録画面へ遷移した際、2番目に表示するview
 %body
   = render "devise/shared/devise_header"
-%body
   .ContentSignUp
     .ContentSignUp__Title
       会員情報入力
     .ContentSignUp__Infomation
-      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = form_for(@user, url: user_registration_path) do |f|
         -# = render "devise/shared/error_messages", resource: resource
         .ContentSignUp__Infomation__CommonEntry
           .ContentSignUp__Infomation__CommonEntry__Area
             .SignUpTitle ニックネーム
             .SignUpRequired 必須
           -# class名はinputForm単位で切り分け
-          = f.text_field :nickname, placeholder: "例）メルカリ太郎", class:"SinUpInputForm"
+          = f.text_field :nickname, placeholder: "例）フリマ太郎", class:"SinUpInputForm"
         .ContentSignUp__Infomation__CommonEntry
           .ContentSignUp__Infomation__CommonEntry__Area
             .SignUpTitle メールアドレス
@@ -25,19 +24,19 @@
             .SignUpTitle パスワード
             .SignUpRequired 必須
           -# class名はinputForm単位で切り分け
-          = f.password_field :password, type: "password", autocomplete: "new-password",placeholder: "7文字以上の半角英数字",class: "SinUpInputForm"
+          = f.password_field :password, type: "password", autocomplete: "new-password",placeholder: "7文字以上の半角英数字",class: "SinUpInputForm",id: "PWForm",minlength: "7"
           -# 他の要素と規則性を持たせる事ができなかった為、IDを指定 
           %span#SignUpPassWordCaution
             ※英字と数字の両方を含めて設定してください
           .ContentSignUp__Infomation__CommonEntry__Confirm
-            %input{name: "example", type: "checkbox", value: "サンプル"}
+            %input{name: "example", type: "checkbox", value: "サンプル",id: "CheckPW"}
               パスワードを表示する
         .ContentSignUp__Infomation__CommonEntry
           .ContentSignUp__Infomation__CommonEntry__Area
             .SignUpTitle パスワード再入力
             .SignUpRequired 必須
           -# class名はinputForm単位で切り分け
-          = f.password_field :password, type: "password", autocomplete: "new-password",placeholder: "再度パスワードを入力",class: "SinUpInputForm"
+          = f.password_field :password, type: "password", autocomplete: "new-password",placeholder: "再度パスワードを入力",minlength: "7",class: "SinUpInputForm"
         .ContentSignUp__Infomation__Comfirm
           %p.ContentSignUp__Infomation__Comfirm--Title 本人確認
           %p.ContentSignUp__Infomation__Comfirm--Body 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
@@ -51,7 +50,7 @@
               =link_to "#", class: "SignUpLink" do
                 利用規約
             に同意したものとみなします
-          %input{type: "submit", value: "次へ進む", class: "ContentSignUp__Infomation__Action__Btn"}
+          = f.submit "次へ進む", class: "ContentSignUp__Infomation__Action__Btn"
         .ContentSignUp__Infomation__Link
           =link_to "#", class: "SignUpLink" do
             本人情報の登録について>

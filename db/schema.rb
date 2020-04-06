@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_02_042557) do
+ActiveRecord::Schema.define(version: 2020_04_06_083839) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "product_name", null: false
@@ -31,18 +31,28 @@ ActiveRecord::Schema.define(version: 2020_04_02_042557) do
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "profile"
     t.string "prof_image"
-    t.string "fimily_name", null: false
+    t.string "family_name", null: false
     t.string "first_name", null: false
-    t.string "fimily_name_kana", null: false
+    t.string "family_name_kana", null: false
     t.string "first_name_kana", null: false
-    t.date "birth_year", null: false
-    t.date "birth_month", null: false
     t.date "birth_day", null: false
     t.string "mobile", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "ships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "shipping_family_name"
+    t.string "shipping_first_name"
+    t.string "shipping_family_name_kana"
+    t.string "shipping_first_name_kana"
+    t.string "mobile"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_ships_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
