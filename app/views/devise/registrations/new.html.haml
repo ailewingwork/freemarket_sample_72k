@@ -1,30 +1,29 @@
-%body
+%body.BodyColorSignUp
   .header
     .header__logo
       = link_to "#", class: "" do
         = image_tag 'logo.png',width:185,height:49
     .header__title
-  %body
-    .content
-      .content__upper
-        .cntent__upper__title
-          新規会員登録
-      .content__under
-        .content__under__btn
-          = link_to "#",class: 'content__under__btn__email' do
-            =icon('far','envelope', class: 'icon')
-            .content__under__btn__text
-              メールアドレスで登録する
-        .content__under__btn
-          = link_to "#",class: 'content__under__btn__facebook' do
-            =icon('fab','facebook-square', class: 'icon')
-            .content__under__btn__text
-              Facebookで登録する
-        .content__under__btn
-          = link_to "#",class: 'content__under__btn__gmail' do
-            =icon('fab','google', class: 'icon')
-            .content__under__btn__text  
-              Googleで登録する
+  .content
+    .content__upper
+      .cntent__upper__title
+        新規会員登録
+    .content__under
+      .content__under__btn
+        = link_to "#",class: 'content__under__btn__email' do
+          =icon('far','envelope', class: 'icon')
+          .content__under__btn__text
+            メールアドレスで登録する
+      .content__under__btn
+        = link_to "#",class: 'content__under__btn__facebook' do
+          =icon('fab','facebook-square', class: 'icon')
+          .content__under__btn__text
+            Facebookで登録する
+      .content__under__btn
+        = link_to "#",class: 'content__under__btn__gmail' do
+          =icon('fab','google', class: 'icon')
+          .content__under__btn__text  
+            Googleで登録する
   %footer
     .footer__center
       .footer__center__content
@@ -44,3 +43,4 @@
               = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?2845599746",class: 'FooterLogo'
           .footer__center__content__img__copylight
             © Furima,  Inc.
+          
