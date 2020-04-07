@@ -282,12 +282,24 @@
         justify-content: space-around;
         &__ProductList {
           width: 220px;
-          display: inline-block;
-          img  {
-            height: 245px;
+          &__ProductImage {
             width: 220px;
+            display: inline-block;
+            img  {
+              height: 245px;
+              width: 220px;
+            }
+          }  
+          &__ProductName {
+            font-size: 20px;
           }
-        }
+          &__ProductPrice {
+            font-size: 19px;
+          }
+          &__Tax {
+            font-size: small;
+          }
+        }        
       }
     }
   }
@@ -320,15 +332,28 @@
         justify-content: space-around;
         &__ProductList {
           width: 220px;
-          display: inline-block;
-          img {
-            height: 245px;
+          &__ProductImage {
             width: 220px;
+            display: inline-block;
+            img  {
+              height: 245px;
+              width: 220px;
+            }
+          }  
+          &__ProductName {
+            font-size: 20px;
           }
-        }     
+          &__ProductPrice {
+            font-size: 19px;
+          }
+          &__Tax {
+            font-size: small;
+          }
+        }        
       }
     }
-  }    
+  }
+    
   .AppBanner {
     height: 359.33px;
     background-image: image-url("bg-appBanner-pict.jpg");

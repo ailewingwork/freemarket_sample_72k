@@ -91,12 +91,17 @@
       .PickupContainer1__ProductBox__ProductHead
         新規投稿商品
       .PickupContainer1__ProductBox__ProductLists
-        .PickupContainer1__ProductBox__ProductLists__ProductList
-          = link_to image_tag("icon-02.png", alt: "icon2")
-        .PickupContainer1__ProductBox__ProductLists__ProductList
-          = link_to image_tag("icon-02.png", alt: "icon2")
-        .PickupContainer1__ProductBox__ProductLists__ProductList
-          = link_to image_tag("icon-02.png", alt: "icon2")
+        - @items.each do |item|
+          .PickupContainer1__ProductBox__ProductLists__ProductList
+            .PickupContainer1__ProductBox__ProductLists__ProductList__ProductImage
+              = link_to image_tag("icon-02.png", alt: "icon2"), "#", class: "ProductImage"
+            .PickupContainer1__ProductBox__ProductLists__ProductList__ProductName
+              = item.product_name
+            .PickupContainer1__ProductBox__ProductLists__ProductList__ProductPrice
+              = item.price
+              円
+            .PickupContainer1__ProductBox__ProductLists__ProductList__Tax
+              (税込)  
   
   .PickupContainer2
     .PickupContainer2__Head
@@ -105,12 +110,18 @@
       .PickupContainer2__ProductBox__ProductHead
         アーカイブ
       .PickupContainer2__ProductBox__ProductLists
-        .PickupContainer2__ProductBox__ProductLists__ProductList
-          = link_to image_tag("icon-02.png", alt: "icon2")
-        .PickupContainer2__ProductBox__ProductLists__ProductList
-          = link_to image_tag("icon-02.png", alt: "icon2")
-        .PickupContainer2__ProductBox__ProductLists__ProductList
-          = link_to image_tag("icon-02.png", alt: "icon2")                                     
+        - @items.each do |item|
+          .PickupContainer2__ProductBox__ProductLists__ProductList
+            .PickupContainer1__ProductBox__ProductLists__ProductList__ProductImage
+              = link_to image_tag("icon-02.png", alt: "icon2"), "#", class: "ProductImage"
+            .PickupContainer2__ProductBox__ProductLists__ProductList__ProductName
+              = item.product_name
+            .PickupContainer2__ProductBox__ProductLists__ProductList__ProductPrice
+              = item.price
+              円
+            .PickupContainer2__ProductBox__ProductLists__ProductList__Tax
+              (税込)  
+                                     
 
   .AppBanner
     .AppBanner__Inner
