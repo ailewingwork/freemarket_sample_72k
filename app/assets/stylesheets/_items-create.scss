@@ -1,0 +1,86 @@
+.Sell-Title {
+  align-items: center;
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  &__Text {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4em;
+  }
+  &__Box {
+    font-size: 12px;
+    padding: 0 4px;
+    background-color:red;
+    color:white;
+    border-radius: 2px;
+    display: inline-block;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.4em;
+    margin: 0 8px;
+  }
+}
+
+.SellPage {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+  background-color:rgb(245, 245, 245);
+  color: rgb(51, 51, 51);
+  font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+  box-sizing: border-box;
+  font-size: 14px;
+  &__Information {
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+    background-color:plum;
+    &__Image {
+      height: auto;
+      padding: 40px;
+      border-bottom: 1px;
+      border-bottom-color: white;
+      border-bottom-style: solid;
+      &__Max {
+        margin-top: 16px;
+      }
+      &__Upload {
+        margin-top: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        height: 112px;
+        background-color:rgb(245, 245, 245);
+        justify-content: center;
+        position: relative;
+        border-width: 1px;
+        border-style: dashed;
+        border-color: rgb(204, 204, 204);
+        border-image: initial;
+        cursor: pointer;
+        &__Items {
+          height: auto;
+          width: 100%;
+          &__Box {            
+          }
+        }
+      }
+    }  
+    &__Name {
+      max-width: 700px;
+      width: 100%;
+      margin: 0 auto;
+      background-color: blue;
+    }
+  }
+
+
+
+
+
+
+
+
+}
