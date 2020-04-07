@@ -9,10 +9,10 @@
     margin: auto 0;
   }
 }
-body{
+.BodyColorSignUp{
+  height:100vh;
   background-color: rgb(238, 235, 235);
 }
-
 
 .content{
   width: 700px;
@@ -112,6 +112,12 @@ body{
         &__logo{
           margin: 0 auto;
           width: 185px;
+          .FooterLogo{
+            margin: 0 auto;
+            width: 80px;
+            height: 65px;
+            display: block;
+          }
         }
 
         &__copylight{
