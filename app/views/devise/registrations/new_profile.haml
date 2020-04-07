@@ -5,7 +5,8 @@
     .ContentSignUp__Title
       会員情報入力
     .ContentSignUp__Infomation
-      = form_for @profile do |f|
+      = form_for @profile, url: profiles_path, method: :post do |f|
+        = render "devise/shared/error_messages", resource: @profile
         .ContentSignUp__Infomation__ProfileText
           .ContentSignUp__Infomation__ProfileText__Title
             .SignUpTitle プロフィール
@@ -46,7 +47,7 @@
           .ContentSignUp__Infomation__Action__Attention
             「次へ進む」のボタンを押すことにより、
             %span
-              =link_to "#", class: "SignUpLink" do
+              =link_to ships_path, method: :get, class: "SignUpLink" do
                 利用規約
             に同意したものとみなします
           = f.submit "次へ進む", class: "ContentSignUp__Infomation__Action__Btn"

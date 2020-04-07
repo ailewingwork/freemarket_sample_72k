@@ -6,7 +6,7 @@
       会員情報入力
     .ContentSignUp__Infomation
       = form_for(@user, url: user_registration_path) do |f|
-        -# = render "devise/shared/error_messages", resource: resource
+        = render "devise/shared/error_messages", resource: @user
         .ContentSignUp__Infomation__CommonEntry
           .ContentSignUp__Infomation__CommonEntry__Area
             .SignUpTitle ニックネーム
@@ -36,7 +36,7 @@
             .SignUpTitle パスワード再入力
             .SignUpRequired 必須
           -# class名はinputForm単位で切り分け
-          = f.password_field :password, type: "password", autocomplete: "new-password",placeholder: "再度パスワードを入力",minlength: "7",class: "SinUpInputForm"
+          = f.password_field :password_confirmation, type: "password", autocomplete: "new-password",placeholder: "再度パスワードを入力",minlength: "7",class: "SinUpInputForm"
         .ContentSignUp__Infomation__Comfirm
           %p.ContentSignUp__Infomation__Comfirm--Title 本人確認
           %p.ContentSignUp__Infomation__Comfirm--Body 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
@@ -62,4 +62,5 @@
           =link_to "#", class: "SignUpLink" do
             Terms of Service
           apply.
+
   = render "devise/shared/devise_footer"
