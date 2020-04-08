@@ -4,7 +4,7 @@
   = render "devise/shared/devise_header"
   .ContentSignUp
     .ContentSignUp__Title
-      住所登録
+      配送先住所登録
     .ContentSignUp__Infomation
       = form_for @address, url: addresses_path, method: :post do |f|
         = render "devise/shared/error_messages", resource: @address

@@ -8,6 +8,7 @@ class Ship < ApplicationRecord
   
   validates :shipping_family_name_kana, format: { with: VALID_KATAKANA_REGEX}
   validates :shipping_first_name_kana,  format: { with: VALID_KATAKANA_REGEX}
+  validates :mobile, format: {with: VALID_MOBILE_REGEX}, if: Proc.new{|v| v.mobile.present?}
 
   validates :shipping_family_name,:shipping_first_name,presence: true
 end

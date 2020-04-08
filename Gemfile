@@ -74,3 +74,5 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog-aws'
 gem "jquery-rails"
+gem 'rspec-rails'
+gem 'factory_bot_rails'

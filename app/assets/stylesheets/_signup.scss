@@ -199,6 +199,16 @@ body{
       }
     }
 
+    &__City{
+      margin-top: 24px;
+      &__Title{
+        display: flex;
+      }
+      &__Form{
+        line-height: 46px;
+      }
+    }
+
     &__StreetNumber{
       margin-top: 24px;
       &__Title{
