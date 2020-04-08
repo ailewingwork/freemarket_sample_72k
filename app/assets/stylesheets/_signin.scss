@@ -1,5 +1,10 @@
 
-  .HeaderSignin{
+.SigninBackGround{
+  height:100%;
+  background-color: rgb(235, 235, 238);
+}
+
+.HeaderSignin{
     width: 100%;
     padding:37px 0;
     text-align: center;
@@ -121,6 +126,7 @@
     width: 456px;
     bottom: 0px;
     margin:0 auto;
+    margin-bottom:0px;
     &__Infomation{
       padding:40px 0;
       font-size: 12px;
