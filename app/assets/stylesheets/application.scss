@@ -1,4 +1,5 @@
 @import "reset";
+@import "config/colors";
 @import "header";
 @import "contents";
 @import "signin";
@@ -6,6 +7,7 @@
 @import "items";
 @import "users";
 @import "footer";
+@import "modules/flash";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "items-create";

@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
-  
+
   def index
+    
   end
 
-  def new
+  def new_1st_view
+    
   end
 
 end
