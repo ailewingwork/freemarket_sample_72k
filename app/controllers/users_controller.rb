@@ -7,4 +7,5 @@ class UsersController < ApplicationController
   def new_1st_view
     
   end
+
 end

@@ -1,0 +1,50 @@
+= render "share/header"
+.MyPageContent
+  .MyPageContent__CenteringBox
+    .MyPageContent__CenteringBox__LeftSidelist
+      .MyPageContent__CenteringBox__LeftSidelist__MyPageNav
+        .MyPageContent__CenteringBox__LeftSidelist__MyPageNav__ContentTitle
+          = link_to("ログアウト", "destroy_user_session_path", method: :delete, class: '')
+        .MyPageContent__CenteringBox__LeftSidelist__MyPageNav__ContentTitle
+          = link_to('クレジットカード登録', " /users/edit")
+        .MyPageContent__CenteringBox__LeftSidelist__MyPageNav__ContentTitle
+          = link_to('option+shift+下で行複製', "/")
+    .MyPageContent__CenteringBox__MainContent
+      .MyPageContent__CenteringBox__MainContent__UserIcon
+        .MyPageContent__CenteringBox__MainContent__UserIcon__UserText
+          =link_to "#", class: "" do
+            USER NAME
+        .MyPageContent__CenteringBox__MainContent__UserIcon__Box
+          .MyPageContent__CenteringBox__MainContent__UserIcon__Box__Evaluation
+            評価  0
+          .MyPageContent__CenteringBox__MainContent__UserIcon__Box__Products
+            出品数  0
+      %h4.ProfileTileText
+        プロフィール
+      %table
+        %tr
+          %th お名前
+          %td いしざき
+        %tr
+          %th お名前カナ
+          %td イシザキ
+        %tr
+          %th 生年月日
+          %td 2020/11/11
+        %tr
+          %th 郵便番号
+          %td 174-5555
+        %tr
+          %th 都道府県
+          %td 東京都
+        %tr
+          %th 市区町村
+          %td 板橋区神楽町
+        %tr
+          %th 番地
+          %td ５−５−５
+        %tr
+          %th 建物名
+          %td 
+= render "share/footer"
+
