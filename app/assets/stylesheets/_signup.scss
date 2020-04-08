@@ -9,7 +9,8 @@
     margin: auto 0;
   }
 }
-body{
+.BodyColorSignUp{
+  height:100vh;
   background-color: rgb(238, 235, 235);
 }
 
@@ -112,6 +113,12 @@ body{
         &__logo{
           margin: 0 auto;
           width: 185px;
+          .FooterLogo{
+            margin: 0 auto;
+            width: 80px;
+            height: 65px;
+            display: block;
+          }
         }
 
         &__copylight{
@@ -143,6 +150,7 @@ body{
   &__Infomation{
     width:348px;
     margin: 0 auto;
+
     // ここからcreate_profile.html.haml以降に表示するCSS
     &__CommonEntry{
       background-color: #ffffff;
@@ -175,6 +183,7 @@ body{
       }
 
     }
+
     &__PostCode{
       margin-top: 24px;
       &__Title{
@@ -229,6 +238,7 @@ body{
       }
     }
 
+
     &__NameEntry{
       margin-top: 24px;
       &__Title{
@@ -265,6 +275,7 @@ body{
         text-align: center;
         color: white;
         background-color: #3CCACE;
+
         border: 0px;
       }
     }
@@ -343,6 +354,7 @@ body{
 }
 
 // 生年月日のプルダウンフォームに実装するスタイル
+
 #profile_birth_day_1i{
   width: 76px;
   height: 48px;
@@ -353,7 +365,6 @@ body{
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
 #profile_birth_day_2i{
   width: 76px;
   height: 48px;
@@ -374,7 +385,6 @@ body{
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
 
 // パスワード入力フォーム下部の注意文言に実装するスタイル
 #SignUpPassWordCaution{

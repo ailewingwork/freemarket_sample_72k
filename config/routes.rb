@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   end
   root to: 'items#index'
   resources :users
-  resources :item, except: [:index]
-
+  resources :items, only: [:index, :new, :show]
 end
+

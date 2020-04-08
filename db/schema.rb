@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2020_04_06_152438) do
     t.datetime "updated_at", null: false
     t.bigint "ship_id", null: false
     t.index ["ship_id"], name: "index_addresses_on_ship_id"
+
+ActiveRecord::Schema.define(version: 2020_04_07_091408) do
+
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "image", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_images_on_item_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -36,6 +45,8 @@ ActiveRecord::Schema.define(version: 2020_04_06_152438) do
     t.bigint "seller_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "buyer_id"
+    t.index ["buyer_id"], name: "index_items_on_buyer_id"
     t.index ["seller_id"], name: "index_items_on_seller_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
@@ -81,7 +92,9 @@ ActiveRecord::Schema.define(version: 2020_04_06_152438) do
   end
 
   add_foreign_key "addresses", "ships"
+  add_foreign_key "images", "items"
   add_foreign_key "items", "users"
+  add_foreign_key "items", "users", column: "buyer_id"
   add_foreign_key "items", "users", column: "seller_id"
   add_foreign_key "profiles", "users"
 end

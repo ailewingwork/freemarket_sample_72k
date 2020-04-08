@@ -1,10 +1,12 @@
 @import "reset";
 @import "config/colors";
 @import "header";
-// @import "contents";
+@import "contents";
 @import "signin";
 @import "signup";
+@import "items";
 @import "footer";
 @import "modules/flash";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "items-create";
