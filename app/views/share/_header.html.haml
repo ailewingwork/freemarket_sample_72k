@@ -24,8 +24,8 @@
         -if user_signed_in?
           -# 動作確認のため、ログアウト導線を仮置き
           .TopHeader__Inner__Lists__Right__Signin
-            = link_to destroy_user_session_path, method: :delete,class: "TopLink" do
-              ログアウト
+            = link_to user_path(current_user.id), method: :get,class: "TopLink" do
+              マイページ
         -else
           .TopHeader__Inner__Lists__Right__Signin
             = link_to new_user_session_path , {class: "TopLink"} do
