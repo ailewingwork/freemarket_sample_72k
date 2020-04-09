@@ -1,0 +1,7 @@
+- @contents.each do |content|
+  .MyPageSideMenuList
+    .MyPageSideMenuList__Value
+      = link_to content[:path],method: content[:pattern] do
+        = content[:name]
+    .MyPageSideMenuList__Disclosure
+      = icon('fas','chevron-right')

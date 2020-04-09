@@ -1,0 +1,24 @@
+.MyPageSideMenuList{
+  width: 100%;
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+  padding:16px;
+  border-bottom: 1px solid #dddddd;
+  background-color: #ffffff;
+  a{
+    font-size: 14px;
+    color: #333333;
+  }
+  &__Disclosure{
+    i{
+      color: #aaaaaa;
+
+    }
+  }
+}
+
+//最後のリストのみ、border-bottomを消したいので記述
+.MyPageSideMenuList:last-child{
+  border:0px;
+}

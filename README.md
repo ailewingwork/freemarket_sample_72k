@@ -11,8 +11,6 @@
 |first_name|string|null: false|
 |family_name_kana|string|null: false|
 |first_name_kana|string|null: false|
-|birth_year|string|null: false|
-|birth_month|string|null: false|
 |birth_day|string|null: false|
 |mobile|string|null: false, unique: true, index: true|
 |user_id|references|null :false, foreign_key :true|
@@ -31,7 +29,6 @@
 ### Association
  - belongs_to :user
 
-
 ## users テーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -39,7 +36,7 @@
 |email|string|null: false|
 |encrypted_password|string| null: false|
 |reset_password_token|string|
-|reset_password_sent_at|datetime
+|reset_password_sent_at|datetime|
 |remember_created_at|datetime|
 ### Association
  - has_many :items, dependent: :destroy
@@ -57,7 +54,7 @@
 |shipping_first_name|string|null: false|
 |shipping_family_name_kana|string|null: false|
 |shipping_first_name_kana|string|null: false|
-|mobile|string|null :false|
+|mobile|string|null :true|
 |user_id|references|null: false, unique: true, index: true|
 ### Association
  - has_one :addresses, dependent: :destroy
