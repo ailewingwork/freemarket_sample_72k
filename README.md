@@ -18,13 +18,11 @@
  - belongs_to :user
 
 
-## credit_card
+## credit_cards テーブル
 |Column|Type|Options|
 |------|----|-------|
-|card_number|integer|null :false|
-|card_year|integer|null :false|
-|card_month|integer|null :false|
-|security_code|integer|null :false|
+|customer_id|integer|null :false|
+|card_id|integer|null :false|
 |user_id|references|null :false, foreign_key :true|
 ### Association
  - belongs_to :user
