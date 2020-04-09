@@ -1,0 +1,65 @@
+-# 発送先情報の追加
+-# ４枚目のビュー new_address.html.haml
+.WizardContents
+  = render "devise/shared/devise_header"
+  .ContentSignUp
+    .ContentSignUp__Title
+      配送先住所登録
+    .ContentSignUp__Infomation
+      = form_for @address, url: addresses_path, method: :post do |f|
+        = render "devise/shared/error_messages", resource: @address
+        .ContentSignUp__Infomation__PostCode
+          .ContentSignUp__Infomation__PostCode__Title
+            .SignUpTitle 郵便番号(全角)
+            .SignUpRequired 必須
+          .ContentSignUp__Infomation__PostCode__Form
+            = f.text_field :post_code, class:"SinUpInputForm"
+
+        .ContentSignUp__Infomation__Prefecture
+          .ContentSignUp__Infomation__Prefecture__Title
+            .SignUpTitle 都道府県
+            .SignUpRequired 必須
+          .ContentSignUp__Infomation__Prefecture__Form
+            = f.select :prefecture, Address.shipping_areas.keys, {},{id:"SinUpInputPrefectureForm"}
+
+        .ContentSignUp__Infomation__City
+          .ContentSignUp__Infomation__City__Title
+            .SignUpTitle 市区町村
+            .SignUpRequired 必須
+          .ContentSignUp__Infomation__Prefecture__City
+            = f.text_field :city, class:"SinUpInputForm"
+
+        .ContentSignUp__Infomation__StreetNumber
+          .ContentSignUp__Infomation__StreetNumber__Title
+            .SignUpTitle 番地
+            .SignUpRequired 必須
+          .ContentSignUp__Infomation__StreetNumber__City
+            = f.text_field :street_number, class:"SinUpInputForm"
+
+        .ContentSignUp__Infomation__BuildingName
+          .ContentSignUp__Infomation__BuildingName__Title
+            .SignUpTitle 建物名
+            .SignUpOptional 任意
+          .ContentSignUp__Infomation__BuildingName__City
+            = f.text_field :building_name, class:"SinUpInputForm"
+        .ContentSignUp__Infomation__Action
+          .ContentSignUp__Infomation__Action__Attention
+            「次へ進む」のボタンを押すことにより、
+            %span
+              =link_to ships_path, method: :get, class: "SignUpLink" do
+                利用規約
+            に同意したものとみなします
+          = f.submit "次へ進む", class: "ContentSignUp__Infomation__Action__Btn"
+        .ContentSignUp__Infomation__Link
+          =link_to "#", class: "SignUpLink" do
+            本人情報の登録について>
+        .ContentSignUp__Infomation__Caution
+          This site is protected by reCAPTCHA and the Google
+          =link_to "#", class: "SignUpLink" do
+            Privacy Policy
+          and
+          =link_to "#", class: "SignUpLink" do
+            Terms of Service
+          apply.
+
+  = render "devise/shared/devise_footer"

@@ -1,14 +1,12 @@
-%body
-  .HeaderSignin
-    =link_to '#',class: "HeaderSignin__Logo" do
-      =image_tag 'logo.png'
+%body.SigninBackGround
+  = render "devise/shared/devise_header"
   .ContentSignin
     .ContentSignin__Upper
       .ContentSignin__Upper__Area
         %p.ContentSignin__Upper__Area--Text
           アカウントをお持ちでない方はこちら
         .ContentSignin__Upper__Area__Signup
-          =link_to "#", class: "ContentSignin__Upper__Area__Signup--Btn" do
+          =link_to new_user_registration_path, class: "ContentSignin__Upper__Area__Signup--Btn" do
             新規会員登録
     .ContentSignin__Under
       .ContentSignin__Under__BtnArea
@@ -20,27 +18,12 @@
           Googleでログイン
       .ContentSignin__Under__Form
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          = render "devise/shared/error_messages", resource: resource
           = f.email_field :email, autofocus: true, autocomplete: "email", class: "ContentSignin__Under__Form__Field"
           = f.password_field :password, autocomplete: "current-password", class: "ContentSignin__Under__Form__Field"
-          
+            
           = f.submit "ログイン", class: "ContentSignin__Under__Form__Action"
         .ContentSignin__Under__Form--ForgetPW
           = link_to "パスワードをお忘れの方", new_password_path(resource_name)
   .FooterSignin
-    .FooterSignin__Infomation
-      %ul
-        %li
-          =link_to "#" do
-            プライバシーポリシー
-        %li
-          =link_to "#" do
-            メルカリ利用規約
-        %li
-          =link_to "#" do
-            特定商取引に関する表記
-    .FooterSignin__Logo
-      = link_to root_path, class: "single_footer_logo" do
-        = image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?2845599746", height: "68px")
-      .FooterSignin__Logo__CopyRight
-        %p
-          © Furima, Inc.
+    = render "devise/shared/devise_footer"

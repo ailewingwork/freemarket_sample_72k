@@ -1,0 +1,9 @@
+= render "share/header"
+.MyPageWrapper
+  .MyPageWrapper__SideMenu
+    = render "users/side_menu",locals: {contents: @contents}
+  .MyPageWrapper__MainMenu
+    = render "users/main_menu",locals: {user: @user}
+    
+= render "share/footer"
+

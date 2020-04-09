@@ -1,46 +1,66 @@
-%body
-  .header
-    .header__logo
-      = link_to "#", class: "" do
-        = image_tag 'logo.png',width:185,height:49
-    .header__title
-  %body
-    .content
-      .content__upper
-        .cntent__upper__title
-          新規会員登録
-      .content__under
-        .content__under__btn
-          = link_to "#",class: 'content__under__btn__email' do
-            =icon('far','envelope', class: 'icon')
-            .content__under__btn__text
-              メールアドレスで登録する
-        .content__under__btn
-          = link_to "#",class: 'content__under__btn__facebook' do
-            =icon('fab','facebook-square', class: 'icon')
-            .content__under__btn__text
-              Facebookで登録する
-        .content__under__btn
-          = link_to "#",class: 'content__under__btn__gmail' do
-            =icon('fab','google', class: 'icon')
-            .content__under__btn__text  
-              Googleで登録する
-  %footer
-    .footer__center
-      .footer__center__content
-        .footer__center__content__text
-          .footer__center__content__text__policy
-            = link_to "#",class: 'linkformat' do
-              プライバシーポリシー
-          .footer__center__content__text__servise
-            = link_to "#",class: 'linkformat' do
-              メルカリ利用規約
-          .footer__center__content__text__natation  
-            = link_to "#",class: 'linkformat' do
-              特定商取引に関する表記
-        .footer__center__content__img
-          .footer__center__content__img__logo
-            = link_to root_path, class: "" do
-              = image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?2845599746")
-          .footer__center__content__img__copylight
-            © Furima,  Inc.
+-# 新規会員登録画面へ遷移した際、2番目に表示するview
+.WizardContents
+  = render "devise/shared/devise_header"
+  .ContentSignUp
+    .ContentSignUp__Title
+      会員情報入力
+    .ContentSignUp__Infomation
+      = form_for(@user, url: user_registration_path) do |f|
+        = render "devise/shared/error_messages", resource: @user
+        .ContentSignUp__Infomation__CommonEntry
+          .ContentSignUp__Infomation__CommonEntry__Area
+            .SignUpTitle ニックネーム
+            .SignUpRequired 必須
+          -# class名はinputForm単位で切り分け
+          = f.text_field :nickname, placeholder: "例）フリマ太郎", class:"SinUpInputForm"
+        .ContentSignUp__Infomation__CommonEntry
+          .ContentSignUp__Infomation__CommonEntry__Area
+            .SignUpTitle メールアドレス
+            .SignUpRequired 必須
+          -# class名はinputForm単位で切り分け
+          = f.email_field :email, placeholder: "email", class:"SinUpInputForm"
+        .ContentSignUp__Infomation__CommonEntry
+          .ContentSignUp__Infomation__CommonEntry__Area
+            .SignUpTitle パスワード
+            .SignUpRequired 必須
+          -# class名はinputForm単位で切り分け
+          = f.password_field :password, type: "password", autocomplete: "new-password",placeholder: "7文字以上の半角英数字",class: "SinUpInputForm",id: "PWForm",minlength: "7"
+          -# 他の要素と規則性を持たせる事ができなかった為、IDを指定 
+          %span#SignUpPassWordCaution
+            ※英字と数字の両方を含めて設定してください
+          .ContentSignUp__Infomation__CommonEntry__Confirm
+            %input{name: "example", type: "checkbox", value: "サンプル",id: "CheckPW"}
+              パスワードを表示する
+        .ContentSignUp__Infomation__CommonEntry
+          .ContentSignUp__Infomation__CommonEntry__Area
+            .SignUpTitle パスワード再入力
+            .SignUpRequired 必須
+          -# class名はinputForm単位で切り分け
+          = f.password_field :password_confirmation, type: "password", autocomplete: "new-password",placeholder: "再度パスワードを入力",minlength: "7",class: "SinUpInputForm"
+        .ContentSignUp__Infomation__Comfirm
+          %p.ContentSignUp__Infomation__Comfirm--Title 本人確認
+          %p.ContentSignUp__Infomation__Comfirm--Body 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+        .ContentSignUp__Infomation__Attention
+          ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+        
+        .ContentSignUp__Infomation__Action
+          .ContentSignUp__Infomation__Action__Attention
+            「次へ進む」のボタンを押すことにより、
+            %span
+              =link_to "#", class: "SignUpLink" do
+                利用規約
+            に同意したものとみなします
+          = f.submit "次へ進む", class: "ContentSignUp__Infomation__Action__Btn"
+        .ContentSignUp__Infomation__Link
+          =link_to "#", class: "SignUpLink" do
+            本人情報の登録について>
+        .ContentSignUp__Infomation__Caution
+          This site is protected by reCAPTCHA and the Google
+          =link_to "#", class: "SignUpLink" do
+            Privacy Policy
+          and
+          =link_to "#", class: "SignUpLink" do
+            Terms of Service
+          apply.
+
+  = render "devise/shared/devise_footer"

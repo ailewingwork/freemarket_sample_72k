@@ -1,0 +1,67 @@
+-# 新規会員登録画面へ遷移した際、最後に表示するview
+.WizardContents
+  = render "devise/shared/devise_header"
+  .ContentSignUp
+    .ContentSignUp__Title
+      会員情報入力
+    .ContentSignUp__Infomation
+      = form_for @profile, url: profiles_path, method: :post do |f|
+        = render "devise/shared/error_messages", resource: @profile
+        .ContentSignUp__Infomation__ProfileText
+          .ContentSignUp__Infomation__ProfileText__Title
+            .SignUpTitle プロフィール
+            .SignUpOptional 任意
+          = f.text_area :profile, placeholder: "自己紹介文を入力", id: "SinUpInputProfileForm"
+        .ContentSignUp__Infomation__NameEntry
+          .ContentSignUp__Infomation__NameEntry__Title
+            .SignUpTitle お名前(全角)
+            .SignUpRequired 必須
+          .ContentSignUp__Infomation__NameEntry__Form
+            = f.text_field :family_name, placeholder: "例）山田", class:"SinUpInputFlexForm"
+            = f.text_field :first_name, placeholder: "例）彩", class:"SinUpInputFlexForm"
+        .ContentSignUp__Infomation__NameEntry
+          .ContentSignUp__Infomation__NameEntry__Title
+            .SignUpTitle お名前カナ(全角)
+            .SignUpRequired 必須
+          .ContentSignUp__Infomation__NameEntry__Form
+            = f.text_field :family_name_kana, placeholder: "例）ヤマダ", class:"SinUpInputFlexForm"
+            = f.text_field :first_name_kana, placeholder: "例）アヤ", class:"SinUpInputFlexForm"
+        .ContentSignUp__Infomation__Birth
+          .ContentSignUp__Infomation__Birth__Title
+            .SignUpTitle 生年月日
+            .SignUpRequired 必須
+          .ContentSignUp__Infomation__Birth__Form
+            -# =f.date_select :birth_day,{use_month_numbers: true },class: "SignUpBirthdayForm"
+            = raw sprintf(f.date_select( :birth_day,use_month_numbers: true,start_year: 1930,end_year: (Time.now.year - 18),default: Date.new(1989, 1, 1),date_separator: '%s'), '年 ', '月 ',class: "SignUpBirthdayForm") + '日'
+
+            -# = f.date_select :birth_day, {use_month_numbers: true, start_year: 1930, end_year:(Time.now.year), default: Date.new(1989, 1, 1), date_separator: '%s'},'年 ', '月 '}+ '日',class: "SignUpBirthdayForm"
+        .ContentSignUp__Infomation__Attention
+          ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+        .ContentSignUp__Infomation__CommonEntry
+          .ContentSignUp__Infomation__CommonEntry__Area
+            .SignUpTitle 電話番号
+            .SignUpRequired 必須
+          -# class名はinputForm単位で切り分け
+          = f.text_field :mobile, placeholder: "ハイフンを除いて入力", class:"SinUpInputForm"
+        .ContentSignUp__Infomation__Action
+          .ContentSignUp__Infomation__Action__Attention
+            「次へ進む」のボタンを押すことにより、
+            %span
+              =link_to ships_path, method: :get, class: "SignUpLink" do
+                利用規約
+            に同意したものとみなします
+          = f.submit "次へ進む", class: "ContentSignUp__Infomation__Action__Btn"
+        .ContentSignUp__Infomation__Link
+          =link_to "#", class: "SignUpLink" do
+            本人情報の登録について>
+        .ContentSignUp__Infomation__Caution
+          This site is protected by reCAPTCHA and the Google
+          =link_to "#", class: "SignUpLink" do
+            Privacy Policy
+          and
+          =link_to "#", class: "SignUpLink" do
+            Terms of Service
+          apply.
+
+
+  = render "devise/shared/devise_footer"

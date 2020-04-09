@@ -3,13 +3,14 @@
     .TopHeader__Inner__Main
       .TopIcon
         -# aタグにスタイルを設定すると他のビューに影響が出そうなのでTopImgLinkクラスを設定
-        = link_to "/", {class: "TopImgLink"} do
-          %img{alt: "furima", class: "TopIcon__Image", src: "assets/logo.png"}
+        = link_to image_tag("logo.png", alt: "furima", class: "TopImgLink"), root_path
       .SearchForm
-        %input{type: "text", class: "SearchForm__Input", placeholder: "キーワードから探す"}
-        = link_to "#" do
-          %button{type: "submit", class: "SearchForm__Input__Button"}
-            %img{alt: "search", class: "SearchForm__Input__Button__Icon", src: "assets/icon-search.png"}
+        = form_with url: "#", method: :get, local: true do |form|
+          = form.text_field :keyword, placeholder: "キーワードから探す", class: "SearchForm__Input"
+          = button_tag type: 'submit', class: 'SearchForm__Input__Button' do
+            -# aタグにスタイルを設定すると他のビューに影響が出そうなのでSearchForm__Input__Button__Iconクラスを設定
+            = link_to image_tag('icon-search.png', alt: 'search', class: 'SearchForm__Input__Button__Icon'), "#"
+
     .TopHeader__Inner__Lists
       .TopHeader__Inner__Lists__Left
         .TopHeader__Inner__Lists__Left__Category
@@ -20,9 +21,15 @@
           = link_to "#", {class: "TopLink LeftColor"} do
             ブランド
       .TopHeader__Inner__Lists__Right
-        .TopHeader__Inner__Lists__Right__Signin
-          = link_to "#", {class: "TopLink"} do
-            ログイン
-        .TopHeader__Inner__Lists__Right__Signup
-          = link_to "#", {class: "TopLink"} do
-            新規会員登録
+        -if user_signed_in?
+          -# 動作確認のため、ログアウト導線を仮置き
+          .TopHeader__Inner__Lists__Right__Signin
+            = link_to user_path(current_user.id), method: :get,class: "TopLink" do
+              マイページ
+        -else
+          .TopHeader__Inner__Lists__Right__Signin
+            = link_to new_user_session_path , {class: "TopLink"} do
+              ログイン
+          .TopHeader__Inner__Lists__Right__Signup
+            = link_to users_path, {class: "TopLink"} do
+              新規会員登録
