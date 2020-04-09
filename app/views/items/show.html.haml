@@ -1,5 +1,3 @@
-
--# %body
 = render "share/header"
 .ItemBody
   .ItemBox
@@ -9,12 +7,12 @@
       .ItemBox__ImageBody__ItemImg
         .ItemBox__ImageBody__ItemImg__Main
           .ItemBox__ImageBody__ItemImg__Main__UpperBox
-            %img{alt: "furima", class: "LargeItemImg", src: "assets/grapefruit" }
+            = image_tag 'grapefruit.png', class: 'LargeItemImg'
         .ItemBox__ImageBody__ItemImg__SubImage
           .ItemBox__ImageBody__ItemImg__SubImage__UnderBox
-            %img{alt: "furima", class: "SubItemImg", src: "assets/fruit_starfruit" }
-            %img{alt: "furima", class: "SubItemImg", src: "assets/fruit_starfruit" }
-            %img{alt: "furima", class: "SubItemImg", src: "assets/fruit_starfruit" }
+            = image_tag 'fruit_starfruit.png', class: 'SubItemImg'
+            = image_tag 'fruit_starfruit.png', class: 'SubItemImg'
+            = image_tag 'fruit_starfruit.png', class: 'SubItemImg'
       .ItemBox__ImageBody__PraceBox
         .ItemBox__ImageBody__PraceBox__Prace
           %p¥30000
@@ -31,11 +29,11 @@
           %tr
             %th カテゴリー
             %td 
-              %a(href="#")ベビーキッズ
+              = link_to "ベビーキッズ" ,"#"
               %br/
-              %a(href="#")ベビー服(男女兼用) ~95cm
+              = link_to "ベビー服(男女兼用) ~95cm" ,"#"
               %br/
-              %a(href="#")アウター
+              = link_to "アウター"
           %tr
             %th ブランド
             %td 
@@ -52,7 +50,7 @@
             %th 配送元の地域
             %td 
               %br/
-              %a(href="#")岩手県
+              = link_to "岩手県"
           %tr
             %th 発送日の目安
             %td 4-7発送
@@ -83,10 +81,7 @@
         コメントする
   .UnderLinkBox
     .UnderLinkBox__Links
-      %a.UnderLinksBox__Links__Left(href="#")
-        ＜前の商品
-      %a.UnderLinksBox__Links__Right(href="#")
-        次の商品＞
+      = link_to "＜前の商品" ,"#"
+      = link_to "次の商品＞","#"
     .UnderLinkBox__ReratedItems
-      %a(href="#")
-        ベビーキッズをもっと見る
+      =link_to "ベビーキッズをもっと見る"
