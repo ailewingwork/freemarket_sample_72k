@@ -14,7 +14,6 @@
       font-weight: bold;
     }
     &__ImageBody{
-      
       .LargeItemImg{
         height: 346px;
         width: 560px;
@@ -188,14 +187,12 @@
     color: #3CCACE;
     text-decoration: none;
   }
-
-
   .ItemBody{
     background-color: rgb(238, 235, 235);
     padding-top: 40px;
   }
 
-// ここから商品確認ページ 
+// ここから商品購入確認ページ 
 
 .ConfirmWrapper{
   background-color: #eeebeb;
@@ -264,7 +261,6 @@
                 padding-bottom: 5px;
               }
               .PaymentRegister{
-
               }
             }
             &__ShippingAddress{
@@ -273,7 +269,6 @@
               &__Text{
                 padding-bottom: 5px;
                 .ShippingAddressRegister{
-
                 }
               }
             }
