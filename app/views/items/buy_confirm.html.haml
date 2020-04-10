@@ -1,0 +1,35 @@
+.ConfirmWrapper
+  = render "devise/shared/devise_header"
+  .ConfirmBody
+    .ConfirmBody__Content
+      .ConfirmBody__Content__Title
+        購入の確認
+      .ConfirmBody__Content__Product
+        = image_tag 'fruit_starfruit.png', class: 'Img'    
+        .ConfirmBody__Content__Product__Box
+          .ConfirmBody__Content__Product__Box__Name
+            でかいフルーツ
+          .ConfirmBody__Content__Product__Box__Price
+            ¥800（税込）送料込み
+      .ConfirmBody__Content__Details
+        .ConfirmBody__Content__Details__From
+          .ConfirmBody__Content__Details__From__PayAmount
+            .ConfirmBody__Content__Details__From__PayAmount__Tax
+              支払い金額
+            .ConfirmBody__Content__Details__From__PayAmount__Price
+              ¥800
+          .ConfirmBody__Content__Details__From__Payment
+            .ConfirmBody__Content__Details__From__Payment__Text
+              支払い方法 
+            = link_to"登録してください", "#",class: "PaymentRegister"
+          .ConfirmBody__Content__Details__From__ShippingAddress
+            .ConfirmBody__Content__Details__From__ShippingAddress__Text
+              配送先
+            =link_to"登録してください","#",class:"ShippingAddressRegister"
+            
+          .ConfirmBody__Content__Details__From__InfoText
+            郵便局/コンビニ受取をご希望の方は、購入後に取引画面から受取場所を変更をすることが可能です。出品者が発送作業を開始した後は受取場所の変更ができませんので、早めに変更を行ってください。
+          .ConfirmBody__Content__Details__From__Btn
+            =link_to"購入する","#",class: "BuyBtn"
+
+  = render "devise/shared/devise_footer"

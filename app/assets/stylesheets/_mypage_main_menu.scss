@@ -1,0 +1,67 @@
+.MyPageMainMenu{
+  height: 200px;
+  width: 100%;
+  background-image : url(mypage_wall.jpg) ;
+  background-size: cover;
+  background-position:center center;
+  &__ProfileHeader{
+    height: 200px;
+    text-align: center;
+    padding: 60px 20px 20px 20px;
+    &--UserName{
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+  &__ProfileUnder{
+    width: 100%;
+    padding:20px;
+    background-color: #ffffff;
+    &__Title{
+      font-weight: bold;
+      text-align: center;
+      padding-bottom:8px;
+      border-bottom: 2px dotted #dddddd;
+    }
+    &__Detail{
+      display: flex;
+      padding:15px 30px;
+      &__Name{
+        margin-left:10px;
+      }
+    }
+    &__Birth{
+      display: flex;
+      padding:15px 30px;
+      &__Detail{
+        margin-left:10px;
+      }
+    }
+  }
+  &__Credit{
+    border-top: 1px solid #ededed;
+    padding: 20px;
+    background-color: #f6f6f6;
+    display: flex;
+    &__Status{
+      margin: 0 auto;
+    }
+  }
+}
+
+.MyPageMainMenuTitle{
+  width: 150px;
+  font-weight: bold;
+}
+
+.UnregisteredCreditStatus{
+  text-align: center;
+  color:#EA352D;
+  font-weight: bold;
+}
+
+.RegisteredCreditStatus{
+  text-align: center;
+  color:#3CCACE;
+  font-weight: bold;
+}
