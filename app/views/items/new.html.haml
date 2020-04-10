@@ -1,104 +1,135 @@
 %body
-  .SellPage
-    .SellPage__Information
-      = form_with model: @item do |f|
+  -# toよっちゃん。
+  -# 雛形を_form.html.hamlに用意しているので、renderで一時的に噛ませます。
+  -# よっちゃんが作ったcontentに各所を反映させた後に消してしまってOKです！
+  = form_with url: "/items" do |f|
+    = f.label "商品名"
+    = f.text_field :product_name
 
-        .SellPage__Information__Image
-          .Sell-Title
-            %h3.Sell-Title__Text
-              出品画像
-            %span.Sell-Title__Box
-              必須
-          .SellPage__Information__Image__Max 最大10枚までアップロードできます
-          .SellPage__Information__Image__Upload
-            .Sellpage__Information__Image__Upload__Items
-              .Sellpage__Information__Image__Upload__Items__Box
-                -# %ul#output-Box
-                -#   %div#image-input{tabindex:"0"}
-                -#     = f.label
-                -#       = f.file_field
-        .SellPage__Information__Name
-          .Sell-Title
-            %h3.Sell-Title__Text
-              商品名
-            %span.Sell-Title__Box
-              必須
-          = form_with model: @item do |form|
-            = form.text_field :name
-        .SellPage__Information__Description
-          .Sell-Title
-            %h3.Sell-Title__Text
-              商品の説明
-            %span.Sell-Title__Box
-              必須
-          = form_with model: @item do |form|
-            = form.text_field :name
-        .SellPage__Information__Category
-          商品の詳細
-          .Sell-Title
-            %h3.Sell-Title__Text
-              カテゴリー
-            %span.Sell-Title__Box
-              必須
-          = form_with model: @item do |form|
-            = form.text_field :name
-          .Sell-Title
-            %h3.Sell-Title__Text
-              ブランド
-            %span.Sell-Title__Box
-              任意
-          = form_with model: @item do |form|
-            = form.text_field :name
-          .Sell-Title
-            %h3.Sell-Title__Text
-              商品の状態
-            %span.Sell-Title__Box
-              必須
-          = form_with model: @item do |form|
-            = form.text_field :name
-        .SellPage__Information__Shipping
-          配送について
-          .Sell-Title
-            %h3.Sell-Title__Text
-              配送料の負担
-            %span.Sell-Title__Box
-              必須
-          = form_with model: @item do |form|
-            = form.text_field :name
-          .Sell-Title
-            %h3.Sell-Title__Text
-              発送元の地域
-            %span.Sell-Title__Box
-              必須
-          = form_with model: @item do |form|
-            = form.text_field :name
-          .Sell-Title
-            %h3.Sell-Title__Text
-              発送までの日数
-            %span.Sell-Title__Box
-              必須
-          = form_with model: @item do |form|
-            = form.text_field :name        
-        .SellPage__Information__Price
-          価格（¥300〜9,999,999)
-          .Sell-Title
-            %h3.Sell-Title__Text
-              販売価格
-            %span.Sell-Title__Box
-              必須
-            = form_with model: @item do |form|
-              = form.text_field :name
-          販売手数料（10%)
-          %br 販売利益
-        .SellPage__Information__Btn
-          禁止されている<span>行為</span>および<span>出品物</span>を必ずご確認ください。<span>偽ブランド品</span>や<span>盗品物</span>などの販売は犯罪であり、
-          %br 法律により処罰される可能性があります。また、出品をもちまして<span>加盟店規約</span>に同意したことになります。
-          .SellPage__Information__Btn__Box1
-            出品する
-          .SellPage__Information__Btn__Box2
-            下書きに保存
-          .SellPage__Information__Btn__Back
-            もどる
+    = f.fields_for :images do |i|
+      = i.file_field :image
+      
+    = f.label "価格"
+    = f.number_field :price
+
+    = f.label "商品説明"
+    = f.text_area :description
+
+    = f.label "商品の状態"
+    = f.select :condition, [["新品、未使用", 0],["未使用に近い", 1],["目立った傷や汚れなし", 2],["やや傷や汚れあり",3],["傷や汚れあり",4],["全体的に状態が悪い",5]]
+
+    = f.label "配送料の負担"
+    = f.select :delivery_fee, [["送料込み(出品者負担)", 0],["着払い(購入者負担)", 1]]
+
+    = f.label "発送元の地域"
+    = f.select :shipping_origin,Address.shipping_areas.keys
+
+    = f.label "発送までの日数"
+    = f.select :days_to_ship, [["1~2日で発送", 0],["2~3日で発送", 1],["4~7日で発送",2]]
+
+    = f.submit "投稿する"
 
 
 
+  -# ここまで 下は一旦コメントアウトしてますん。
+
+  -# .SellPage
+  -#   .SellPage__Information
+  -#     = form_with model: @item do |f|
+
+  -#       .SellPage__Information__Image
+  -#         .Sell-Title
+  -#           %h3.Sell-Title__Text
+  -#             出品画像
+  -#           %span.Sell-Title__Box
+  -#             必須
+  -#         .SellPage__Information__Image__Max 最大10枚までアップロードできます
+  -#         .SellPage__Information__Image__Upload
+  -#           .Sellpage__Information__Image__Upload__Items
+  -#             .Sellpage__Information__Image__Upload__Items__Box
+  -#               -# %ul#output-Box
+  -#               -#   %div#image-input{tabindex:"0"}
+  -#               -#     = f.label
+  -#               -#       = f.file_field
+  -#       .SellPage__Information__Name
+  -#         .Sell-Title
+  -#           %h3.Sell-Title__Text
+  -#             商品名
+  -#           %span.Sell-Title__Box
+  -#             必須
+  -#         = form_with model: @item do |form|
+  -#           = form.text_field :name
+  -#       .SellPage__Information__Description
+  -#         .Sell-Title
+  -#           %h3.Sell-Title__Text
+  -#             商品の説明
+  -#           %span.Sell-Title__Box
+  -#             必須
+  -#         = form_with model: @item do |form|
+  -#           = form.text_field :name
+  -#       .SellPage__Information__Category
+  -#         商品の詳細
+  -#         .Sell-Title
+  -#           %h3.Sell-Title__Text
+  -#             カテゴリー
+  -#           %span.Sell-Title__Box
+  -#             必須
+  -#         = form_with model: @item do |form|
+  -#           = form.text_field :name
+  -#         .Sell-Title
+  -#           %h3.Sell-Title__Text
+  -#             ブランド
+  -#           %span.Sell-Title__Box
+  -#             任意
+  -#         = form_with model: @item do |form|
+  -#           = form.text_field :name
+  -#         .Sell-Title
+  -#           %h3.Sell-Title__Text
+  -#             商品の状態
+  -#           %span.Sell-Title__Box
+  -#             必須
+  -#         = form_with model: @item do |form|
+  -#           = form.text_field :name
+  -#       .SellPage__Information__Shipping
+  -#         配送について
+  -#         .Sell-Title
+  -#           %h3.Sell-Title__Text
+  -#             配送料の負担
+  -#           %span.Sell-Title__Box
+  -#             必須
+  -#         = form_with model: @item do |form|
+  -#           = form.text_field :name
+  -#         .Sell-Title
+  -#           %h3.Sell-Title__Text
+  -#             発送元の地域
+  -#           %span.Sell-Title__Box
+  -#             必須
+  -#         = form_with model: @item do |form|
+  -#           = form.text_field :name
+  -#         .Sell-Title
+  -#           %h3.Sell-Title__Text
+  -#             発送までの日数
+  -#           %span.Sell-Title__Box
+  -#             必須
+  -#         = form_with model: @item do |form|
+  -#           = form.text_field :name        
+  -#       .SellPage__Information__Price
+  -#         価格（¥300〜9,999,999)
+  -#         .Sell-Title
+  -#           %h3.Sell-Title__Text
+  -#             販売価格
+  -#           %span.Sell-Title__Box
+  -#             必須
+  -#           = form_with model: @item do |form|
+  -#             = form.text_field :name
+  -#         販売手数料（10%)
+  -#         %br 販売利益
+  -#       .SellPage__Information__Btn
+  -#         禁止されている<span>行為</span>および<span>出品物</span>を必ずご確認ください。<span>偽ブランド品</span>や<span>盗品物</span>などの販売は犯罪であり、
+  -#         %br 法律により処罰される可能性があります。また、出品をもちまして<span>加盟店規約</span>に同意したことになります。
+  -#         .SellPage__Information__Btn__Box1
+  -#           出品する
+  -#         .SellPage__Information__Btn__Box2
+  -#           下書きに保存
+  -#         .SellPage__Information__Btn__Back
+  -#           もどる
