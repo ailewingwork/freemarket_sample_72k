@@ -1,0 +1,26 @@
+= form_with url: "/items" do |f|
+  = f.label "商品名"
+  = f.text_field :product_nameproduct_name
+
+  = f.fields_for :images do |i|
+    = i.file_field :image
+    %br/
+  = f.label "価格"
+  = f.number_field :price
+
+  = f.label "商品説明"
+  = f.text_area :description
+
+  = f.label "商品の状態"
+  = f.select :condition, [["新品、未使用", 0],["未使用に近い", 1],["目立った傷や汚れなし", 2],["やや傷や汚れあり",3],["傷や汚れあり",4],["全体的に状態が悪い",5]]
+
+  = f.label "配送料の負担"
+  = f.select :delivery_fee, [["送料込み(出品者負担)", 0],["着払い(購入者負担)", 1]]
+
+  = f.label "発送元の地域"
+  = f.select :shipping_origin,Address.shipping_areas.keys
+
+  = f.label "発送までの日数"
+  = f.select :days_to_ship, [["1~2日で発送", 0],["2~3日で発送", 1],["4~7日で発送",2]]
+
+  = f.submit "投稿する"

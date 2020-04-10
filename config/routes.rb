@@ -13,12 +13,7 @@ Rails.application.routes.draw do
   end
   root to: 'items#index'
   resources :users
-  resources :items do
-    collection do
-      get :buy_confirm
-      end
-    end
-  resources :items, only: [:index, :new, :show,:buy_confirm]
   resource :users
+  resources :items
 end
 
