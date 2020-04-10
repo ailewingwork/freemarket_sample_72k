@@ -1,86 +1,202 @@
-.Sell-Title {
-  align-items: center;
-  margin: 0;
-  box-sizing: border-box;
-  display: flex;
-  &__Text {
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.4em;
-  }
-  &__Box {
-    font-size: 12px;
-    padding: 0 4px;
-    background-color:red;
-    color:white;
-    border-radius: 2px;
-    display: inline-block;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 1.4em;
-    margin: 0 8px;
-  }
-}
-
-.SellPage {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  min-height: 100%;
-  width: 100%;
-  background-color:rgb(245, 245, 245);
-  color: rgb(51, 51, 51);
-  font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
-  box-sizing: border-box;
-  font-size: 14px;
-  &__Information {
-    max-width: 700px;
+.SellingPageBody{
+  background-color: #eeebeb;
+  margin: 0 auto;
+  
+  .SellPage {
+    position: relative;
+    min-height: 100%;
     width: 100%;
-    margin: 0 auto;
-    background-color:white;
-    &__Image {
-      height: auto;
-      padding: 40px;
-      border-bottom: 1px;
-      border-bottom-color: white;
-      border-bottom-style: solid;
-      &__Max {
-        margin-top: 16px;
-      }
-      &__Upload {
-        margin-top: 16px;
-        display: flex;
-        flex-wrap: wrap;
-        height: 112px;
-        background-color:rgb(245, 245, 245);
-        justify-content: center;
-        position: relative;
-        border-width: 1px;
-        border-style: dashed;
-        border-color: rgb(204, 204, 204);
-        border-image: initial;
-        cursor: pointer;
-        &__Items {
-          height: auto;
-          width: 100%;
-          &__Box {            
+    color: #333333;
+    box-sizing: border-box;
+    font-size: 14px;
+    width: 100%;
+
+    &__Information {
+      width: 100%;
+      height: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+      background-color:white;
+
+      &__Box {
+        padding: 40px;
+        border-bottom: 1px;
+        border-bottom-color: $border-bottom;
+        border-bottom-style: solid;
+
+        &__About{
+          color: #888888;
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 1.4em;
+          margin-bottom: 24px;
+        }
+
+        &__Inner{
+          margin-top: 32px;
+
+          &__SellText {
+            float: left;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.4em;
+          }
+
+          &__SellBox {
+            font-size: 12px;
+            margin-bottom: 4px;
+            padding: 2px 4px;
+            background-color:red;
+            color:white;
+            border-radius: 2px;
+            display: inline-block;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 1.4em;
+            margin: 0 8px;
+          }
+
+          .Max {
+            margin-top: 16px;
+          }
+    
+          .Upload {
+            font-size: 12px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+            height: 112px;
+            background-color: $imagebox;
+            justify-content: center;
+            border-width: 1px;
+            border-style: dashed;
+            border-color: $imagebox_border;
+            cursor: pointer;
+            text-align: center;
+            &__Image {
+              margin-top: 20px;
+            }
+          }
+          
+          &__Form{
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            height: 48px;
+            outline: none;
+            padding: 13px 16px;
+            width: 100%;
+            margin-top: 16px;
+          }
+
+          &__Left{
+            font-size: 14px;
+            line-height: 3em;
+            padding: 12px 0;
+          }
+          &__Right{
+            font-size: 14px;
+            line-height: 3em;
+            padding: 12px 0;
+          }
+          &__SellBtn{
+            width: 50%;
+            text-align: center;
+            margin: 0 auto;
+            font-size: 18px;
+            padding: 12px 0 12px 0;
+            border: 1px;
           }
         }
       }
-    }  
-    &__Name {
-      max-width: 700px;
-      width: 100%;
-      margin: 0 auto;
-      background-color: blue;
     }
   }
+}
 
 
+.Value{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0 !important;
+  position: relative;
+
+  &__Text{
+    margin: 17px 0;
+  }
+
+  &__En{
+    margin: 17px 0;
+    position: absolute;
+    left: 47%;
+  }
+
+  &__Box{
+    width: 50%;
+  }
+
+}
 
 
+.BtnOption{
+  margin-top: 0 !important;
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 18px;
+  border: 1px;
+  margin-bottom: 24px !important;
+}
 
+.SellBtnColor{
+  background-color: $sellbtn;
+  color: white;
+}
 
+.DraftBtnColor{
+  background-color: $draftbtn;
+  color: $draftbtn_text;
+}
 
+.BackOption{
+  margin-top: 0 !important;
+  text-align: center;
+  color: #0095ee;
+}
 
+.CommentOption{
+  font-size: 12px;
+}
+
+.FeeOption{
+  margin-top: 0 !important;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px;
+  border-bottom-color: $border-bottom;
+  border-bottom-style: solid;
+}
+
+.ProfitOption{
+  display: flex;
+  justify-content: space-between;
+  border: none !important;
+  padding: 12px 0 20px 0;
+  margin: 0 !important;
+}
+
+.PriceBoxOption{
+  padding: 0 16px !important;
+  margin-top: 0 !important;
+}
+
+.TextareaOption{
+  height: 150px !important;
+}
+
+.InnerOption{
+  margin-top: 0 !important;
+}
+
+.BoxOption{
+  background-color:#bfbfbf !important;
 }
