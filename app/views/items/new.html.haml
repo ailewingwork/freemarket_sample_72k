@@ -1,104 +1,126 @@
-%body
+.SellingPageBody
+  = render "devise/shared/devise_header"
   .SellPage
     .SellPage__Information
-      = form_with model: @item do |f|
-
-        .SellPage__Information__Image
-          .Sell-Title
-            %h3.Sell-Title__Text
+      = form_with(model: @item, local: true) do |f|
+        .SellPage__Information__Box
+          .SellPage__Information__Box__Inner
+            .SellPage__Information__Box__Inner__SellText
               出品画像
-            %span.Sell-Title__Box
+            .SellPage__Information__Box__Inner__SellBox
               必須
-          .SellPage__Information__Image__Max 最大10枚までアップロードできます
-          .SellPage__Information__Image__Upload
-            .Sellpage__Information__Image__Upload__Items
-              .Sellpage__Information__Image__Upload__Items__Box
-                -# %ul#output-Box
-                -#   %div#image-input{tabindex:"0"}
-                -#     = f.label
-                -#       = f.file_field
-        .SellPage__Information__Name
-          .Sell-Title
-            %h3.Sell-Title__Text
+            .Max
+              最大10枚までアップロードできます
+            .Upload
+              = f.file_field :image, style: "display:none;"
+              = image_tag 'photo.png', alt: 'camera', class: "Upload__Image"
+              <br>ドラッグアンドドロップ<br>
+              またはクリックしてファイルをアップロード
+                
+        .SellPage__Information__Box
+          .SellPage__Information__Box__Inner.InnerOption
+            .SellPage__Information__Box__Inner__SellText
               商品名
-            %span.Sell-Title__Box
+            .SellPage__Information__Box__Inner__SellBox
               必須
-          = form_with model: @item do |form|
-            = form.text_field :name
-        .SellPage__Information__Description
-          .Sell-Title
-            %h3.Sell-Title__Text
+            = f.text_field :product_name, placeholder: "40文字まで", class: "SellPage__Information__Box__Inner__Form"
+          
+          .SellPage__Information__Box__Inner
+            .SellPage__Information__Box__Inner__SellText
               商品の説明
-            %span.Sell-Title__Box
+            .SellPage__Information__Box__Inner__SellBox
               必須
-          = form_with model: @item do |form|
-            = form.text_field :name
-        .SellPage__Information__Category
-          商品の詳細
-          .Sell-Title
-            %h3.Sell-Title__Text
+            = f.text_area :description, maxlength: 1000, class: "SellPage__Information__Box__Inner__Form TextareaOption", placeholder: '商品の説明（必須 1000文字以内）'
+
+        .SellPage__Information__Box
+          .SellPage__Information__Box__About
+            商品の詳細
+          .SellPage__Information__Box__Inner
+            .SellPage__Information__Box__Inner__SellText
               カテゴリー
-            %span.Sell-Title__Box
+            .SellPage__Information__Box__Inner__SellBox
               必須
-          = form_with model: @item do |form|
-            = form.text_field :name
-          .Sell-Title
-            %h3.Sell-Title__Text
+            = f.select :categories_id, [["テスト1",1],["テスト2",2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+          .SellPage__Information__Box__Inner
+            .SellPage__Information__Box__Inner__SellText
               ブランド
-            %span.Sell-Title__Box
+            .SellPage__Information__Box__Inner__SellBox.BoxOption
               任意
-          = form_with model: @item do |form|
-            = form.text_field :name
-          .Sell-Title
-            %h3.Sell-Title__Text
+            = f.text_field :brand_id, placeholder: "例）シャネル", class: "SellPage__Information__Box__Inner__Form"
+
+          .SellPage__Information__Box__Inner
+            .SellPage__Information__Box__Inner__SellText
               商品の状態
-            %span.Sell-Title__Box
+            .SellPage__Information__Box__Inner__SellBox
               必須
-          = form_with model: @item do |form|
-            = form.text_field :name
-        .SellPage__Information__Shipping
-          配送について
-          .Sell-Title
-            %h3.Sell-Title__Text
+            = f.select :condition, [["テスト1",1],["テスト2",2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+
+        .SellPage__Information__Box
+          .SellPage__Information__Box__About
+            配送について
+          .SellPage__Information__Box__Inner
+            .SellPage__Information__Box__Inner__SellText
               配送料の負担
-            %span.Sell-Title__Box
+            .SellPage__Information__Box__Inner__SellBox
               必須
-          = form_with model: @item do |form|
-            = form.text_field :name
-          .Sell-Title
-            %h3.Sell-Title__Text
+            = f.select :delivery_fee, [["テスト1",1],["テスト2",2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+
+          .SellPage__Information__Box__Inner
+            .SellPage__Information__Box__Inner__SellText
               発送元の地域
-            %span.Sell-Title__Box
+            .SellPage__Information__Box__Inner__SellBox
               必須
-          = form_with model: @item do |form|
-            = form.text_field :name
-          .Sell-Title
-            %h3.Sell-Title__Text
+            = f.select :shipping_origin, [["テスト1",1],["テスト2",2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+
+          .SellPage__Information__Box__Inner
+            .SellPage__Information__Box__Inner__SellText
               発送までの日数
-            %span.Sell-Title__Box
+            .SellPage__Information__Box__Inner__SellBox
               必須
-          = form_with model: @item do |form|
-            = form.text_field :name        
-        .SellPage__Information__Price
-          価格（¥300〜9,999,999)
-          .Sell-Title
-            %h3.Sell-Title__Text
-              販売価格
-            %span.Sell-Title__Box
-              必須
-            = form_with model: @item do |form|
-              = form.text_field :name
-          販売手数料（10%)
-          %br 販売利益
-        .SellPage__Information__Btn
-          禁止されている<span>行為</span>および<span>出品物</span>を必ずご確認ください。<span>偽ブランド品</span>や<span>盗品物</span>などの販売は犯罪であり、
-          %br 法律により処罰される可能性があります。また、出品をもちまして<span>加盟店規約</span>に同意したことになります。
-          .SellPage__Information__Btn__Box1
-            出品する
-          .SellPage__Information__Btn__Box2
-            下書きに保存
-          .SellPage__Information__Btn__Back
-            もどる
+            = f.select :days_to_ship, [["テスト1",1],["テスト2",2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
+        .SellPage__Information__Box
+          .SellPage__Information__Box__About
+            価格（¥300〜9,999,999）
+          .SellPage__Information__Box__Inner.Value
+            .Value__Text
+              .SellPage__Information__Box__Inner__SellText
+                販売価格
+              .SellPage__Information__Box__Inner__SellBox
+                必須
+            .Value__En
+              ¥
+            .Value__Box
+              = f.number_field :price, class: 'SellPage__Information__Box__Inner__Form PriceBoxOption'
+          .SellPage__Information__Box__Inner.FeeOption
+            .SellPage__Information__Box__Inner__Left
+              販売手数料（10%）  
+            .SellPage__Information__Box__Inner__Right
+              —
+          .SellPage__Information__Box__Inner.ProfitOption
+            .SellPage__Information__Box__Inner__Left
+              販売利益
+            .SellPage__Information__Box__Inner__Right
+              —
+          .SellPage__Information__Box__Inner.BtnOption
+            .SellPage__Information__Box__Inner__SellBtn.SellBtnColor
+              出品する
+          .SellPage__Information__Box__Inner.BtnOption
+            .SellPage__Information__Box__Inner__SellBtn.DraftBtnColor
+              下書きに保存
+          .SellPage__Information__Box__Inner.BackOption
+            = link_to "もどる", root_path
+          .SellPage__Information__Box__Inner.CommentOption
+            禁止されている
+            =link_to "行為", "#" 
+            および
+            =link_to "出品物", "#"
+            を必ずご確認ください。
+            =link_to "偽ブランド品", "#"
+            や
+            =link_to "盗品物", "#"
+            などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして
+            =link_to "加盟店規約", "#"
+            に同意したことになります。
 
-
+    = render "devise/shared/devise_footer"

@@ -1,7 +1,17 @@
+// 変数名に色の名前をつけることは避ける。
+// $whiteといった変数名にすると$whiteを適用している部分に変更を加える際、不自然な記述になる
+// 例: $white変数を使用している箇所を赤色にしたい場合
+// 変更前「$white: #fff;」→　変更後「$white red;」 
 $white: #fff;
 $side_blue_dark: #253141;
-$side_blue_light: #2f3e51;
+$side_blue_light: hsl(214, 27%, 25%);
 $light_blue: #38AEF0;
 $light_gray: #999;
 $black: #434a54;
 $alert_orange: #F35500;
+$border-bottom: #eeeeee;
+$imagebox: #f5f5ff;
+$imagebox_border: #cccccc;
+$sellbtn: #FF0000;
+$draftbtn: #CCCCCC;
+$draftbtn_text: #000000;
