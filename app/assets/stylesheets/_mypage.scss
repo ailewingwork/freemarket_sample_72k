@@ -1,0 +1,15 @@
+.MyPageWrapper{
+  width:100%;
+  min-height:100vh;
+  background-color: rgb(238, 235, 235);
+  display: flex;
+  padding: 40px 190px;
+  margin: 0 auto;
+  &__SideMenu{
+    width: 280px;
+  }
+  &__MainMenu{
+    margin-left: 40px;
+    width: 700px;
+  }
+}

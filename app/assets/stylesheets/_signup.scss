@@ -133,6 +133,11 @@
 }
 
 //アカウント情報入力画面向けのscss
+.WizardContents{
+  height:100%;
+  background-color: rgb(235, 235, 238);
+}
+
 .ContentSignUp{
   width: 700px;
   margin: 0 auto;
