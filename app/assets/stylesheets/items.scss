@@ -1,7 +1,6 @@
 
 .ItemBox{
-  a{text-decoration: none;
-    color: #3CCACE;}
+
   background-color:#fff;
   height: 100%;
   width: 700px;
@@ -106,6 +105,8 @@
         }
       }
     }
+    a{text-decoration: none;
+      color: #3CCACE;}
 }
 .CommentBox{
   margin-top: 10px;
@@ -161,16 +162,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      &__Right{
-        float: Right;
-        display: block;
+      .LinkText{
+        margin-top: 10px;
       }
     }
-    &__Left{
-      float: left;
-      display: block;
-      background-color: red;
-    } 
     &__ReratedItems{
       display: block;
       margin: 24px 0 8px;
