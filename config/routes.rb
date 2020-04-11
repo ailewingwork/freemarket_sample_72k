@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   root to: 'items#index'
   resources :users
   resource :users
-  resources :items
+  resource :items
 end
 
