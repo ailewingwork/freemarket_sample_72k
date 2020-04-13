@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
   root to: 'items#index'
   resources :users
-  # resource :users
+  resource :users
   resources :items
 end
 
