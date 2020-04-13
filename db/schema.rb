@@ -24,13 +24,12 @@ ActiveRecord::Schema.define(version: 2020_04_10_085516) do
     t.index ["ship_id"], name: "index_addresses_on_ship_id"
   end
 
-  create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "customer_id", null: false
-    t.string "card_id", null: false
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_credit_cards_on_user_id"
+    t.string "ancestry"
+    t.string "name"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -51,9 +50,9 @@ ActiveRecord::Schema.define(version: 2020_04_10_085516) do
     t.string "days_to_ship", null: false
     t.bigint "user_id", null: false
     t.bigint "seller_id", null: false
-    t.bigint "buyer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "buyer_id"
     t.index ["buyer_id"], name: "index_items_on_buyer_id"
     t.index ["seller_id"], name: "index_items_on_seller_id"
     t.index ["user_id"], name: "index_items_on_user_id"
@@ -100,7 +99,6 @@ ActiveRecord::Schema.define(version: 2020_04_10_085516) do
   end
 
   add_foreign_key "addresses", "ships"
-  add_foreign_key "credit_cards", "users"
   add_foreign_key "images", "items"
   add_foreign_key "items", "users"
   add_foreign_key "items", "users", column: "buyer_id"
