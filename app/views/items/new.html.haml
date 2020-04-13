@@ -1,8 +1,5 @@
-%body
-  -# toよっちゃん。
-  -# 雛形を_form.html.hamlに用意しているので、renderで一時的に噛ませます。
-  -# よっちゃんが作ったcontentに各所を反映させた後に消してしまってOKです！
-  = render partial: 'form', locals: {item: @item}
+.SellingPageBody
+  = render "devise/shared/devise_header"
 
   .SellPage
     .SellPage__Information
@@ -14,17 +11,17 @@
               出品画像
             %span.Sell-Title__Box
               必須
-          .SellPage__Information__Image__Max 最大10枚までアップロードできます
-          .SellPage__Information__Image__Upload
-            .Sellpage__Information__Image__Upload__Items
-              .Sellpage__Information__Image__Upload__Items__Box
-                -# %ul#output-Box
-                -#   %div#image-input{tabindex:"0"}
-                -#     = f.label
-                -#       = f.file_field
-        .SellPage__Information__Name
-          .Sell-Title
-            %h3.Sell-Title__Text
+            .Max
+              最大10枚までアップロードできます
+            .Upload
+              = f.file_field :image, style: "display:none;", type: "file"
+              = image_tag 'photo.png', alt: 'camera', class: "Upload__Image"
+              <br>ドラッグアンドドロップ<br>
+              またはクリックしてファイルをアップロード
+                
+        .SellPage__Information__Box
+          .SellPage__Information__Box__Inner.InnerOption
+            .SellPage__Information__Box__Inner__SellText
               商品名
             %span.Sell-Title__Box
               必須
