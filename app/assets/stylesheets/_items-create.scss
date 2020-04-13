@@ -100,12 +100,26 @@
             padding: 12px 0;
           }
           &__SellBtn{
-            width: 50%;
-            text-align: center;
-            margin: 0 auto;
             font-size: 18px;
-            padding: 12px 0 12px 0;
-            border: 1px;
+            width: 50%;
+            height: 50px;
+            line-height: 50px;
+            margin: 0 auto;
+            text-align: center;
+            color: white;
+            border: 0px;
+            background-color: $sellbtn;
+          }
+          &__DraftBtn{
+            font-size: 18px;
+            width: 50%;
+            height: 50px;
+            line-height: 50px;
+            margin: 0 auto;
+            text-align: center;
+            color: white;
+            border: 0px;
+            background-color: $draftbtn;
           }
         }
       }
@@ -149,7 +163,7 @@
 
 .SellBtnColor{
   background-color: $sellbtn;
-  color: white;
+
 }
 
 .DraftBtnColor{

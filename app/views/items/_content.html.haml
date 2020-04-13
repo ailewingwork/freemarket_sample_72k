@@ -94,17 +94,19 @@
         - @items.each do |item|
           .PickupContainer1__ProductBox__ProductLists__ProductList
             .PickupContainer1__ProductBox__ProductLists__ProductList__ProductImage
-              - unless item.buyer_id
-                - item.images.each do |image|
-                  = image_tag image.image
-                  - break
-              - else
-                - item.images.each do |image|
-                  = image_tag image.image
-                  - break
-                .PickupContainer1__ProductBox__ProductLists__ProductList__ProductImage__Sold
-                  .PickupContainer1__ProductBox__ProductLists__ProductList__ProductImage__Sold__Inner
-                    SOLD      
+              -# さおりんへ。
+              -# エラー吐いちゃうから、一旦コメントアウトしておきます！
+              -# - unless item.buyer_id
+              -#   - item.images.each do |image|
+              -#     = image_tag image.image
+              -#     - break
+              -# - else
+              -#   - item.images.each do |image|
+              -#     = image_tag image.image
+              -#     - break
+              -#   .PickupContainer1__ProductBox__ProductLists__ProductList__ProductImage__Sold
+              -#     .PickupContainer1__ProductBox__ProductLists__ProductList__ProductImage__Sold__Inner
+              -#       SOLD      
             .PickupContainer1__ProductBox__ProductLists__ProductList__ProductName
               = item.product_name
             .PickupContainer1__ProductBox__ProductLists__ProductList__ProductPrice
