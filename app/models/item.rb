@@ -9,8 +9,8 @@ class Item < ApplicationRecord
   # 引数に"allow_destroy: true"を設定。
   #  -> itemを削除する時に紐づいたimagesも削除できるため記述
   accepts_nested_attributes_for :images, allow_destroy: true
-
-  has_many :comments, dependent: :destroy
+  # 商品削除機能実装時にエラーが出たため下記の１行をコメントアウト。ｂｙ石崎
+  # has_many :comments, dependent: :destroy
   belongs_to :user
   belongs_to :buyer, class_name:'User', foreign_key: "buyer_id", optional: true
   belongs_to :seller, class_name:'User', foreign_key: "seller_id"

@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
 # 商品削除機能追加の時点で修正します。4/13
   def destroy
     item = Item.find(params[:id])
-    item.destroy
+    item.destroy!
     redirect_to root_path
   end
 
