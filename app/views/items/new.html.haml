@@ -1,11 +1,5 @@
 .SellingPageBody
   = render "devise/shared/devise_header"
-%body
-  -# toよっちゃん。
-  -# 雛形を_form.html.hamlに用意しているので、renderで一時的に噛ませます。
-  -# よっちゃんが作ったcontentに各所を反映させた後に消してしまってOKです！
-  = render partial: 'form', locals: {item: @item}
-
   .SellPage
     .SellPage__Information
       = form_with(model: @item, local: true) do |f|
