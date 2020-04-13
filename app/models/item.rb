@@ -1,5 +1,9 @@
 class Item < ApplicationRecord
 
+  validates :product_name,:price,:condition,:description,:delivery_fee,:shipping_origin,:days_to_ship, presence: true
+
+
+
   has_many :images
   # 子モデルへのレコード登録を可能にするための入力フォーム"field_for"メソッドを利用するために、以下記述を追加
   # 引数に"allow_destroy: true"を設定。
@@ -8,10 +12,10 @@ class Item < ApplicationRecord
 
   has_many :comments, dependent: :destroy
   belongs_to :user
-  belongs_to :buyer, class_name:'User', foreign_key: "buyer_id"
+  belongs_to :buyer, class_name:'User', foreign_key: "buyer_id", optional: true
   belongs_to :seller, class_name:'User', foreign_key: "seller_id"
-  belongs_to :brand
-  belongs_to :category
+  # belongs_to :brand
+  # belongs_to :category
   
     #配送元エリアを設定する際に利用する47都道府県のenumを実装
     enum ship_orign:{
