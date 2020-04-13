@@ -120,6 +120,7 @@
             color: white;
             border: 0px;
             background-color: $draftbtn;
+
           }
         }
       }
@@ -151,6 +152,7 @@
 }
 
 
+
 .BtnOption{
   margin-top: 0 !important;
   width: 90%;
@@ -164,6 +166,67 @@
 .SellBtnColor{
   background-color: $sellbtn;
 
+}
+
+.DraftBtnColor{
+  background-color: $draftbtn;
+  color: $draftbtn_text;
+}
+
+.BackOption{
+  margin-top: 0 !important;
+  text-align: center;
+  color: #0095ee;
+}
+
+.CommentOption{
+  font-size: 12px;
+// コンフリクトした箇所。消して問題無いか不安だった為、コメントアウトして残しています。
+// .Value{
+//   display: flex;
+//   justify-content: space-between;
+//   margin-top: 0 !important;
+//   position: relative;
+
+//   &__Text{
+//     margin: 17px 0;
+//   }
+
+//   &__En{
+//     margin: 17px 0;
+//     position: absolute;
+//     left: 47%;
+//   }
+
+//   &__Box{
+//     width: 50%;
+//   }
+
+}
+
+.FeeOption{
+  margin-top: 0 !important;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px;
+  border-bottom-color: $border-bottom;
+  border-bottom-style: solid;
+}
+
+
+.BtnOption{
+  margin-top: 0 !important;
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 18px;
+  border: 1px;
+  margin-bottom: 24px !important;
+}
+
+.SellBtnColor{
+  background-color: $sellbtn;
+  color: white;
 }
 
 .DraftBtnColor{
