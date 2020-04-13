@@ -1,6 +1,5 @@
 
 .ItemBox{
-
   background-color:#fff;
   height: 100%;
   width: 700px;
@@ -108,6 +107,49 @@
     a{text-decoration: none;
       color: #3CCACE;}
 }
+// 商品編集・商品削除ボタン追加4/13石崎
+.EditDeleteContent{
+  margin-top: 10px;
+  background-color: #fff;
+  height: 100%;
+  width: 700px;
+  margin: 0 auto;
+  padding: 24px 40px 40px;
+  margin-bottom: 10px;
+  &__EditBtn{
+    &__Text{
+      align-items: center;
+      width: 100%;
+        .EditTextBtn{
+          text-align: center;
+          display: block;
+          font-size: 18px;
+          line-height: 48px;
+          background: #3CCACE;
+          color: #fff;
+          width: 80%;
+          font-size: 18px;
+          border-radius: 100px;
+          margin: 0 auto;
+          text-decoration: none;
+        }
+        .DeleteTextBtn{
+          text-align: center;
+          display: block;
+          font-size: 18px;
+          line-height: 48px;
+          background: #AAAAAA;
+          color: #fff;
+          width: 80%;
+          font-size: 18px;
+          border-radius: 100px;
+          margin: 10px auto 0;
+          text-decoration: none;
+        }
+    }
+  }
+}
+
 .CommentBox{
   margin-top: 10px;
   background-color: #fff;
@@ -121,8 +163,8 @@
         max-width: 100%;
         min-height: 104px;
       }
-  }
-  &__NoticeMsg{
+   }
+    &__NoticeMsg{
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
@@ -133,26 +175,26 @@
     font-size: 14px;
     margin: 10px 0;
     text-align: left;
-  }
-  &__CommentBtn{
-    align-items: center;
-    width: 100%;
-    .CommentBtn{
-      text-align: center;
-      display: block;
-      font-size: 18px;
-      line-height: 48px;
-      background: #3CCACE;
-      color: #fff;
-      width: 60%;
-      font-size: 18px;
-      border-radius: 100px;
-      margin: 0 auto;
-      text-decoration: none;
     }
-      .icon{
-        display: inline-block;
-      }
+    &__CommentBtn{
+      align-items: center;
+      width: 100%;
+        .CommentBtn{
+          text-align: center;
+          display: block;
+          font-size: 18px;
+          line-height: 48px;
+          background: #3CCACE;
+          color: #fff;
+          width: 80%;
+          font-size: 18px;
+          border-radius: 100px;
+          margin: 0 auto;
+          text-decoration: none;
+        }
+        .icon{
+          display: inline-block;
+        }
   }
 }
 .UnderLinkBox{

@@ -54,17 +54,25 @@
           %tr
             %th 発送日の目安
             %td 4-7発送
-        .ItemBox__ImageBody__OptionArea
-          .ItemBox__ImageBody__OptionArea__LikeBtn
-            = link_to "#",class: '' do
-              .ItemBox__ImageBody__OptionArea__LikeBtn__Okini
-                =icon('fas','star', class: 'icon')
-                お気に入り 0
-          .ItemBox__ImageBody__OptionArea__OptionalBtn
-            = link_to "#",class: '' do
-              .ItemBox__ImageBody__OptionArea__OptionalBtn__Hutekisetu
-                =icon('fas','flag', class: 'icon')
-                不適切な商品の通報
+        -# 追加機能時のビュー、ライクボタン、不適切ボタン。
+        -# .ItemBox__ImageBody__OptionArea
+        -#   .ItemBox__ImageBody__OptionArea__LikeBtn
+          -#   = link_to "#",class: '' do
+          -#     .ItemBox__ImageBody__OptionArea__LikeBtn__Okini
+          -#       =icon('fas','star', class: 'icon')
+          -#       お気に入り 0
+          -# .ItemBox__ImageBody__OptionArea__OptionalBtn
+          -#   = link_to "#",class: '' do
+          -#     .ItemBox__ImageBody__OptionArea__OptionalBtn__Hutekisetu
+          -#       =icon('fas','flag', class: 'icon')
+          -#       不適切な商品の通報
+  -# 編集ボタン・削除ボタン追加4/13石崎
+  .EditDeleteContent
+    .EditDeleteContent__EditBtn
+      .EditDeleteContent__EditBtn__Text 
+        = link_to "#",class: 'EditTextBtn' do
+          商品の編集
+        = link_to "商品の削除", item_path(@item.id), method: :delete, class: 'DeleteTextBtn' 
   .CommentBox
     .CommentBox__CommentArea
       %textarea{class: "CommentBox__CommentArea__Form"}
@@ -85,3 +93,4 @@
       = link_to "次の商品＞", "#", class: "LinkText"
     .UnderLinkBox__ReratedItems
       =link_to "ベビーキッズをもっと見る"
+-# = render "share/footer"
