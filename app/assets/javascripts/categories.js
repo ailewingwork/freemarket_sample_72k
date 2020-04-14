@@ -19,19 +19,19 @@ $(document).ready(function() {
   }
 
 
-    // 孫カテゴリーの表示作成
-    function appendGrandchidrenBox(insertHTML){
-      var grandchildSelectHtml = '';
-      grandchildSelectHtml = `<div id="grandchildren_wrapper">
-                          <select class= 'SellPage__Information__Box__Inner__Form', id= 'grandchild_category' name="item[category_id]">
-                            <option value="---" data-category="---">---</option>
-                            ${insertHTML}
-                        </div>`;
-      $('#PullDownCategory').append(grandchildSelectHtml);
-    }
+  // 孫カテゴリーの表示作成
+  function appendGrandchidrenBox(insertHTML){
+    var grandchildSelectHtml = '';
+    grandchildSelectHtml = `<div id="grandchildren_wrapper">
+                        <select class= 'SellPage__Information__Box__Inner__Form', id= 'grandchild_category' name="item[category_id]">
+                          <option value="---" data-category="---">---</option>
+                          ${insertHTML}
+                      </div>`;
+    $('#PullDownCategory').append(grandchildSelectHtml);
+  }
 
 
-    $('#parent_category').on('change', function(){
+  $('#parent_category').on('change', function(){
     // 変数"parentCategory"に、プルダウンで選択した値を代入
     var parentCategory = document.getElementById('parent_category').value;
     if(parentCategory != "---"){
