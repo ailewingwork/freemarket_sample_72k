@@ -4,7 +4,7 @@ class Item < ApplicationRecord
 
 
 
-  has_many :images
+  has_many :images, dependent: :destroy
   # 子モデルへのレコード登録を可能にするための入力フォーム"field_for"メソッドを利用するために、以下記述を追加
   # 引数に"allow_destroy: true"を設定。
   #  -> itemを削除する時に紐づいたimagesも削除できるため記述
