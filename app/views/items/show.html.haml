@@ -72,6 +72,7 @@
       .EditDeleteContent__EditBtn__Text 
         = link_to "#",class: 'EditTextBtn' do
           商品の編集
+        -# レコード削除確認済み4/14
         = link_to "商品の削除", item_path(@item.id), method: :delete, class: 'DeleteTextBtn' 
   .CommentBox
     .CommentBox__CommentArea

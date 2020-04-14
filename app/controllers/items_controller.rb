@@ -24,8 +24,8 @@ class ItemsController < ApplicationController
 
   def update
   end
-# destoroy内石崎が追記しました。リンク踏んだ後エラーが出てしまいます未解決です。
-# 商品削除機能追加の時点で修正します。4/13
+  
+# destoroy内石崎が追記しました。レコード削除確認済み。4/13
   def destroy
     item = Item.find(params[:id])
     item.destroy!
