@@ -2,58 +2,62 @@
 .ItemBody
   .ItemBox
     .ItemBox__ItemName
-      ここ商品の名前入る
+      =@item.product_name
     .ItemBox__ImageBody
       .ItemBox__ImageBody__ItemImg
         .ItemBox__ImageBody__ItemImg__Main
           .ItemBox__ImageBody__ItemImg__Main__UpperBox
-            = image_tag 'grapefruit.png', class: 'LargeItemImg'
+            = image_tag "#{@image.image}", class: 'LargeItemImg'
         .ItemBox__ImageBody__ItemImg__SubImage
           .ItemBox__ImageBody__ItemImg__SubImage__UnderBox
-            = image_tag 'fruit_starfruit.png', class: 'SubItemImg'
-            = image_tag 'fruit_starfruit.png', class: 'SubItemImg'
-            = image_tag 'fruit_starfruit.png', class: 'SubItemImg'
+            = image_tag "#{@image.image}", class: 'SubItemImg'
+            = image_tag "#{@image.image}", class: 'SubItemImg'
+            = image_tag "#{@image.image}", class: 'SubItemImg'
       .ItemBox__ImageBody__PraceBox
         .ItemBox__ImageBody__PraceBox__Prace
-          %p¥30000
+          %p¥
+          %p=@item.price 
         .ItemBox__ImageBody__PraceBox__Tax
           %font
           (税込) 送料込み
       .ItemBox__ImageBody__ItemDetail
-        親譲りの無鉄砲で小供の時から損ばかりしている。小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。弱虫やーい。と囃したからである。小使に負ぶさって帰って来た時、おやじが大きな眼をして二階ぐらいから飛び降りて腰
+        =@item.description
       .ItemBox__ImageBody__TableBox
         %table
           %tr
             %th 出品者
-            %td いしざき
-          %tr
-            %th カテゴリー
-            %td 
-              = link_to "ベビーキッズ" ,"#"
-              %br/
-              = link_to "ベビー服(男女兼用) ~95cm" ,"#"
-              %br/
-              = link_to "アウター"
-          %tr
-            %th ブランド
-            %td 
-          %tr
-            %th 商品のサイズ
-            %td 
+            %td=@item.seller_id
+          -# =@ship.shipping_family_name
+          -# %tr
+          -#   %th カテゴリー
+          -#   %td 
+          -#     = link_to "ベビーキッズ" ,"#"
+          -#     %br/
+          -#     = link_to "ベビー服(男女兼用) ~95cm" ,"#"
+          -#     %br/
+          -#     = link_to "アウター"
+          -# %tr
+          -#   %th ブランド
+          -#   %td 
+          -# %tr
+          -#   %th 商品のサイズ
+          -#   %td 
+              
           %tr
             %th 商品の状態
-            %td 未使用に近い
+            %td=@item.condition
+              
           %tr
             %th 配送料の負担
-            %td 送料込み（出品者負担）
+            %td=@item.delivery_fee
+              
           %tr
             %th 配送元の地域
-            %td 
-              %br/
-              = link_to "岩手県"
+            %td=@item.shipping_origin
+              
           %tr
             %th 発送日の目安
-            %td 4-7発送
+            %td=@item.days_to_ship
         -# 追加機能時のビュー、ライクボタン、不適切ボタン。
         -# .ItemBox__ImageBody__OptionArea
         -#   .ItemBox__ImageBody__OptionArea__LikeBtn
@@ -66,14 +70,19 @@
           -#     .ItemBox__ImageBody__OptionArea__OptionalBtn__Hutekisetu
           -#       =icon('fas','flag', class: 'icon')
           -#       不適切な商品の通報
-  -# 編集ボタン・削除ボタン追加4/13石崎
-  .EditDeleteContent
-    .EditDeleteContent__EditBtn
-      .EditDeleteContent__EditBtn__Text 
-        = link_to "#",class: 'EditTextBtn' do
-          商品の編集
-        -# レコード削除確認済み4/14
-        = link_to "商品の削除", item_path(@item.id), method: :delete, class: 'DeleteTextBtn' 
+    -# 編集ボタン・削除ボタン追加4/13石崎
+    .EditDeleteContent
+      - if user_signed_in? && current_user.id == @item.seller_id
+        .EditDeleteContent__EditBtn
+          .EditDeleteContent__EditBtn__Text 
+            = link_to "#",class: 'EditTextBtn' do
+              商品の編集
+            -# レコード削除確認済み4/14
+            = link_to "商品の削除", item_path(@item.id), method: :delete, class: 'DeleteTextBtn' 
+      - if user_signed_in? && current_user.id != @item.seller_id
+        .BuyBtn
+          .BuyBtn__Text
+            = link_to "購入画面に進む", "#", class: 'BBtn' 
   .CommentBox
     .CommentBox__CommentArea
       %textarea{class: "CommentBox__CommentArea__Form"}

@@ -59,7 +59,7 @@
               商品の状態
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :condition, [["新品、未使用", 0],["未使用に近い", 1],["目立った傷や汚れなし", 2],["やや傷や汚れあり",3],["傷や汚れあり",4],["全体的に状態が悪い",5]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.select :condition, [["新品、未使用", "新品、未使用"],["未使用に近い", "未使用に近い"],["目立った傷や汚れなし", "目立った傷や汚れなし"],["やや傷や汚れあり","やや傷や汚れあり"],["傷や汚れあり","傷や汚れあり"],["全体的に状態が悪い",5]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
 
         .SellPage__Information__Box
@@ -70,7 +70,7 @@
               配送料の負担
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :delivery_fee, [["送料込み(出品者負担)", 0],["着払い(購入者負担)", 1]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.select :delivery_fee, [["送料込み(出品者負担)", "送料込み(出品者負担)"],["着払い(購入者負担)", "着払い(購入者負担)"]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
 
           .SellPage__Information__Box__Inner
@@ -86,7 +86,7 @@
               発送までの日数
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :days_to_ship, [["1~2日で発送", 0],["2~3日で発送", 1],["4~7日で発送",2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.select :days_to_ship, [["1~2日で発送", "1~2日で発送"],["2~3日で発送", "2~3日で発送"],["4~7日で発送","4~7日で発送"]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
 
         .SellPage__Information__Box
