@@ -35,15 +35,14 @@
             = f.text_area :description, maxlength: 1000, class: "SellPage__Information__Box__Inner__Form TextareaOption", placeholder: '商品の説明（必須 1000文字以内）'
 
         .SellPage__Information__Box
-          -#.SellPage__Information__Box__About
-          -#  商品の詳細
-          -# カテゴリについては後日実装する為、一旦コメントアウト
-          -# .SellPage__Information__Box__Inner
-          -#   .SellPage__Information__Box__Inner__SellText
-          -#     カテゴリー
-          -#   .SellPage__Information__Box__Inner__SellBox
-          -#     必須
-          -#   = f.select :categories_id, [["テスト1",1],["テスト2",2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+          .SellPage__Information__Box__About
+            商品の詳細
+          #PullDownCategory.SellPage__Information__Box__Inner
+            .SellPage__Information__Box__Inner__SellText
+              カテゴリー
+            .SellPage__Information__Box__Inner__SellBox
+              必須
+            = f.select :category, @category_parent_array, {}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
  
           -# ブランドについては後日実装する為、一旦コメントアウト
           -# .SellPage__Information__Box__Inner
@@ -78,7 +77,7 @@
               発送元の地域
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :shipping_origin,Address.shipping_areas.keys, {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.select :shipping_origin,Address.shipping_areas.keys, {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
 
 
           .SellPage__Information__Box__Inner
