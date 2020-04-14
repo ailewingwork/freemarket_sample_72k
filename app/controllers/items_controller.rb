@@ -18,9 +18,9 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save!
+    if @item.save
       # 商品の投稿に成功したらindexに飛ばす処理
-      redirect_to root_path
+      redirect_to root_path, notice: '出品が完了しました。'
     else
       # 商品の投稿に失敗したらnewアクションを再度実行new.html.hamlを表示
       render :new
@@ -55,15 +55,13 @@ class ItemsController < ApplicationController
   def get_category_grandchildren
     #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
     @category_grandchildren = Category.find("#{params[:child_id]}").children
-    binding.pry
   end
 
   private
 
   #プライベートメソッドにしたいので、private配下に記述
   def item_params
-    binding.pry
-    params.require(:item).permit(:product_name, :price, :category_id,:condition,:description, :delivery_fee, :shipping_origin, :days_to_ship,:buyer_id, images_attributes: [:image]).merge(user_id: current_user.id, seller_id: current_user.id)
+    params.require(:item).permit(:product_name, :price, :category_id, :condition,:description, :delivery_fee, :shipping_origin, :days_to_ship,:buyer_id, images_attributes: [:image]).merge(user_id: current_user.id, seller_id: current_user.id)
   end
 
 end

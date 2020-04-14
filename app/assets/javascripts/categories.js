@@ -11,7 +11,7 @@ $(document).ready(function() {
   function appendChidrenBox(insertHTML){
     var childSelectHtml = '';
     childSelectHtml = `<div id="children_wrapper">
-                        <select class= 'SellPage__Information__Box__Inner__Form', id= 'child_category' name="category_id">
+                        <select class= 'SellPage__Information__Box__Inner__Form', id= 'child_category' name="item[category_id]">
                           <option value="---" data-category="---">---</option>
                           ${insertHTML}
                       </div>`;
@@ -23,7 +23,7 @@ $(document).ready(function() {
     function appendGrandchidrenBox(insertHTML){
       var grandchildSelectHtml = '';
       grandchildSelectHtml = `<div id="grandchildren_wrapper">
-                          <select class= 'SellPage__Information__Box__Inner__Form', id= 'grandchild_category' name="category_id">
+                          <select class= 'SellPage__Information__Box__Inner__Form', id= 'grandchild_category' name="item[category_id]">
                             <option value="---" data-category="---">---</option>
                             ${insertHTML}
                         </div>`;
