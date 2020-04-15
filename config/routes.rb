@@ -14,6 +14,12 @@ Rails.application.routes.draw do
   root to: 'items#index'
   resources :users
   resource :users
-  resources :items
+  resources :items, only: [:show, :new, :create, :edit, :update, :destroy] do
+    #Ajaxで動かす為のルーティングを作成
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+  end
 end
 

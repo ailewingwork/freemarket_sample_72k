@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
 
-  validates :product_name,:price,:condition,:description,:delivery_fee,:shipping_origin,:days_to_ship, presence: true
+  validates :product_name,:category_id,:price,:condition,:description,:delivery_fee,:shipping_origin,:days_to_ship, presence: true
 
 
 
@@ -12,10 +12,10 @@ class Item < ApplicationRecord
   # 商品削除機能実装時にエラーが出たため下記の１行をコメントアウト。ｂｙ石崎
   # has_many :comments, dependent: :destroy
   belongs_to :user
+  belongs_to :category
   belongs_to :buyer, class_name:'User', foreign_key: "buyer_id", optional: true
   belongs_to :seller, class_name:'User', foreign_key: "seller_id"
   # belongs_to :brand
-  # belongs_to :category
   
     #配送元エリアを設定する際に利用する47都道府県のenumを実装
     enum ship_orign:{
