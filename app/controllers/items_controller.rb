@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:show, :destroy]
+
   def index
     @items = Item.includes(:images).order('created_at DESC').limit(3)
   end
@@ -35,16 +37,14 @@ class ItemsController < ApplicationController
   
 # destoroy内石崎が追記しました。レコード削除確認済み。4/13
   def destroy
-    item = Item.find(params[:id])
-    item.destroy
-    redirect_to root_path
+    @item.destroy
+    # 商品の削除に成功したら
+    redirect_to root_path, notice: "削除に成功しました"
   end
 
   def show
-    @item = Item.find(params[:id])
-    # カテゴリーのモデルを導入したらコメントアウト消す
+    # カテゴリーのモデルを導入したらコメントアウト解除
     # @category = Category.where(id: @item.category_id)
-
   end
   
   def buy_confirm
@@ -65,6 +65,10 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
   #プライベートメソッドにしたいので、private配下に記述
   def item_params
