@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
       redirect_to root_path, notice: '出品が完了しました。'
     else
       # 商品の投稿に失敗したらnewアクションを再度実行new.html.hamlを表示
-      render :new
+      redirect_to new_item_path, notice: '入力した内容に誤りがあります。再度入力してください。'
     end
   end
 
