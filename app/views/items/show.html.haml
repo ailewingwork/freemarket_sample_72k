@@ -5,30 +5,27 @@
       =@item.product_name
     .ItemBox__ImageBody
       .ItemBox__ImageBody__ItemImg
-        .ItemBox__ImageBody__ItemImg__Main
-          %ul.ItemBox__ImageBody__ItemImg__Main__UpperBox
-            %li
-              = image_tag @item.images.first.image.url, class: "LargeItemImg"
-              %ul.ItemBox__ImageBody__ItemImg__SubImage__UnderBox
-                - @item.images.each do |image|
-                  %li
-                    = image_tag image.image.url, class: "SubItemImg"
-            -# = image_tag "#{@image.image}", class: 'SubItemImg'
-      .ItemBox__ImageBody__PraceBox
-        .ItemBox__ImageBody__PraceBox__Prace
-          %p¥
-          %p=@item.price 
-        .ItemBox__ImageBody__PraceBox__Tax
-          %font
-          (税込) 送料込み
-      .ItemBox__ImageBody__ItemDetail
-        =@item.description
+        - @item.images.each_with_index do |photo,index|
+          - if index == 0
+            .ItemBox__ImageBody__ItemImg__UpperBox
+              = image_tag photo.image.url, class: "LargeItemImg"
+              -# -binding.pry
+          - else 
+            .ItemBox__ImageBody__ItemImg__Sub
+              .ItemBox__ImageBody__ItemImg__Sub__UnderBox
+                = image_tag photo.image.url, class: "SubItemImg"
+    .ItemBox__PraceBox 
+      .ItemBox__PraceBox__Prace
+        %p.PriceText¥
+        %p.PriceText=@item.price 
+      .SmallText (税込) 送料込み
+      %p.SmallText=@item.description
       .ItemBox__ImageBody__TableBox
         %table
           %tr
             %th 出品者
-            %td=@item.seller_id
-          -# =@ship.shipping_family_name
+            %td=@item.user.nickname
+          -# category機能追加時に表示させる。
           -# %tr
           -#   %th カテゴリー
           -#   %td 
@@ -105,3 +102,4 @@
     .UnderLinkBox__ReratedItems
       =link_to "ベビーキッズをもっと見る"
 -# = render "share/footer"
+-# = render "devise/shared/devise_footer"

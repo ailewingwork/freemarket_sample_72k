@@ -28,15 +28,15 @@ class ItemsController < ApplicationController
 # destoroy内石崎が追記しました。レコード削除確認済み。4/13
   def destroy
     item = Item.find(params[:id])
-    item.destroy!
+    item.destroy
     redirect_to root_path
   end
 
   def show
     @item = Item.find(params[:id])
-    # @ship = Ship.find(params[:user_id])
-    @image = Image.find(params[:id])
-    # @user = User.find(params[:id])
+    # カテゴリーのモデルを導入したらコメントアウト消す
+    # @category = Category.where(id: @item.category_id)
+
   end
   
   def buy_confirm
