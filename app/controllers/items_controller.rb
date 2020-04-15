@@ -53,7 +53,6 @@ class ItemsController < ApplicationController
   def buy_confirm
   end
 
-
   # 以下全て、formatはjsonのみ
   # 親カテゴリーが選択された後に動くアクション
   def get_category_children
