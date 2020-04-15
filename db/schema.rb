@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_14_030109) do
+ActiveRecord::Schema.define(version: 2020_04_15_085057) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "post_code", null: false
@@ -26,15 +26,11 @@ ActiveRecord::Schema.define(version: 2020_04_14_030109) do
 
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "customer_id", null: false
-    t.integer "card_id", null: false
-    
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "customer_id", null: false
+    t.string "card_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "ancestry"
-    t.string "name"
-    t.index ["ancestry"], name: "index_categories_on_ancestry"
+    t.index ["user_id"], name: "index_credit_cards_on_user_id"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -55,9 +51,9 @@ ActiveRecord::Schema.define(version: 2020_04_14_030109) do
     t.string "days_to_ship", null: false
     t.bigint "user_id", null: false
     t.bigint "seller_id", null: false
+    t.bigint "buyer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "buyer_id"
     t.index ["buyer_id"], name: "index_items_on_buyer_id"
     t.index ["seller_id"], name: "index_items_on_seller_id"
     t.index ["user_id"], name: "index_items_on_user_id"
@@ -104,6 +100,7 @@ ActiveRecord::Schema.define(version: 2020_04_14_030109) do
   end
 
   add_foreign_key "addresses", "ships"
+  add_foreign_key "credit_cards", "users"
   add_foreign_key "images", "items"
   add_foreign_key "items", "users"
   add_foreign_key "items", "users", column: "buyer_id"

@@ -12,7 +12,7 @@
             .SignUpTitle ニックネーム
             .SignUpRequired 必須
           -# class名はinputForm単位で切り分け
-          = f.text_field :nickname, placeholder: "例）フリマ太郎", class:"SinUpInputForm"
+          = f.text_field :nickname, placeholder: "例）メルカリ太郎", class:"SinUpInputForm"
         .ContentSignUp__Infomation__CommonEntry
           .ContentSignUp__Infomation__CommonEntry__Area
             .SignUpTitle メールアドレス
@@ -47,7 +47,7 @@
           .ContentSignUp__Infomation__Action__Attention
             「次へ進む」のボタンを押すことにより、
             %span
-              =link_to "#", class: "SignUpLink" do
+              =link_to "https://www.mercari.com/jp/tos/", class: "SignUpLink" do
                 利用規約
             に同意したものとみなします
           = f.submit "次へ進む", class: "ContentSignUp__Infomation__Action__Btn"
@@ -56,7 +56,7 @@
             本人情報の登録について>
         .ContentSignUp__Infomation__Caution
           This site is protected by reCAPTCHA and the Google
-          =link_to "#", class: "SignUpLink" do
+          =link_to "https://www.mercari.com/jp/privacy/", class: "SignUpLink" do
             Privacy Policy
           and
           =link_to "#", class: "SignUpLink" do
