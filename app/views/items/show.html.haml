@@ -6,13 +6,14 @@
     .ItemBox__ImageBody
       .ItemBox__ImageBody__ItemImg
         .ItemBox__ImageBody__ItemImg__Main
-          .ItemBox__ImageBody__ItemImg__Main__UpperBox
-            = image_tag "#{@image.image}", class: 'LargeItemImg'
-        .ItemBox__ImageBody__ItemImg__SubImage
-          .ItemBox__ImageBody__ItemImg__SubImage__UnderBox
-            = image_tag "#{@image.image}", class: 'SubItemImg'
-            = image_tag "#{@image.image}", class: 'SubItemImg'
-            = image_tag "#{@image.image}", class: 'SubItemImg'
+          %ul.ItemBox__ImageBody__ItemImg__Main__UpperBox
+            %li
+              = image_tag @item.images.first.image.url, class: "LargeItemImg"
+              %ul.ItemBox__ImageBody__ItemImg__SubImage__UnderBox
+                - @item.images.each do |image|
+                  %li
+                    = image_tag image.image.url, class: "SubItemImg"
+            -# = image_tag "#{@image.image}", class: 'SubItemImg'
       .ItemBox__ImageBody__PraceBox
         .ItemBox__ImageBody__PraceBox__Prace
           %p¥

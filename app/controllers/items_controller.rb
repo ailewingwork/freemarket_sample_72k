@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @ship = Ship.find(params[:user_id])
+    # @ship = Ship.find(params[:user_id])
     @image = Image.find(params[:id])
     # @user = User.find(params[:id])
   end
