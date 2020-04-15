@@ -6,117 +6,114 @@
   margin: auto;
   padding: 24px 40px 40px;
   margin-bottom: 10px;
-    &__ItemName{
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      padding-bottom: 15px;
-    }
-    &__ImageBody{
-      &__ItemImg{
-          &__UpperBox{
-            .LargeItemImg{
-              display: block;
-              margin: 0 auto;
-              max-width:  100%;
-              max-height: 100%;
-            }
-          }
-          &__Sub{
-            display: inline-block; 
-            // flex-wrap: wrap;
-            // width: 620px;
-          &__UnderBox{
-            display: flex;
-            height: 87px;
-            width: 140px;
-            .SubItemImg{
-              display: flex;
-              display: inline-block;
-              height: 87px;
-              width: 140px;
-            }
-          }
+  &__ItemName{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 15px;
+  }
+  &__ImageBody{
+    &__ItemImg{
+      &__UpperBox{
+        .LargeItemImg{
+          display: block;
+          margin: 0 auto;
+          max-width:  100%;
+          max-height: 100%;
         }
       }
-      &__TableBox{
-        display: inline-block;
-        width: 100%;
-        table{
-          width: 100%;
-          margin-bottom: 20px;
-          tr{
-            border-collapse: collapse;
-            border: 1px solid #804444;
-            th{
-              width: 20%;
-              background-color: #eee;
-              font-weight: 400;
-              padding: 8px;
-              border: 1px solid #dedede;
-              font-size: 14px;
-              text-align: center;
-            }
-            td{
-              width: 61%;
-              padding: 15px 15px;
-              border: 1px solid #dedede;
-              font-size: 14px;
-            }
-          }
-        }
-      } 
-      
-      &__OptionArea{
+      &__UnderBox{
         display: flex;
-        margin: 10px 0 0;
-        justify-content:space-between;
-        &__LikeBtn{
-          display: flex;
-          justify-content: space-between;
-          &__Okini{
-            margin-right: auto;
-            padding: 6px 10px;
-            border-radius: 40px;
-            color: #3CCACE;
-            border: 1px solid #ffb340;
-          }
+        justify-content: center;
+        .SubItemImg{
+          display: inline;
+          height: 87px;
+          width: 140px;
         }
-        &__OptionalBtn{
-          &__Hutekisetu{
+      }
+      // .SubItemImg{
+      //   display: inline;
+      //   height: 87px;
+      //   width: 140px;
+      // }
+    }
+    &__TableBox{
+      display: inline-block;
+      width: 100%;
+      table{
+        width: 100%;
+        margin-bottom: 20px;
+        tr{
+          border-collapse: collapse;
+          border: 1px solid #804444;
+          th{
+            width: 20%;
+            background-color: #eee;
+            font-weight: 400;
+            padding: 8px;
+            border: 1px solid #dedede;
             font-size: 14px;
-            padding: 6px 10px;
-            display: inline-block;
-            border-radius: 4px;
-            color: #333;
-            border: 1px solid #333;
-            text-decoration: none;
-        
+            text-align: center;
+          }
+          td{
+            width: 61%;
+            padding: 15px 15px;
+            border: 1px solid #dedede;
+            font-size: 14px;
           }
         }
       }
+    } 
+    &__OptionArea{
+      display: flex;
+      margin: 10px 0 0;
+      justify-content:space-between;
+      &__LikeBtn{
+        display: flex;
+        justify-content: space-between;
+        &__Okini{
+          margin-right: auto;
+          padding: 6px 10px;
+          border-radius: 40px;
+          color: #3CCACE;
+          border: 1px solid #ffb340;
+        }
+      }
+      &__OptionalBtn{
+        &__Hutekisetu{
+          font-size: 14px;
+          padding: 6px 10px;
+          display: inline-block;
+          border-radius: 4px;
+          color: #333;
+          border: 1px solid #333;
+          text-decoration: none;
+        }
+      }
     }
-          &__PraceBox{
-            padding: 24px 0;
-              &__Prace{
-                text-align: center;
-                display: flex;
-                justify-content: center;
-                .PriceText{
-                  display: block;
-                  font-weight: bold;
-                  font-size: 46px;
-                  line-height: 100%;
-                }
-              }
-                .SmallText{
-                  text-align: center;
-                  font-size: 18px;
-                  margin-bottom: 30px;
-               }
-          }
-    a{text-decoration: none;
-      color: #3CCACE;}
+  }
+  &__PraceBox{
+    padding: 24px 0;
+    &__Prace{
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      .PriceText{
+        display: block;
+        font-weight: bold;
+        font-size: 46px;
+        line-height: 100%;
+      }
+    }
+    .SmallText{
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+  }
+  a{text-decoration: none;
+    color: #3CCACE;
+  }
 }
 // 商品編集・商品削除ボタン追加4/13石崎
 .EditDeleteContent{
@@ -128,57 +125,53 @@
     &__Text{
       align-items: center;
       width: 100%;
-        .EditTextBtn{
-          text-align: center;
-          display: block;
-          font-size: 18px;
-          line-height: 48px;
-          background: #3CCACE;
-          color: #fff;
-          width: 80%;
-          font-size: 18px;
-          border-radius: 100px;
-          margin: 0 auto;
-          text-decoration: none;
-        }
-        .DeleteTextBtn{
-          text-align: center;
-          display: block;
-          font-size: 18px;
-          line-height: 48px;
-          background: #AAAAAA;
-          color: #fff;
-          width: 80%;
-          font-size: 18px;
-          border-radius: 100px;
-          margin: 10px auto 0;
-          text-decoration: none;
-        }
+      .EditTextBtn{
+        text-align: center;
+        display: block;
+        font-size: 18px;
+        line-height: 48px;
+        background: #3CCACE;
+        color: #fff;
+        width: 80%;
+        font-size: 18px;
+        border-radius: 100px;
+        margin: 0 auto;
+        text-decoration: none;
+      }
+      .DeleteTextBtn{
+        text-align: center;
+        display: block;
+        font-size: 18px;
+        line-height: 48px;
+        background: #AAAAAA;
+        color: #fff;
+        width: 80%;
+        font-size: 18px;
+        border-radius: 100px;
+        margin: 10px auto 0;
+        text-decoration: none;
+      }
     }
   }
   .BuyBtn{
-
     &__Text{
       align-items: center;
       width: 100%;
-        .BBtn{
-          text-align: center;
-          display: block;
-          font-size: 18px;
-          line-height: 48px;
-          background: #ea352d;
-          color: #fff;
-          width: 80%;
-          font-size: 18px;
-          border-radius: 100px;
-          margin: 10px auto 0;
-          text-decoration: none;
-        }
+      .BBtn{
+        text-align: center;
+        display: block;
+        font-size: 18px;
+        line-height: 48px;
+        background: #ea352d;
+        color: #fff;
+        width: 80%;
+        font-size: 18px;
+        border-radius: 100px;
+        margin: 10px auto 0;
+        text-decoration: none;
+      }
     }
   }
-
-
-
 }
 
 .CommentBox{
@@ -188,14 +181,14 @@
   width: 700px;
   margin: auto;
   padding: 24px 40px 40px;
-    &__CommentArea{
-      &__Form{
-        min-width: 100%;
-        max-width: 100%;
-        min-height: 104px;
-      }
-   }
-    &__NoticeMsg{
+  &__CommentArea{
+    &__Form{
+      min-width: 100%;
+      max-width: 100%;
+      min-height: 104px;
+    }
+  }
+  &__NoticeMsg{
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
@@ -206,164 +199,158 @@
     font-size: 14px;
     margin: 10px 0;
     text-align: left;
+  }
+  &__CommentBtn{
+    align-items: center;
+    width: 100%;
+    .CommentBtn{
+      text-align: center;
+      display: block;
+      font-size: 18px;
+      line-height: 48px;
+      background: #3CCACE;
+      color: #fff;
+      width: 80%;
+      font-size: 18px;
+      border-radius: 100px;
+      margin: 0 auto;
+      text-decoration: none;
     }
-    &__CommentBtn{
-      align-items: center;
-      width: 100%;
-        .CommentBtn{
-          text-align: center;
-          display: block;
-          font-size: 18px;
-          line-height: 48px;
-          background: #3CCACE;
-          color: #fff;
-          width: 80%;
-          font-size: 18px;
-          border-radius: 100px;
-          margin: 0 auto;
-          text-decoration: none;
-        }
-        .icon{
-          display: inline-block;
-        }
+    .icon{
+      display: inline-block;
+    }
   }
 }
 .UnderLinkBox{
   width: 700px;
   margin: 0 auto;
-    &__Links{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      .LinkText{
-        margin-top: 10px;
-      }
+  &__Links{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .LinkText{
+      margin-top: 10px;
     }
-    &__ReratedItems{
-      display: block;
-      margin: 24px 0 8px;
-      color: #3CCACE;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 22px;
-      position: relative;
-      padding-bottom: 40px;
-    }
-}
-
-  a{
+  }
+  &__ReratedItems{
+    display: block;
+    margin: 24px 0 8px;
     color: #3CCACE;
     text-decoration: none;
+    font-weight: bold;
+    font-size: 22px;
+    position: relative;
+    padding-bottom: 40px;
   }
-  .ItemBody{
-    background-color: rgb(238, 235, 235);
-    padding-top: 40px;
-  }
-
+}
+a{
+  color: #3CCACE;
+  text-decoration: none;
+}
+.ItemBody{
+  background-color: rgb(238, 235, 235);
+  padding-top: 40px;
+}
 // ここから商品購入確認ページ 
-
 .ConfirmWrapper{
   background-color: #eeebeb;
 }
 .ConfirmBody{
   background-color: rgb(238, 235, 235);
   padding: 40px 0;
-    &__Content{
-      background-color:#fff;
-      width: 700px;
-      margin: auto;
-        &__Title{
-          font-weight: bold;
-          font-size: 24px;
-          text-align: center;
-          padding: 32px;
-        }
-        &__Product{
-          border-top: 1px solid #f5f5f5;
-          width: 100%;
-          padding: 32px 16px;
-          display: flex;
-          justify-content: center;
-          border-top: 10px rgb(16, 17, 15) ;
-          border-top: 1px solid #f5f5f5;
-          &__Box{
-            &__Name{
-              font-size: 20px;
-              display: block;
-              font-weight: bold;
-            }
-            &__Price{
-              display: block;
-              font-weight: bold;
-            }
-          }
-          .Img{
-            max-height: 80px;
-            width: auto;
-            padding-right: 10%;
-          }
-        }
-        &__Details{
-          width: 100%;
-          padding-bottom: 48px;
-          border-top: 1px solid #f5f5f5;
-            &__From{
-              max-width: 343px;
-              margin: 0 auto;
-              &__PayAmount{
-                padding: 32px 0;
-                display: flex;
-                justify-content: space-between;
-                &__Tax{
-                    font-size: 18px;
-                    margin: auto 0;
-                }
-                &__Price{
-                  font-size: 30px;
-                }
-              }
-            &__Payment{
-              padding: 32px 0;
-              border-top: 1px solid #f5f5f5;
-              &__Text{
-                padding-bottom: 5px;
-              }
-              .PaymentRegister{
-              }
-            }
-            &__ShippingAddress{
-              padding: 32px 0;
-              border-top: 1px solid #f5f5f5;
-              &__Text{
-                padding-bottom: 5px;
-                .ShippingAddressRegister{
-                }
-              }
-            }
-
-            &__InfoText{
-              padding: 32px 0 24px;
-              border-top: 1px solid #f5f5f5;
-              color: #888888;
-            }
-
-            &__Btn{
-              width: 343px;
-              .BuyBtn{
-                text-align: center;
-                background-color:#888;
-                color: #fff;
-                line-height: 48px;
-                font-size: 14px;
-                width: 100%;
-                display: block;
-              }
-            }
-          }
-        }
+  &__Content{
+    background-color:#fff;
+    width: 700px;
+    margin: auto;
+    &__Title{
+      font-weight: bold;
+      font-size: 24px;
+      text-align: center;
+      padding: 32px;
     }
+    &__Product{
+      border-top: 1px solid #f5f5f5;
+      width: 100%;
+      padding: 32px 16px;
+      display: flex;
+      justify-content: center;
+      border-top: 10px rgb(16, 17, 15) ;
+      border-top: 1px solid #f5f5f5;
+      &__Box{
+        &__Name{
+          font-size: 20px;
+          display: block;
+          font-weight: bold;
+        }
+        &__Price{
+          display: block;
+          font-weight: bold;
+        }
+      }
+      .Img{
+        max-height: 80px;
+        width: auto;
+        padding-right: 10%;
+      }
+    }
+    &__Details{
+      width: 100%;
+      padding-bottom: 48px;
+      border-top: 1px solid #f5f5f5;
+      &__From{
+        max-width: 343px;
+        margin: 0 auto;
+        &__PayAmount{
+          padding: 32px 0;
+          display: flex;
+          justify-content: space-between;
+          &__Tax{
+            font-size: 18px;
+            margin: auto 0;
+          }
+          &__Price{
+            font-size: 30px;
+          }
+        }
+        &__Payment{
+          padding: 32px 0;
+          border-top: 1px solid #f5f5f5;
+          &__Text{
+            padding-bottom: 5px;
+          }
+          .PaymentRegister{
+          }
+        }
+        &__ShippingAddress{
+          padding: 32px 0;
+          border-top: 1px solid #f5f5f5;
+          &__Text{
+            padding-bottom: 5px;
+            .ShippingAddressRegister{
+            }
+          }
+        }
+        &__InfoText{
+          padding: 32px 0 24px;
+          border-top: 1px solid #f5f5f5;
+          color: #888888;
+        }
+        &__Btn{
+          width: 343px;
+          .BuyBtn{
+            text-align: center;
+            background-color:#888;
+            color: #fff;
+            line-height: 48px;
+            font-size: 14px;
+            width: 100%;
+            display: block;
+          }
+        }
+      }
+    }
+  }
 }
-
 
 
 

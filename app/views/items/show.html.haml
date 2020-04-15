@@ -9,11 +9,13 @@
           - if index == 0
             .ItemBox__ImageBody__ItemImg__UpperBox
               = image_tag photo.image.url, class: "LargeItemImg"
-              -# -binding.pry
           - else 
-            .ItemBox__ImageBody__ItemImg__Sub
-              .ItemBox__ImageBody__ItemImg__Sub__UnderBox
-                = image_tag photo.image.url, class: "SubItemImg"
+      .ItemBox__ImageBody__ItemImg__UnderBox
+        - @item.images.each_with_index do |photo,index|
+          - if index != 0
+            .ItemBox__ImageBody__ItemImg__UnderBox__List
+              = image_tag photo.image.url, class: "SubItemImg"
+          - else 
     .ItemBox__PraceBox 
       .ItemBox__PraceBox__Prace
         %p.PriceText¥
@@ -100,6 +102,6 @@
       = link_to "＜前の商品", "#", class: "LinkText"
       = link_to "次の商品＞", "#", class: "LinkText"
     .UnderLinkBox__ReratedItems
-      =link_to "ベビーキッズをもっと見る"
+      -# =link_to "ベビーキッズをもっと見る"
 -# = render "share/footer"
--# = render "devise/shared/devise_footer"
+= render "devise/shared/devise_footer"
