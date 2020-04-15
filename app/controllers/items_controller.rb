@@ -34,12 +34,15 @@ class ItemsController < ApplicationController
 
   def update
   end
-  
-# destoroy内石崎が追記しました。レコード削除確認済み。4/13
+
   def destroy
-    @item.destroy
-    # 商品の削除に成功したら
-    redirect_to root_path, notice: "削除に成功しました"
+    if @item.destroy
+      # 登録している商品の削除に成功したら
+      redirect_to root_path, notice: "削除に成功しました。"
+    else
+      # 登録している商品の削除に失敗したら
+      redirect_to item_path, notice: "削除に失敗しました、もう一度削除ボタンを押してください。"
+    end
   end
 
   def show
