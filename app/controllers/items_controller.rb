@@ -20,7 +20,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    binding.pry
     if @item.save
       # 商品の投稿に成功したらindexに飛ばす処理
       redirect_to root_path, notice: '出品が完了しました。'
