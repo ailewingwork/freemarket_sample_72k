@@ -88,6 +88,7 @@
           -#       =icon('fas','flag', class: 'icon')
           -#       不適切な商品の通報
     -# 編集ボタン・削除ボタン追加4/13石崎
+    -# ログインしているかつ、商品seller_idが一致の場合"商品の編集＆商品の削除"を表示
     .EditDeleteContent
       - if user_signed_in? && current_user.id == @item.seller_id
         .EditDeleteContent__EditBtn
@@ -95,7 +96,8 @@
             = link_to "#",class: 'EditTextBtn' do
               商品の編集
             -# レコード削除確認済み4/14
-            = link_to "商品の削除", item_path(@item.id), method: :delete, data: { confirm: '削除しますか？' }, class: 'DeleteTextBtn' 
+            = link_to "商品の削除", item_path(@item.id), method: :delete, data: { confirm: "削除しますか？" }, class: 'DeleteTextBtn' 
+      -# ログインしているかつログインユーザーがseller_idでない時購入確認ボタンを表示
       - if user_signed_in? && current_user.id != @item.seller_id
         .BuyBtn
           .BuyBtn__Text
