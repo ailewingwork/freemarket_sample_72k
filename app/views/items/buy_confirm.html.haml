@@ -3,33 +3,45 @@
   .ConfirmBody
     .ConfirmBody__Content
       .ConfirmBody__Content__Title
-        購入の確認
+        購入内容の確認
       .ConfirmBody__Content__Product
-        = image_tag 'fruit_starfruit.png', class: 'Img'    
+        = image_tag "#{@item.images[0].image}", size: '64x64', class: 'Img'
         .ConfirmBody__Content__Product__Box
           .ConfirmBody__Content__Product__Box__Name
-            でかいフルーツ
+            = @item.product_name
           .ConfirmBody__Content__Product__Box__Price
-            ¥800（税込）送料込み
+            = "¥#{@item.price.to_s}"
+            %span.shipping-free (税込) 送料込み
       .ConfirmBody__Content__Details
         .ConfirmBody__Content__Details__From
           .ConfirmBody__Content__Details__From__PayAmount
             .ConfirmBody__Content__Details__From__PayAmount__Tax
               支払い金額
             .ConfirmBody__Content__Details__From__PayAmount__Price
-              ¥800
+              = "¥#{@item.price.to_s}"
           .ConfirmBody__Content__Details__From__Payment
             .ConfirmBody__Content__Details__From__Payment__Text
               支払い方法 
+          - if @default_card_information.blank?
             = link_to"登録してください", "#",class: "PaymentRegister"
+            %br 
+          - else
+            = "**** **** **** " + "#{@default_card_information.last4}"
+            %br
+            - exp_month = @default_card_information.exp_month.to_s
+            - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+            = "有効期限 " + exp_month + " / " + exp_year
+            %br            
           .ConfirmBody__Content__Details__From__ShippingAddress
             .ConfirmBody__Content__Details__From__ShippingAddress__Text
               配送先
-            =link_to"登録してください","#",class:"ShippingAddressRegister"
-            
+            = current_user.ship.address.post_code
+            = current_user.ship.address.prefecture
+            = current_user.ship.address.city
+            = current_user.ship.address.street_number
           .ConfirmBody__Content__Details__From__InfoText
             郵便局/コンビニ受取をご希望の方は、購入後に取引画面から受取場所を変更をすることが可能です。出品者が発送作業を開始した後は受取場所の変更ができませんので、早めに変更を行ってください。
           .ConfirmBody__Content__Details__From__Btn
-            =link_to"購入する","#",class: "BuyBtn"
-
+            = form_tag pay_item_buyers_path(@item.id) do
+              %button.BuyBtn{type:"submit"} 購入する
   = render "devise/shared/devise_footer"

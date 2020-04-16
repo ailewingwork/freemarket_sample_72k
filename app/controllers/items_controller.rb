@@ -33,6 +33,11 @@ class ItemsController < ApplicationController
   end
   
   def buy_confirm
+    @item = Item.find(params[:id])
+    @card = CreditCard.find_by(user_id: current_user.id)
+    Payjp.api_key = Rails.application.credentials[:PAYJP_SECRET_KEY]
+    customer = Payjp::Customer.retrieve(@card.customer_id)
+    @default_card_information = customer.cards.retrieve(@card.card_id)
   end
 
 
