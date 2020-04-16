@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:show, :destroy]
+
   def index
     @items = Item.includes(:images).order('created_at DESC').limit(3)
   end
@@ -34,15 +36,22 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    if @item.destroy
+      # 登録している商品の削除に成功したら
+      redirect_to root_path, notice: "削除に成功しました。"
+    else
+      # 登録している商品の削除に失敗したら
+      redirect_to item_path, notice: "削除に失敗しました、もう一度削除ボタンを押してください。"
+    end
   end
 
   def show
-
+    # カテゴリーのモデルを導入したらコメントアウト解除
+    # @category = Category.where(id: @item.category_id)
   end
   
   def buy_confirm
   end
-
 
   # 以下全て、formatはjsonのみ
   # 親カテゴリーが選択された後に動くアクション
@@ -58,6 +67,10 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
   #プライベートメソッドにしたいので、private配下に記述
   def item_params

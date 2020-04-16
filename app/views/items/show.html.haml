@@ -2,69 +2,87 @@
 .ItemBody
   .ItemBox
     .ItemBox__ItemName
-      ここ商品の名前入る
+      =@item.product_name
     .ItemBox__ImageBody
       .ItemBox__ImageBody__ItemImg
-        .ItemBox__ImageBody__ItemImg__Main
-          .ItemBox__ImageBody__ItemImg__Main__UpperBox
-            = image_tag 'grapefruit.png', class: 'LargeItemImg'
-        .ItemBox__ImageBody__ItemImg__SubImage
-          .ItemBox__ImageBody__ItemImg__SubImage__UnderBox
-            = image_tag 'fruit_starfruit.png', class: 'SubItemImg'
-            = image_tag 'fruit_starfruit.png', class: 'SubItemImg'
-            = image_tag 'fruit_starfruit.png', class: 'SubItemImg'
-      .ItemBox__ImageBody__PraceBox
-        .ItemBox__ImageBody__PraceBox__Prace
-          %p¥30000
-        .ItemBox__ImageBody__PraceBox__Tax
-          %font
-          (税込) 送料込み
-      .ItemBox__ImageBody__ItemDetail
-        親譲りの無鉄砲で小供の時から損ばかりしている。小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。弱虫やーい。と囃したからである。小使に負ぶさって帰って来た時、おやじが大きな眼をして二階ぐらいから飛び降りて腰
+        - @item.images.each_with_index do |photo,index|
+          - if index == 0
+            .ItemBox__ImageBody__ItemImg__UpperBox
+              = image_tag photo.image.url, class: "LargeItemImg"
+          - else 
+      .ItemBox__ImageBody__ItemImg__UnderBox
+        - @item.images.each_with_index do |photo,index|
+          - if index != 0
+            .ItemBox__ImageBody__ItemImg__UnderBox__List
+              = image_tag photo.image.url, class: "SubItemImg"
+          - else 
+    .ItemBox__PraceBox 
+      .ItemBox__PraceBox__Prace
+        %p.PriceText¥
+        %p.PriceText=@item.price 
+      .SmallText (税込) 送料込み
+      %p.SmallText=@item.description
       .ItemBox__ImageBody__TableBox
         %table
           %tr
             %th 出品者
-            %td いしざき
-          %tr
-            %th カテゴリー
-            %td 
-              = link_to "ベビーキッズ" ,"#"
-              %br/
-              = link_to "ベビー服(男女兼用) ~95cm" ,"#"
-              %br/
-              = link_to "アウター"
-          %tr
-            %th ブランド
-            %td 
-          %tr
-            %th 商品のサイズ
-            %td 
+            %td=@item.user.nickname
+          -# category機能追加時に表示させる。
+          -# %tr
+          -#   %th カテゴリー
+          -#   %td 
+          -#     = link_to "ベビーキッズ" ,"#"
+          -#     %br/
+          -#     = link_to "ベビー服(男女兼用) ~95cm" ,"#"
+          -#     %br/
+          -#     = link_to "アウター"
+          -# %tr
+          -#   %th ブランド
+          -#   %td 
+          -# %tr
+          -#   %th 商品のサイズ
+          -#   %td 
+              
           %tr
             %th 商品の状態
-            %td 未使用に近い
+            %td=@item.condition
+              
           %tr
             %th 配送料の負担
-            %td 送料込み（出品者負担）
+            %td=@item.delivery_fee
+              
           %tr
             %th 配送元の地域
-            %td 
-              %br/
-              = link_to "岩手県"
+            %td=@item.shipping_origin
+              
           %tr
             %th 発送日の目安
-            %td 4-7発送
-        .ItemBox__ImageBody__OptionArea
-          .ItemBox__ImageBody__OptionArea__LikeBtn
-            = link_to "#",class: '' do
-              .ItemBox__ImageBody__OptionArea__LikeBtn__Okini
-                =icon('fas','star', class: 'icon')
-                お気に入り 0
-          .ItemBox__ImageBody__OptionArea__OptionalBtn
-            = link_to "#",class: '' do
-              .ItemBox__ImageBody__OptionArea__OptionalBtn__Hutekisetu
-                =icon('fas','flag', class: 'icon')
-                不適切な商品の通報
+            %td=@item.days_to_ship
+        -# 追加機能時のビュー、ライクボタン、不適切ボタン。
+        -# .ItemBox__ImageBody__OptionArea
+        -#   .ItemBox__ImageBody__OptionArea__LikeBtn
+          -#   = link_to "#",class: '' do
+          -#     .ItemBox__ImageBody__OptionArea__LikeBtn__Okini
+          -#       =icon('fas','star', class: 'icon')
+          -#       お気に入り 0
+          -# .ItemBox__ImageBody__OptionArea__OptionalBtn
+          -#   = link_to "#",class: '' do
+          -#     .ItemBox__ImageBody__OptionArea__OptionalBtn__Hutekisetu
+          -#       =icon('fas','flag', class: 'icon')
+          -#       不適切な商品の通報
+    -# 編集ボタン・削除ボタン追加4/13石崎
+    .EditDeleteContent
+      - if user_signed_in? && current_user.id == @item.seller_id
+        .EditDeleteContent__EditBtn
+          .EditDeleteContent__EditBtn__Text 
+            = link_to "#",class: 'EditTextBtn' do
+              商品の編集
+            -# レコード削除確認済み4/14
+            = link_to "商品の削除", item_path(@item.id), method: :delete, data: { confirm: '削除しますか？' }, class: 'DeleteTextBtn' 
+      - if user_signed_in? && current_user.id != @item.seller_id
+        .BuyBtn
+          .BuyBtn__Text
+            = link_to "購入画面に進む", "#", class: 'BBtn' 
   .CommentBox
     .CommentBox__CommentArea
       %textarea{class: "CommentBox__CommentArea__Form"}
@@ -84,4 +102,6 @@
       = link_to "＜前の商品", "#", class: "LinkText"
       = link_to "次の商品＞", "#", class: "LinkText"
     .UnderLinkBox__ReratedItems
-      =link_to "ベビーキッズをもっと見る"
+      -# =link_to "ベビーキッズをもっと見る"
+-# = render "share/footer"
+= render "devise/shared/devise_footer"
