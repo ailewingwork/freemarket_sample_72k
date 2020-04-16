@@ -48,6 +48,7 @@ class ItemsController < ApplicationController
   def show
     # カテゴリーのモデルを導入したらコメントアウト解除
     # @category = Category.where(id: @item.category_id)
+    @parents = Category.where(ancestry:nil)
   end
   
   def buy_confirm
