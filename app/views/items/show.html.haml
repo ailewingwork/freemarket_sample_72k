@@ -27,15 +27,32 @@
           %tr
             %th 出品者
             %td=@item.user.nickname
-          -# category機能追加時に表示させる。
-          -# %tr
-          -#   %th カテゴリー
-          -#   %td 
-          -#     = link_to "ベビーキッズ" ,"#"
-          -#     %br/
-          -#     = link_to "ベビー服(男女兼用) ~95cm" ,"#"
-          -#     %br/
-          -#     = link_to "アウター"
+          %tr
+            %th カテゴリー
+            %td
+              - @parents.each do |parent|
+                -if @item.category_id == parent.id
+                  = link_to '#' do
+                    = parent.name
+                - parent.children.each do |child|
+                  -if @item.category_id == child.id
+                    = link_to '#' do
+                      = parent.name
+                      %br
+                    = link_to '#' do
+                      = child.name
+                      %br
+                  - child.children.each do |grandchild|
+                    -if @item.category_id == grandchild.id
+                      = link_to '#' do
+                        = parent.name
+                      %br
+                      = link_to '#' do
+                        = child.name
+                      %br
+                      = link_to '#' do
+                        = grandchild.name
+                      %br
           -# %tr
           -#   %th ブランド
           -#   %td 

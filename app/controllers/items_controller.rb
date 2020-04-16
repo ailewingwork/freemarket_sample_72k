@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    binding.pry
     if @item.save
       # 商品の投稿に成功したらindexに飛ばす処理
       redirect_to root_path, notice: '出品が完了しました。'
@@ -48,6 +49,7 @@ class ItemsController < ApplicationController
   def show
     # カテゴリーのモデルを導入したらコメントアウト解除
     # @category = Category.where(id: @item.category_id)
+    @parents = Category.where(ancestry:nil)
   end
   
   def buy_confirm
