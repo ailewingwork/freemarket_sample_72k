@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :item_params, only: :create
+
   def index
     @items = Item.includes(:images).order('created_at DESC').limit(3)
   end

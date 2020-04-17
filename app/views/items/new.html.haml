@@ -10,15 +10,15 @@
             .SellPage__Information__Box__Inner__SellBox
               必須
             .Max
-              最大10枚までアップロードできます
+              最大5枚までアップロードできます
+            #ImageBox
             .Upload
               = f.fields_for :images do |i|
-                = i.label :image do
-                  = image_tag 'photo.png', alt: 'camera', class: "Upload__Image"
-                  = i.file_field :image,style: "display:none;"
-                  <br>ドラッグアンドドロップ<br>
-                  またはクリックしてファイルをアップロード
-                
+                = i.file_field :image, type: 'file', name: "item[images_attributes][][image]", id:"ImgFile", class: "Upload__Btn"
+                %label{for: "ImgFile", class: "Upload__BtnArea"}
+                  = image_tag 'photo.png', alt: 'camera'
+                  <br>クリックしてファイルをアップロード
+
         .SellPage__Information__Box
           .SellPage__Information__Box__Inner.InnerOption
             .SellPage__Information__Box__Inner__SellText
@@ -102,26 +102,12 @@
               ¥
             .Value__Box
               = f.number_field :price, class: 'SellPage__Information__Box__Inner__Form PriceBoxOption'
-          .SellPage__Information__Box__Inner.FeeOption
-            .SellPage__Information__Box__Inner__Left
-              販売手数料（10%）  
-            .SellPage__Information__Box__Inner__Right
-              —
-          .SellPage__Information__Box__Inner.ProfitOption
-            .SellPage__Information__Box__Inner__Left
-              販売利益
-            .SellPage__Information__Box__Inner__Right
-              —
           .SellPage__Information__Box__Inner.BtnOption
             = f.submit "出品する", class: "SellPage__Information__Box__Inner__SellBtn"
 
-          .SellPage__Information__Box__Inner.BtnOption
-            %P.SellPage__Information__Box__Inner__DraftBtn
-              下書きに保存
-
           .SellPage__Information__Box__Inner.BackOption
             = link_to "もどる", root_path
-          .SellPage__Information__Box__Inner.CommentOption
+          .SellPage__Information__Box__Inner
             禁止されている
             =link_to "行為", "#" 
             および
