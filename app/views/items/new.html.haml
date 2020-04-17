@@ -14,12 +14,17 @@
               最大10枚までアップロードできます
             .Upload
               = f.fields_for :images do |i|
-                = i.label :image do
-                  = image_tag 'photo.png', alt: 'camera', class: "Upload__Image"
-                  = i.file_field :image,style: "display:none;"
-                  <br>ドラッグアンドドロップ<br>
-                  またはクリックしてファイルをアップロード
-                
+                = i.label :image, class: "UploadBtnArea" do
+                  .js-file{data: {id: "#{i.index}"}}
+                    = icon('fas','camera', class: 'UploadIcon')
+                    = i.file_field :image,class: "UploadBtn"
+                    <br>ドラッグアンドドロップ<br>
+                    またはクリックしてファイルをアップロード
+
+
+
+
+
         .SellPage__Information__Box
           .SellPage__Information__Box__Inner.InnerOption
             .SellPage__Information__Box__Inner__SellText

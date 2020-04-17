@@ -43,6 +43,31 @@ class ItemsController < ApplicationController
   def buy_confirm
   end
 
+  def select_category_index
+    @category = Category.find_by(id: params[:id])
+    category = Category.find_by(id: params[:id]).indirect_ids
+    @items = []
+    category.each do |i|
+      item = Item.includes(:images).find_by(category_id: i)
+      if item == nil
+      else
+        @items.push(item)
+      end
+    end
+  end
+
+  def select_child_category_index
+    @items = Item.where(category_id: params[:id])
+    @category = Category.find_by(id: params[:id])
+    render :select_category_index
+  end
+
+  def select_grandchild_category_index
+    @items = Item.where(category_id: params[:id])
+    @category = Category.find_by(id: params[:id])
+    render :select_category_index
+  end
+
 
   # 以下全て、formatはjsonのみ
   # 親カテゴリーが選択された後に動くアクション

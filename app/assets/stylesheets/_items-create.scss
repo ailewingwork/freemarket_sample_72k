@@ -64,17 +64,12 @@
             font-size: 12px;
             margin-top: 16px;
             flex-wrap: wrap;
-            height: 112px;
             background-color: $imagebox;
             justify-content: center;
             border-width: 1px;
             border-style: dashed;
             border-color: $imagebox_border;
-            cursor: pointer;
             text-align: center;
-            &__Image {
-              margin-top: 20px;
-            }
           }
           
           &__Form{
@@ -277,4 +272,20 @@
 
 .BoxOption{
   background-color:#bfbfbf !important;
+}
+
+.UploadBtnArea{
+  display: block;
+  padding: 60px 0;
+  width: 100%;
+  cursor: pointer;
+}
+
+.UploadIcon{
+  font-size:30px;
+}
+
+
+.UploadBtn{
+  display: none;
 }
