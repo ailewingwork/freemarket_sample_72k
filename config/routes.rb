@@ -32,6 +32,8 @@ Rails.application.routes.draw do
         get 'done', to: 'buyers#done'
         post 'pay', to: 'buyers#pay'
       end
+    end
+  end
   resources :items, only: [:show, :new, :create, :edit, :update, :destroy] do
     #Ajaxで動かす為のルーティングを作成
     collection do
