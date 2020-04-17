@@ -1,31 +1,31 @@
-.BuyContent
-  %h2.BuyContent__Title
-    購入が完了しました  
-  %i.far.fa-clock
-    発送をお待ちください
-  .BuyContent__Item
-    .BuyContent__Item__Inner
-      .BuyItem__Main
-        .BuyItem__Main__Image
-          = image_tag "#{@item.images[0].image}", size: '64x64', class: 'Buyetails-contet__image'
-        .BuyItem__Main__Detail
-          .BuyItem__Main__Detail__Name
-            = @item.product_name
-            %p.BuyPrice
-              %span 
-                = "¥#{@item.price.to_s}"
-              %span
-                .ShippingFree (税込)
-              %span
-                - case @item.delivery_fee
-                - when "0"
-                  = "送料込み"
-                - when "1"
-                  = "着払い"
-  .BuyContent__PriceTable
-    .BuyContent__PriceTable__Left
-      支払金額
-    .BuyContent__PriceTable__Right
-      = "¥#{@item.price.to_s}"
-  .BuyContent__Submit
-    = link_to "トップページへ戻る", root_path, class: 'buy-content__user-info__submit__button'
+.BuyBody
+  = render "devise/shared/devise_header"
+  .BuyContent
+    .BuyContent__Title
+      購入が完了しました  
+    %i.far.fa-clock
+      発送をお待ちください
+    .BuyContent__Main
+      .BuyContent__Main__Image
+        = image_tag "#{@item.images[0].image}", size: '400x550', class: 'Buyetails-contet__image'
+      .BuyContent__Main__Name
+        = @item.product_name
+      %p.BuyPrice
+        %span 
+          = "¥#{@item.price.to_s}"
+          (税込)
+        %br 
+        %span
+          - case @item.delivery_fee
+          - when "0"
+            = "送料込み"
+          - when "1"
+            = "着払い"
+    .BuyContent__PriceTable
+      .BuyContent__PriceTable__Left
+        支払金額
+      .BuyContent__PriceTable__Right
+        = "¥#{@item.price.to_s}"
+    .BuyContent__Submit
+      = link_to "トップページへ戻る", root_path, class: 'BuyContent__Submit'
+  = render "devise/shared/devise_footer"    

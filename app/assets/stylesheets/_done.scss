@@ -2,7 +2,65 @@
   box-sizing: border-box;
   font-family: "Source Sans Pro", Arial, Helvetica, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
 }
-
-.BuyContent {
-  background-color: rgb(235, 17, 235);
+.BuyBody {
+  background-color: #eeebeb;
 }
+.BuyContent {
+  width: 100%;
+  text-align: center;
+  background-color: #eeebeb;
+  &__Title {
+    height: 80px;
+    line-height: 80px;
+    background-color: white;
+    width: 700px;
+    font-size: x-large;
+    font-weight: bold;
+    margin: 0 auto;
+  }
+  i {
+    background-color: white;
+    height: 60px;
+    width: 700px;
+    line-height: 60px;
+    font-weight: bold;
+  }
+  &__Main {
+    background-color: white;
+    width: 700px;
+    margin: 0 auto;
+    &__Name {
+      font-size: xx-large;
+      font-weight: bold;
+      padding: 20px 0;
+    }
+    p {
+      font-size: large;
+    }
+  }
+  &__PriceTable {
+    display: flex;
+    font-size: large;
+    padding: 20px 0;
+    background-color: white;
+    width: 700px;
+    margin: 0 auto;
+    justify-content: space-between;
+    &__Left {
+      font-weight: bold;
+      padding-left: 100px;
+    }
+    &__Right {
+      padding-right: 100px;
+    }
+  }
+  &__Submit {
+    font-size: small;
+    height: 70px;
+    width: 700px;
+    background-color: white;
+    margin: 0 auto;
+    color: black;
+    padding-top: 20px;
+  }
+}  
