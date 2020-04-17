@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :item_params, only: :create
   before_action :set_item, only: [:show, :destroy]
 
   def index
