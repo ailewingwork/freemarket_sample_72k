@@ -1,4 +1,5 @@
 .SellingPageBody
+  = render "layouts/notifications"
   = render "devise/shared/devise_header"
   .SellPage
     .SellPage__Information
@@ -10,15 +11,15 @@
             .SellPage__Information__Box__Inner__SellBox
               必須
             .Max
-              最大10枚までアップロードできます
+              最大5枚までアップロードできます
+            #ImageBox
             .Upload
               = f.fields_for :images do |i|
-                = i.label :image do
-                  = image_tag 'photo.png', alt: 'camera', class: "Upload__Image"
-                  = i.file_field :image,style: "display:none;"
-                  <br>ドラッグアンドドロップ<br>
-                  またはクリックしてファイルをアップロード
-                
+                = i.file_field :image, type: 'file', name: "item[images_attributes][][image]", id:"ImgFile", class: "Upload__Btn"
+                %label{for: "ImgFile", class: "Upload__BtnArea"}
+                  = image_tag 'photo.png', alt: 'camera'
+                  <br>クリックしてファイルをアップロード
+
         .SellPage__Information__Box
           .SellPage__Information__Box__Inner.InnerOption
             .SellPage__Information__Box__Inner__SellText
@@ -35,15 +36,14 @@
             = f.text_area :description, maxlength: 1000, class: "SellPage__Information__Box__Inner__Form TextareaOption", placeholder: '商品の説明（必須 1000文字以内）'
 
         .SellPage__Information__Box
-          -#.SellPage__Information__Box__About
-          -#  商品の詳細
-          -# カテゴリについては後日実装する為、一旦コメントアウト
-          -# .SellPage__Information__Box__Inner
-          -#   .SellPage__Information__Box__Inner__SellText
-          -#     カテゴリー
-          -#   .SellPage__Information__Box__Inner__SellBox
-          -#     必須
-          -#   = f.select :categories_id, [["テスト1",1],["テスト2",2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+          .SellPage__Information__Box__About
+            商品の詳細
+          #PullDownCategory.SellPage__Information__Box__Inner
+            .SellPage__Information__Box__Inner__SellText
+              カテゴリー
+            .SellPage__Information__Box__Inner__SellBox
+              必須
+            = f.select :category, @category_parent_array, {}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
  
           -# ブランドについては後日実装する為、一旦コメントアウト
           -# .SellPage__Information__Box__Inner
@@ -59,7 +59,8 @@
               商品の状態
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :condition, [["新品、未使用", 0],["未使用に近い", 1],["目立った傷や汚れなし", 2],["やや傷や汚れあり",3],["傷や汚れあり",4],["全体的に状態が悪い",5]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            -# 値が数字だったので文字列に変更
+            = f.select :condition, [["新品、未使用", "新品、未使用"],["未使用に近い", "未使用に近い"],["目立った傷や汚れなし", "目立った傷や汚れなし"],["やや傷や汚れあり","やや傷や汚れあり"],["傷や汚れあり","傷や汚れあり"],["全体的に状態が悪い","全体的に状態が悪い"]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
 
         .SellPage__Information__Box
@@ -70,7 +71,7 @@
               配送料の負担
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :delivery_fee, [["送料込み(出品者負担)", 0],["着払い(購入者負担)", 1]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.select :delivery_fee, [["送料込み(出品者負担)", "送料込み(出品者負担)"],["着払い(購入者負担)", "着払い(購入者負担)"]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
 
           .SellPage__Information__Box__Inner
@@ -78,7 +79,7 @@
               発送元の地域
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :shipping_origin,Address.shipping_areas.keys, {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.select :shipping_origin,Address.shipping_areas.keys, {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
 
 
           .SellPage__Information__Box__Inner
@@ -86,7 +87,7 @@
               発送までの日数
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :days_to_ship, [["1~2日で発送", 0],["2~3日で発送", 1],["4~7日で発送",2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.select :days_to_ship, [["1~2日で発送", "1~2日で発送"],["2~3日で発送", "2~3日で発送"],["4~7日で発送","4~7日で発送"]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
 
         .SellPage__Information__Box
@@ -101,27 +102,26 @@
             .Value__En
               ¥
             .Value__Box
-              = f.number_field :price, class: 'SellPage__Information__Box__Inner__Form PriceBoxOption'
+              -# jQueryに入力した値を渡すためにIDを付与
+              = f.number_field :price, class: 'SellPage__Information__Box__Inner__Form PriceBoxOption',id: "EntryPrice"
           .SellPage__Information__Box__Inner.FeeOption
             .SellPage__Information__Box__Inner__Left
               販売手数料（10%）  
             .SellPage__Information__Box__Inner__Right
-              —
+              -# jqueryで判断させるためにIDを付与
+              %p#SellCommission —
           .SellPage__Information__Box__Inner.ProfitOption
             .SellPage__Information__Box__Inner__Left
               販売利益
             .SellPage__Information__Box__Inner__Right
-              —
+              -# jqueryで判断させるためにIDを付与
+              %p#SalesProfit —
           .SellPage__Information__Box__Inner.BtnOption
             = f.submit "出品する", class: "SellPage__Information__Box__Inner__SellBtn"
 
-          .SellPage__Information__Box__Inner.BtnOption
-            %P.SellPage__Information__Box__Inner__DraftBtn
-              下書きに保存
-
           .SellPage__Information__Box__Inner.BackOption
             = link_to "もどる", root_path
-          .SellPage__Information__Box__Inner.CommentOption
+          .SellPage__Information__Box__Inner
             禁止されている
             =link_to "行為", "#" 
             および

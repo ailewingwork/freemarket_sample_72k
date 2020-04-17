@@ -32,6 +32,11 @@ Rails.application.routes.draw do
         get 'done', to: 'buyers#done'
         post 'pay', to: 'buyers#pay'
       end
+  resources :items, only: [:show, :new, :create, :edit, :update, :destroy] do
+    #Ajaxで動かす為のルーティングを作成
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
     end
   end
 end
