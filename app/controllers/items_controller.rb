@@ -120,8 +120,7 @@ class ItemsController < ApplicationController
       # find_by()メソッドで該当のレコードがなかった場合、itemオブジェクトに空の配列を入れないようにするための処理
       if item_array.present?
         item_array.each do |item|
-          if item == nil
-          else
+          if item_array.present?
             # find_by()メソッドで該当のレコードが見つかった場合、@item配列オブジェクトにそのレコードを追加する
             @items.push(item)
           end
