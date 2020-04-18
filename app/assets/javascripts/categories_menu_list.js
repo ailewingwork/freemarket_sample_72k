@@ -13,14 +13,14 @@ $(document).ready(function(){
   // 子カテゴリーを追加するための処理
   function buildChildHTML(child){
     var html =`<a class="CildrenMenu__List" id="${child.id}" 
-                href="/items/${child.id}/select_child_category_index">${child.name}</a>`;
+                href="/items/${child.id}/select_category_index">${child.name}</a>`;
     return html;
   }
 
     // 孫カテゴリを追加する処理です　基本的に子要素と同じです！
     function buildGrandChildHTML(child){
       var html =`<a class="GrandChildrenMenu__List" id="${child.id}"
-                 href="/items/${child.id}/select_grandchild_category_index">${child.name}</a>`;
+                 href="/items/${child.id}/select_category_index">${child.name}</a>`;
       return html;
     }
 
