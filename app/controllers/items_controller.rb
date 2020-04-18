@@ -118,8 +118,7 @@ class ItemsController < ApplicationController
     category.each do |id|
       item_array = Item.includes(:images).where(category_id: id)
       # find_by()メソッドで該当のレコードがなかった場合、itemオブジェクトに空の配列を入れないようにするための処理
-      if item_array == nil
-      else
+      if item_array.present?
         item_array.each do |item|
           if item == nil
           else
