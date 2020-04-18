@@ -59,7 +59,7 @@
           .Max {
             margin-top: 16px;
           }
-    
+
           .Upload {
             font-size: 12px;
             margin-top: 16px;
@@ -70,8 +70,18 @@
             border-style: dashed;
             border-color: $imagebox_border;
             text-align: center;
+
+            &__Btn{
+              display: none;
+            }
+            &__BtnArea{
+              display: block;
+              padding: 60px 0;
+              width: 100%;
+              cursor: pointer;
+            }
           }
-          
+
           &__Form{
             background-color: white;
             border: 1px solid #ccc;
@@ -84,16 +94,6 @@
             margin-top: 16px;
           }
 
-          &__Left{
-            font-size: 14px;
-            line-height: 3em;
-            padding: 12px 0;
-          }
-          &__Right{
-            font-size: 14px;
-            line-height: 3em;
-            padding: 12px 0;
-          }
           &__SellBtn{
             font-size: 18px;
             width: 50%;
@@ -130,6 +130,7 @@
   justify-content: space-between;
   margin-top: 0 !important;
   position: relative;
+  padding-bottom: 15px;
 
   &__Text{
     margin: 17px 0;
@@ -147,8 +148,6 @@
 
 }
 
-
-
 .BtnOption{
   margin-top: 0 !important;
   width: 90%;
@@ -157,16 +156,6 @@
   font-size: 18px;
   border: 1px;
   margin-bottom: 24px !important;
-}
-
-.SellBtnColor{
-  background-color: $sellbtn;
-
-}
-
-.DraftBtnColor{
-  background-color: $draftbtn;
-  color: $draftbtn_text;
 }
 
 .BackOption{
@@ -177,47 +166,6 @@
 
 .CommentOption{
   font-size: 12px;
-// コンフリクトした箇所。消して問題無いか不安だった為、コメントアウトして残しています。
-// .Value{
-//   display: flex;
-//   justify-content: space-between;
-//   margin-top: 0 !important;
-//   position: relative;
-
-//   &__Text{
-//     margin: 17px 0;
-//   }
-
-//   &__En{
-//     margin: 17px 0;
-//     position: absolute;
-//     left: 47%;
-//   }
-
-//   &__Box{
-//     width: 50%;
-//   }
-
-}
-
-.FeeOption{
-  margin-top: 0 !important;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px;
-  border-bottom-color: $border-bottom;
-  border-bottom-style: solid;
-}
-
-
-.BtnOption{
-  margin-top: 0 !important;
-  width: 90%;
-  text-align: center;
-  margin: 0 auto;
-  font-size: 18px;
-  border: 1px;
-  margin-bottom: 24px !important;
 }
 
 .SellBtnColor{
@@ -225,17 +173,6 @@
   color: white;
 }
 
-.DraftBtnColor{
-  background-color: $draftbtn;
-  color: $draftbtn_text;
-}
-
-.BackOption{
-  margin-top: 0 !important;
-  text-align: center;
-  color: #0095ee;
-}
-
 .CommentOption{
   font-size: 12px;
 }
@@ -247,14 +184,6 @@
   border-bottom: 1px;
   border-bottom-color: $border-bottom;
   border-bottom-style: solid;
-}
-
-.ProfitOption{
-  display: flex;
-  justify-content: space-between;
-  border: none !important;
-  padding: 12px 0 20px 0;
-  margin: 0 !important;
 }
 
 .PriceBoxOption{
@@ -274,18 +203,45 @@
   background-color:#bfbfbf !important;
 }
 
-.UploadBtnArea{
-  display: block;
-  padding: 60px 0;
-  width: 100%;
-  cursor: pointer;
-}
 
-.UploadIcon{
-  font-size:30px;
-}
-
-
-.UploadBtn{
-  display: none;
+//画像投稿フォーム
+#ImageBox {
+  display: inline-block;
+  width: 620px;
+  margin: 16px auto 0;
+  .ItemImage{
+    width: 116px;
+    box-sizing: border-box;
+    margin: 0 0 10px 10px;
+    position: relative;
+    display: inline-block;
+    border: 1px solid #eee;
+    vertical-align: top;
+    &:first-child,
+    &:nth-child(6n) {
+      margin-left: 0;
+    }
+    &__content{
+      height: 116px;
+      width: 114px;
+      position: relative;
+      &--icon{
+        position: absolute;
+        top: 18px;
+        width: 114px;
+        height: 80px;
+      }
+    }
+    &__Operetion{
+      display: flex;
+      text-align: center;
+      &--Delete{
+        width: 56px;
+        height: 44px;
+        line-height: 44px;
+        color: #0099E8;
+        cursor: pointer;
+      }
+    }
+  }
 }

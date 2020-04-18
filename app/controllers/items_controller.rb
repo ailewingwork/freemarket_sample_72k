@@ -1,22 +1,6 @@
 class ItemsController < ApplicationController
-
-
-  def find_item(category)
-    category.each do |id|
-      item_array = Item.includes(:images).where(category_id: id)
-      # find_by()メソッドで該当のレコードがなかった場合、itemオブジェクトに空の配列を入れないようにするための処理
-      if item_array == nil
-      else
-        item_array.each do |item|
-          if item == nil
-          else
-            # find_by()メソッドで該当のレコードが見つかった場合、@item配列オブジェクトにそのレコードを追加する
-            @items.push(item)
-          end
-        end
-      end
-    end
-  end
+  before_action :item_params, only: :create
+  before_action :set_item, only: [:show, :destroy]
 
 
 
@@ -55,10 +39,19 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    if @item.destroy
+      # 登録している商品の削除に成功したら
+      redirect_to root_path, notice: "削除に成功しました。"
+    else
+      # 登録している商品の削除に失敗したら
+      redirect_to item_path, notice: "削除に失敗しました、もう一度削除ボタンを押してください。"
+    end
   end
 
   def show
-
+    # カテゴリーのモデルを導入したらコメントアウト解除
+    # @category = Category.where(id: @item.category_id)
+    @parents = Category.where(ancestry:nil)
   end
   
   def buy_confirm
@@ -93,18 +86,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def select_child_category_index
-  #   @items = Item.where(category_id: params[:id])
-  #   @category = Category.find_by(id: params[:id])
-  #   render :select_category_index
-  # end
-
-  # def select_grandchild_category_index
-  #   @items = Item.where(category_id: params[:id])
-  #   @category = Category.find_by(id: params[:id])
-  #   render :select_category_index
-  # end
-
 
   # 以下全て、formatはjsonのみ
   # 親カテゴリーが選択された後に動くアクション
@@ -113,7 +94,8 @@ class ItemsController < ApplicationController
     @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
   end
 
-  # 子カテゴリーが選択された後に動くアクション。 ajaxからハッシュで子要素のIDを受け取る{child_id: childId}
+  # 子カテゴリーが選択された後に動くアクション.
+  # ajaxからハッシュで子要素のIDを受け取る{child_id: childId}
   def get_category_grandchildren
     #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
     @category_grandchildren = Category.find("#{params[:child_id]}").children
@@ -121,9 +103,32 @@ class ItemsController < ApplicationController
 
   private
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
   #プライベートメソッドにしたいので、private配下に記述
   def item_params
     params.require(:item).permit(:product_name, :price, :category_id, :condition,:description, :delivery_fee, :shipping_origin, :days_to_ship,:buyer_id, images_attributes: [:image]).merge(user_id: current_user.id, seller_id: current_user.id)
+  end
+
+  # カテゴリー検索用にfind_itemメソッドを実装
+  # select_category_indexアクションから呼び出すので、private配下に記述
+  def find_item(category)
+    category.each do |id|
+      item_array = Item.includes(:images).where(category_id: id)
+      # find_by()メソッドで該当のレコードがなかった場合、itemオブジェクトに空の配列を入れないようにするための処理
+      if item_array == nil
+      else
+        item_array.each do |item|
+          if item == nil
+          else
+            # find_by()メソッドで該当のレコードが見つかった場合、@item配列オブジェクトにそのレコードを追加する
+            @items.push(item)
+          end
+        end
+      end
+    end
   end
 
 end

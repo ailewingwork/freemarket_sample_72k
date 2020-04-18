@@ -11,19 +11,14 @@
             .SellPage__Information__Box__Inner__SellBox
               必須
             .Max
-              最大10枚までアップロードできます
+              最大5枚までアップロードできます
+            #ImageBox
             .Upload
               = f.fields_for :images do |i|
-                = i.label :image, class: "UploadBtnArea" do
-                  .js-file{data: {id: "#{i.index}"}}
-                    = icon('fas','camera', class: 'UploadIcon')
-                    = i.file_field :image,class: "UploadBtn"
-                    <br>ドラッグアンドドロップ<br>
-                    またはクリックしてファイルをアップロード
-
-
-
-
+                = i.file_field :image, type: 'file', name: "item[images_attributes][][image]", id:"ImgFile", class: "Upload__Btn"
+                %label{for: "ImgFile", class: "Upload__BtnArea"}
+                  = image_tag 'photo.png', alt: 'camera'
+                  <br>クリックしてファイルをアップロード
 
         .SellPage__Information__Box
           .SellPage__Information__Box__Inner.InnerOption
@@ -76,7 +71,6 @@
               配送料の負担
             .SellPage__Information__Box__Inner__SellBox
               必須
-            -# 値が数字だったので文字列に変更
             = f.select :delivery_fee, [["送料込み(出品者負担)", "送料込み(出品者負担)"],["着払い(購入者負担)", "着払い(購入者負担)"]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
 
@@ -93,7 +87,6 @@
               発送までの日数
             .SellPage__Information__Box__Inner__SellBox
               必須
-            -# 値が数字だったので文字列に変更
             = f.select :days_to_ship, [["1~2日で発送", "1~2日で発送"],["2~3日で発送", "2~3日で発送"],["4~7日で発送","4~7日で発送"]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
 
@@ -126,13 +119,9 @@
           .SellPage__Information__Box__Inner.BtnOption
             = f.submit "出品する", class: "SellPage__Information__Box__Inner__SellBtn"
 
-          .SellPage__Information__Box__Inner.BtnOption
-            %P.SellPage__Information__Box__Inner__DraftBtn
-              下書きに保存
-
           .SellPage__Information__Box__Inner.BackOption
             = link_to "もどる", root_path
-          .SellPage__Information__Box__Inner.CommentOption
+          .SellPage__Information__Box__Inner
             禁止されている
             =link_to "行為", "#" 
             および
