@@ -94,6 +94,18 @@
             margin-top: 16px;
           }
 
+          &__Left{
+            font-size: 14px;
+            line-height: 3em;
+            padding: 12px 0;
+          }
+
+          &__Right{
+            font-size: 14px;
+            line-height: 3em;
+            padding: 12px 0;
+          }
+
           &__SellBtn{
             font-size: 18px;
             width: 50%;
@@ -105,20 +117,7 @@
             border: 0px;
             background-color: $sellbtn;
           }
-          &__DraftBtn{
-            font-size: 18px;
-            width: 50%;
-            height: 50px;
-            line-height: 50px;
-            margin: 0 auto;
-            text-align: center;
-            color: white;
-            border: 0px;
-            background-color: $draftbtn;
-
-          }
         }
-
       }
     }
   }
@@ -186,6 +185,14 @@
   border-bottom-style: solid;
 }
 
+.ProfitOption{
+  display: flex;
+  justify-content: space-between;
+  border: none !important;
+  padding: 12px 0 20px 0;
+  margin: 0 !important;
+}
+
 .PriceBoxOption{
   padding: 0 16px !important;
   margin-top: 0 !important;
@@ -202,7 +209,6 @@
 .BoxOption{
   background-color:#bfbfbf !important;
 }
-
 
 //画像投稿フォーム
 #ImageBox {
@@ -244,4 +250,9 @@
       }
     }
   }
+}
+
+// バリデーションチェックのエラーメッセージ
+.Validation{
+  color: $validation_message;
 }

@@ -22,9 +22,19 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
+      binding.pry
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: '出品が完了しました。' }
+        # format.json { render :root, notice: '出品が完了しました。' }
+        format.json { redirect_to :root, notice: '出品が完了しました。' }
+      end
       # 商品の投稿に成功したらindexに飛ばす処理
-      redirect_to root_path, notice: '出品が完了しました。'
+      # redirect_to root_path, notice: '出品が完了しました。'
     else
+      binding.pry
+      respond_to do |format|
+        format.json { render json: @item}
+      end
       # 商品の投稿に失敗したらnewアクションを再度実行new.html.hamlを表示
       redirect_to new_item_path, notice: '入力した内容に誤りがあります。再度入力してください。'
     end
@@ -76,7 +86,7 @@ class ItemsController < ApplicationController
 
   #プライベートメソッドにしたいので、private配下に記述
   def item_params
-    params.require(:item).permit(:product_name, :price, :category_id, :condition,:description, :delivery_fee, :shipping_origin, :days_to_ship,:buyer_id, images_attributes: [:image]).merge(user_id: current_user.id, seller_id: current_user.id)
+    params.require(:item).permit(:product_name, :price, :category_id, :condition,:description, :delivery_fee, :shipping_origin, :days_to_ship,:buyer_id, :brand_id, images_attributes: [:image]).merge(user_id: current_user.id, seller_id: current_user.id)
   end
 
 end
