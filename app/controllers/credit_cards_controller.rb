@@ -1,4 +1,5 @@
 class CreditCardsController < ApplicationController
+  before_action :set_mypage_menu
 
   def new
     card = CreditCard.where(user_id: current_user.id)

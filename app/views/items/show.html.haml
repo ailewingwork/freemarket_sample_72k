@@ -102,7 +102,7 @@
         .BuyBtn
           .BuyBtn__Text
             = link_to "購入画面に進む", buy_confirm_item_path, class: 'BBtn' 
-      - else 
+      - elsif @item.buyer_id.present?
         %p !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SOLD OUT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!i!!!!!!!!!!!!                
   .CommentBox
     .CommentBox__CommentArea
