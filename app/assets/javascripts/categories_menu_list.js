@@ -1,6 +1,6 @@
 $(document).ready(function(){
   // カテゴリーボタンにカーソルを合わせた時に親カテゴリー一覧を表示する処理
-  $(".TopLink").on('mouseover',function() {
+  $(".TopHeader__Inner__Lists__Left__Category").on('mouseover',function() {
     $('.CategoryList').css('visibility','visible');
   });
   // 親カテゴリーリストからカーソルが離れた時に非表示にする処理

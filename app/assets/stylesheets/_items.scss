@@ -1,10 +1,12 @@
-
+.ItemBody{
+}
 .ItemBox{
   background-color:#fff;
   height: 100%;
   width: 700px;
   margin: auto;
-  padding: 24px 40px 40px;
+  padding: 40px 40px 24px 40px;
+  margin-top: $header-height;
   margin-bottom: 10px;
   &__ItemName{
     text-align: center;
@@ -234,7 +236,7 @@
   }
   &__ReratedItems{
     display: block;
-    margin: 24px 0 8px;
+    margin: 24px 0 0;
     color: #3CCACE;
     text-decoration: none;
     font-weight: bold;
