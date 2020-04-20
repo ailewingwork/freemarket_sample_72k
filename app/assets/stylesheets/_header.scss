@@ -1,5 +1,10 @@
 .TopHeader{
   padding: 0 60px;
+  width: 100%;
+  background-color: #fff;
+  z-index: 1;
+  position: fixed;
+  box-shadow: 2px 2px 4px lightgray;
 
   &__Inner{
     max-width: 1000px;
@@ -61,11 +66,10 @@
 
     &__Lists{
       font-size: 14px;
-      margin-bottom: 10px;
       display: flex;
       .TopLink{
         display: flex;
-        color: #333;
+        color: $font_color;
         text-decoration: none;
       }
       .LeftColor:hover {
@@ -73,12 +77,40 @@
       }
 
       &__Left{
+        width: 30%;
         display: flex;
         &__Category{
+          width: 100%;
+          i{
+            line-height: 21px;
+            margin-right:4px;
+            color:$light_blue;
+          }
+          width: 100%;
+          a{
+            display: block;
+            padding: 0 0 10px 0;
+          }
+          // ここから追加
+          &__ParentCategories{
+            position: absolute;
+            &__List{
+              padding: 0 10px;
+              height:40px;
+              width: 200px;
+              line-height: 40px;
+              background-color: #fff;
+              box-shadow: 2px 2px 4px lightgray;
+              a{
+                color: $font_color;
+              }
+            }
+          }
 
         }
         &__Brand{
           padding-left: 16px;
+          width: 100%;
         }
       }
       &__Right{
@@ -87,9 +119,53 @@
         &__Signin{
         }
         &__Signup{
-          padding-left: 16px;          
+          padding-left: 16px;
         }
       }
     }
+  }
+}
+
+.CategoryList{
+  font-size: 12px;
+  visibility: hidden;
+  position: absolute;
+  display: flex;
+
+
+}
+
+.CildrenMenu{
+  position: absolute;
+  margin-left: 200px;
+  margin-top: 0px;
+  width: 100%;
+  &__List{
+    color: $font_color;
+    display: block;
+    text-decoration: none;
+    padding: 18px 10px;
+    height:40px;
+    width: 200px;
+    line-height: 40px;
+    background-color: #fff;
+    box-shadow: 2px 2px 4px lightgray;
+
+  }
+}
+
+.GrandChildrenMenu{
+  position: absolute;
+  margin-left: 400px;
+  width: 100%;
+  &__List{
+    color: $font_color;
+    display: block;
+    text-decoration: none;
+    padding: 8px 10px;
+    height:40px;
+    line-height: 40px;
+    background-color: #fff;
+    box-shadow: 2px 2px 4px lightgray;
   }
 }

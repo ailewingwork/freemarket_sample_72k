@@ -16,7 +16,18 @@
         .TopHeader__Inner__Lists__Left__Category
           -# aタグにスタイルを設定すると他のビューに影響が出そうなのでTopLinkクラスを設定
           = link_to "#", {class: "TopLink LeftColor"} do
+            =icon('fas','bars')
             カテゴリー
+          .CategoryList
+            .ParentsList
+              -# =link_to select_category_index_item_path(""), class: "TopHeader__Inner__Lists__Left__Category__ParentCategories__List" do
+              -#   すべて
+              - @category_parent_array.each do |parent_categories|
+                .TopHeader__Inner__Lists__Left__Category__ParentCategories__List{data: {id: "#{parent_categories.id}"}}
+                  =link_to "#{parent_categories.name}",select_category_index_item_path(parent_categories.id), class: "parent_category",id: "#{parent_categories.id}"
+            .CildrenMenu
+            .GrandChildrenMenu
+
         .TopHeader__Inner__Lists__Left__Brand
           = link_to "#", {class: "TopLink LeftColor"} do
             ブランド
