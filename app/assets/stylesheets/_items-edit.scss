@@ -1,0 +1,72 @@
+
+// 商品編集プレビュー
+
+
+.testman{
+  width: 116px;
+  box-sizing: border-box;
+  margin: 0 0 10px 10px;
+  position: relative;
+  display: inline-block;
+  border: 1px solid #eee;
+  vertical-align: top;
+  &:first-child,
+  &:nth-child(6n) {
+    margin-left: 0;
+  }
+  &__content{
+    height: 116px;
+    width: 114px;
+    position: relative;
+  }
+  &__Operetion{
+    display: flex;
+    text-align: center;
+    &--Edit{
+      width: 56px;
+      height: 44px;
+      line-height: 44px;
+      color: #0099E8;
+      cursor: pointer;
+    }
+  }
+}
+
+.Upload {
+  font-size: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+  background-color: red;
+  justify-content: center;
+  border-width: 1px;
+  border-style: dashed;
+  border-color: $imagebox_border;
+  cursor: pointer;
+  text-align: center;
+  &__Btn{
+    display: none;
+  }
+  &__BtnArea{
+    display: block;
+    padding: 60px 0;
+    width: 100%;
+    cursor: pointer;
+  }
+}
+
+.ItemImage{
+  .EditImage{
+    &__Operetion{
+      display: flex;
+      text-align: center;
+      &--Edit{
+        width: 56px;
+        height: 44px;
+        line-height: 44px;
+        color: #0099E8;
+        cursor: pointer;
+      }
+    }
+  }
+}
+

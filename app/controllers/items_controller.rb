@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :item_params, only: :create
-  before_action :set_item, only: [:show, :destroy]
+  before_action :set_item, only: [:show, :destroy, :edit, :update]
 
   def index
     @items = Item.includes(:images).order('created_at DESC').limit(3)
@@ -31,9 +31,22 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    #セレクトボックスの初期値設定
+    @category_parent_array = ["---"]
+    #DBから親カテゴリのみを抽出（親カテゴリはancestryカラムがnull）
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
+    end
+
+    # @item = Item.new
+    # #itemテーブルの子テーブルimagesテーブルにもレコードを追加できるように以下もインスタンス化。
+    # @item.images.new
   end
 
   def update
+    item = Item.find([params[:id]])
+    item.update(item_params)
+    redirect_to root_path
   end
 
   def destroy
