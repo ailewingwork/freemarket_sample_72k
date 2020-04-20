@@ -14,7 +14,7 @@
           .SelectCategoryBody__ContentsList__Content__ImageArea
             - item.images.each_with_index do |image, idx|
               - if idx == 0
-                = link_to item_path(image.id) do
+                = link_to item_path(item.id) do
                   = image_tag image.image.url, class:"SelectCategoryBody__ContentsList__Content__ImageArea--Img"
               - else
             .SelectCategoryBody__ContentsList__Content__ImageArea--Price
