@@ -6,8 +6,7 @@ lock '3.12.1'
 set :application, 'freemarket_sample_72k'
 
 # どのリポジトリからアプリをpullするかを指定する
-# set :branch, 'develop'
-set :branch, 'implement_S3_save '
+set :branch, 'develop'
 set :repo_url,  'git@github.com:ailewingwork/freemarket_sample_72k.git'
 
 # バージョンが変わっても共通で参照するディレクトリを指定
