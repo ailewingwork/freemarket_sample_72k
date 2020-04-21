@@ -1,50 +1,96 @@
-// $(function(){
-//   //DataTransferオブジェクトで、データを格納する箱を作る
-//   var dataBox = new DataTransfer();
-//   //querySelectorでfile_fieldを取得
-//   var file_field = document.querySelector('input[type=file]')
-//   //fileが選択された時に発火するイベント
-//   $('#EditImg').change(function(){
-//     $.each(this.files, function(i, file){
-//       //FileReaderのreadAsDataURLで指定したFileオブジェクトを読み込む
-//       var fileReader = new FileReader();
 
-//       //DataTransferオブジェクトに対して、fileを追加
-//       dataBox.items.add(file)
-//       //DataTransferオブジェクトに入ったfile一覧をfile_fieldの中に代入
-//       file_field.files = dataBox.files
+  $(function(){
 
-//       let num = $('.ItemImage').length + 1
-//       fileReader.readAsDataURL(file);
-//       //画像が5枚になったら画像投稿フォームを削除する
-//       if (num == 5){
-//         $('.Upload').css('display', 'none')
-//       }
-//       //読み込みが完了すると、imageにfileのURLを格納
-//       fileReader.onloadend = function() {
-//         let image = fileReader.result
+    //プレビューのhtmlを定義
+    function buildHTML(count) {
+      var html = `<div class="ItemImage preview-box" id="preview-box__${count}">
+                    <div class="ItemImage__Content">
+                      <div class="ItemImage__Content__Icon">
+                        <img src="" alt="preview" width="112" height="112">
+                      </div>
+                    </div>
+                    <div class="ItemImage__Operetion lower-box">
+                      <div class="ItemImage__Operetion--Edit update-box">
+                        編集
+                      </div>
+                    </div>
+                    <div class="ItemImage__Operetion delete-box delete-box" id="delete_btn_${count}">
+                      <div class="ItemImage__Operetion--Delete">
+                        削除
+                      </div>
+                    </div>
+                  </div>`
+      return html;
+    }
 
-//         let html = `<div class='ItemImage' data-image="${file.name}">
-//                       <div class='ItemImage__Content'>
-//                         <div class='ItemImage__Content--Icon'>
-//                           <img src=${image} width="114" height="80" >
-//                         </div>
-//                       </div>
+    if (window.location.href.match(/\/items\/\d+\/edit/)){
+      //削除ボタンにidを追加
+      $('.delete-box').each(function(index, box){
+        $(box).attr('id', `delete_btn_${index}`);
+      })
+      var count = $('.preview-box').length;
+      //プレビューが5あるときは、投稿ボックスを消しておく
+      if (count == 5) {
+        $('.label-content').hide();
+      }
+    }
 
-//                       <div class='EditImage_Operetion'>
-//                         <div class='EditImage_Operetion--Edit' >編集</div>
-//                       </div>
-//                       <div class='ItemImage__Operetion'>
-//                         <div class='ItemImage__Operetion--Delete'>削除</div>
-//                       </div>
-//                     </div>`
+    // プレビューの追加
+    $(document).on('change', '.hidden-field', function() {
+      //hidden-fieldのidの数値のみ取得
+      var id = $(this).attr('id').replace(/[^0-9]/g, '');
+      //labelボックスのidとforを更新
+      $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
+      //選択したfileのオブジェクトを取得
+      var file = this.files[0];
+      var reader = new FileReader();
+      //readAsDataURLで指定したFileオブジェクトを読み込む
+      reader.readAsDataURL(file);
+      //読み込み時に発火するイベント
+      reader.onload = function() {
+        var image = this.result;
+        //プレビューが元々なかった場合はhtmlを追加
+        if ($(`#preview-box__${id}`).length == 0) {
+          var html = buildHTML(id);
+          //ラベルの直前のプレビュー群にプレビューを追加
+          var prevContent = $('.Upload').prev();
+          $(prevContent).append(html);
+        }
+        //イメージを追加
+        $(`#preview-box__${id} img`).attr('src', `${image}`);
+        var count = $('.preview-box').length;
+        // プレビューが5個あったらラベルを隠す 
+        if (count == 5) { 
+          $('.label-box').hide();
+        }
 
-//         let input = `<input type="file" style="display:none" name="item[images_attributes][${num}][image]" id="ImgFile">`
+        //プレビュー削除したフィールドにdestroy用のチェックボックスがあった場合、チェックを外す=============
+        if ($(`#item_images_attributes_${id}__destroy`)){
+          $(`#item_images_attributes_${id}__destroy`).prop('checked',false);
+        } 
+        // //ラベルのidとforの値を変更
+        if(count < 5){
+          $('.label-box').attr({id: `label-box--${count}`,for: `item_images_attributes_${count}_image`});
+        }
+      }
+    });
 
-//         //#ImageBox要素の小要素として1を差し込む
-//         $('#ImageBox').append(html);
-//         $('label').before(input);
-//       };
-//     });
-//   });
-// });
+    // 画像の削除
+    $(document).on('click', '.delete-box', function() {
+      var count = $('.preview-box').length;
+      // setLabel(count);
+      var id = $(this).attr('id').replace(/[^0-9]/g, '');
+      $(`#preview-box__${id}`).remove();
+        $(`#item_images_attributes_${id}__destroy`).prop('checked',true);
+        //5個めが消されたらラベルを表示
+        if (count == 4) {
+          $('.label-content').show();
+        }
+        //削除したプレビューのidによって、ラベルのidを変更する
+        if(id < 5){
+          $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
+        }
+      // }
+      //=============================================================================
+    });
+  });

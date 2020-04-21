@@ -21,6 +21,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    binding.pry
     if @item.save
       # 商品の投稿に成功したらindexに飛ばす処理
       redirect_to root_path, notice: '出品が完了しました。'
@@ -64,10 +65,10 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find([params[:id]])
-    item.update(item_params)
+    @item = Item.find(params[:id])
+    @item.update(item_params)
     # .update_attributesに書き換えてみたが、結局 undifine method
-
+    redirect_to root_path, notice: '商品の編集が完了しました。'
   end
 
   def destroy
@@ -110,7 +111,7 @@ class ItemsController < ApplicationController
 
   #プライベートメソッドにしたいので、private配下に記述
   def item_params
-    params.require(:item).permit(:category,:product_name, :price, :category_id, :condition,:description, :delivery_fee, :shipping_origin, :days_to_ship,:buyer_id, images_attributes: [:image]).merge(user_id: current_user.id, seller_id: current_user.id)
+    params.require(:item).permit(:category,:product_name, :price, :category_id, :condition_id ,:description, :delivery_fee_id, :shipping_origin, :days_to_ship_id,:buyer_id, images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id, seller_id: current_user.id)
   end
 
 end

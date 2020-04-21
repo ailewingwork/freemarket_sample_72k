@@ -15,8 +15,8 @@
             #ImageBox
             .Upload
               = f.fields_for :images do |i|
-                = i.file_field :image, type: 'file', name: "item[images_attributes][][image]", id:"ImgFile", class: "Upload__Btn"
-                %label{for: "ImgFile", class: "Upload__BtnArea"}
+                = i.file_field :image, type: 'file', name: "item[images_attributes][#{@item.images.count}][image]", id:"item[images_attributes][#{@item.images.count}][image]", class: "ImgFile Upload__Btn"
+                %label{for: "item[images_attributes][#{@item.images.count}][image]", class: "Upload__BtnArea"}
                   = image_tag 'photo.png', alt: 'camera'
                   <br>クリックしてファイルをアップロード
 
@@ -43,7 +43,7 @@
               カテゴリー
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :category, @category_parent_array, {}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
+            = f.select :category_id, @category_parent_array, {}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
  
           -# ブランドについては後日実装する為、一旦コメントアウト
           -# .SellPage__Information__Box__Inner
@@ -60,7 +60,7 @@
             .SellPage__Information__Box__Inner__SellBox
               必須
             -# 値が数字だったので文字列に変更
-            = f.select :condition, [["新品、未使用", "新品、未使用"],["未使用に近い", "未使用に近い"],["目立った傷や汚れなし", "目立った傷や汚れなし"],["やや傷や汚れあり","やや傷や汚れあり"],["傷や汚れあり","傷や汚れあり"],["全体的に状態が悪い","全体的に状態が悪い"]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.select :condition_id, [["新品、未使用", 1],["未使用に近い", 2],["目立った傷や汚れなし", 3],["やや傷や汚れあり", 4],["傷や汚れあり", 5],["全体的に状態が悪い", 6]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
 
         .SellPage__Information__Box
@@ -71,7 +71,7 @@
               配送料の負担
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :delivery_fee, [["送料込み(出品者負担)", "送料込み(出品者負担)"],["着払い(購入者負担)", "着払い(購入者負担)"]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.select :delivery_fee_id, [["送料込み(出品者負担)", 1],["着払い(購入者負担)", 2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
 
           .SellPage__Information__Box__Inner
@@ -87,7 +87,7 @@
               発送までの日数
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :days_to_ship, [["1~2日で発送", "1~2日で発送"],["2~3日で発送", "2~3日で発送"],["4~7日で発送","4~7日で発送"]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.select :days_to_ship_id, [["1~2日で発送", 1],["2~3日で発送", 2],["4~7日で発送", 3]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
 
         .SellPage__Information__Box

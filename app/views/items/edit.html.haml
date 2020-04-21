@@ -12,27 +12,44 @@
               必須
             .Max
               最大5枚までアップロードできます
+            //JSで挿入したhtmlと同じ形　each文でのプレビュー表示
             #ImageBox
-              - @item.images.each do |image|
-                .ItemImage{data: {image: "#{image.id}"}}
+              - @item.images.each_with_index do |image, index|
+                .ItemImage.preview-box{id: "preview-box__#{index}"}
                   .ItemImage__Content
                     .ItemImage__Content--Icon
-                      = image_tag image.image.url, height: "80", width: "114"
-                  .ItemImage__Operetion
+                      = image_tag image.image.url, width: "112", height: "112", alt: "preview"
+                  .ItemImage__Operetion.lower-box
+                    .ItemImage__Operetion--Edit.update-box 編集
+                  .ItemImage__Operetion.delete-box
                     .ItemImage__Operetion--Delete 削除
-
             .Upload
-              = f.fields_for :images do |i|
-                = i.file_field :image, type: 'file', name: "item[images_attributes][][image]", id:"ImgFile", class: "Upload__Btn"
-                -# = i.file_field :image, type: 'file', name: "item[images_attributes][#{image.image}][image]", id:"ImgFile", class: "Upload__Btn"
-                -# `<input type="file" style="display:none" name="item[images_attributes][${num}][image]" id="ImgFile">`
-              %label{for: "ImgFile", class: "Upload__BtnArea"}
+              //プレビューの数に合わせてforオプションを指定
+              = f.label :"images_attributes_#{@item.images.length}_image", class: "label-box Upload__BtnArea", id: "label-box--#{@item.images.length}" do
                 = image_tag 'photo.png', alt: 'camera'
                 <br>クリックしてファイルをアップロード
-
+            .hidden-content
+              = f.fields_for :images do |i|
+                //プレビューが出ている分のfile_fieldとdelete用のチェックボックスを設置
+                = i.file_field :image, class: "hidden-field Upload__Btn"
+                = i.check_box:_destroy, class: "hidden-checkbox Upload__Btn"
+                //5つのfile_fieldを準備するに当たって、足りない分を表示
+              - @item.images.length.upto(4) do |i|
+                %input{name: "item[images_attributes][#{i}][image]", id: "item_images_attributes_#{i}_image", class:"hidden-field Upload__Btn", type:"file"}
+              
+          -# #ImageBox
+          -#   - @item.images.each do |image|
+          -#     .ItemImage{data: {image: "#{image.id}"}}
+          -#       .ItemImage__Content
+          -#         .ItemImage__Content--Icon
+          -#           = image_tag image.image.url, height: "80", width: "114"
+          -#       .ItemImage__Operetion
+          -#         .ItemImage__Operetion--Delete 削除
 
             -# .Upload
-            -#   %label{for: "EditImg", class: "Upload__BtnArea"}
+            -#   = f.fields_for :images do |i|
+            -#     = i.file_field :image, type: 'file', name: "item[images_attributes][#{i.index}][image]", id:"ImgFile", class: "Upload__Btn"
+            -#   %label{for: "ImgFile", class: "Upload__BtnArea"}
             -#     = image_tag 'photo.png', alt: 'camera'
             -#     <br>クリックしてファイルをアップロード
 
@@ -59,7 +76,7 @@
               カテゴリー
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :category, @category_parent_array, {selected: @category_parent.name}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
+            = f.select :category_id, @category_parent_array, {selected: @category_parent.name}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
             #children_wrapper
               = f.collection_select :category_id, @category_children_array, :id, :name, {},{value: @category_children.id, id: 'child_category', class: "SellPage__Information__Box__Inner__Form"}
             #grandchildren_wrapper
@@ -81,7 +98,7 @@
             .SellPage__Information__Box__Inner__SellBox
               必須
             -# 値が数字だったので文字列に変更
-            = f.select :condition, [["新品、未使用", "新品、未使用"],["未使用に近い", "未使用に近い"],["目立った傷や汚れなし", "目立った傷や汚れなし"],["やや傷や汚れあり","やや傷や汚れあり"],["傷や汚れあり","傷や汚れあり"],["全体的に状態が悪い","全体的に状態が悪い"]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.select :condition_id, [["新品、未使用", 1],["未使用に近い", 2],["目立った傷や汚れなし", 3],["やや傷や汚れあり", 4],["傷や汚れあり", 5],["全体的に状態が悪い", 6]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
 
         .SellPage__Information__Box
@@ -92,7 +109,7 @@
               配送料の負担
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :delivery_fee, [["送料込み(出品者負担)", "送料込み(出品者負担)"],["着払い(購入者負担)", "着払い(購入者負担)"]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.select :delivery_fee_id, [["送料込み(出品者負担)", 1],["着払い(購入者負担)", 2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
 
           .SellPage__Information__Box__Inner
@@ -108,7 +125,7 @@
               発送までの日数
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :days_to_ship, [["1~2日で発送", "1~2日で発送"],["2~3日で発送", "2~3日で発送"],["4~7日で発送","4~7日で発送"]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.select :days_to_ship_id, [["1~2日で発送", 1],["2~3日で発送", 2],["4~7日で発送", 3]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
 
         .SellPage__Information__Box

@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
 
-  validates :product_name,:category_id,:price,:condition,:description,:delivery_fee,:shipping_origin,:days_to_ship, presence: true
+  validates :product_name,:category_id,:price,:condition_id,:description,:delivery_fee_id,:shipping_origin,:days_to_ship_id, presence: true
 
 
 
