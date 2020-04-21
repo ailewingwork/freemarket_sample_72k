@@ -20,8 +20,12 @@
     right: 0px;
     padding-bottom: 50px;
     &__Title {
-      height: 30px;
-      background-color: powderblue;
+      height: 100px;
+      line-height: 80px;
+      font-weight: bold;
+    } 
+    &__Number {
+      height: 90px;
     }
   }
 }
