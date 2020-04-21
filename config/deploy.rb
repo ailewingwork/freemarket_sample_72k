@@ -7,6 +7,7 @@ set :application, 'freemarket_sample_72k'
 
 # どのリポジトリからアプリをpullするかを指定する
 set :branch, 'develop'
+# set :branch, 'Add_S3_save_and_validation'
 set :repo_url,  'git@github.com:ailewingwork/freemarket_sample_72k.git'
 
 # バージョンが変わっても共通で参照するディレクトリを指定

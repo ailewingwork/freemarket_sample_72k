@@ -3,17 +3,17 @@
   = render "devise/shared/devise_header"
   .SellPage
     .SellPage__Information
-      = form_with(model: @item, local: true) do |f|
+      = form_with model: @item, local: true, id: "new_itemID" do |f|
         .SellPage__Information__Box
           .SellPage__Information__Box__Inner
-            .SellPage__Information__Box__Inner__SellText
+            .SellPage__Information__Box__Inner__SellText#SellImg
               出品画像
             .SellPage__Information__Box__Inner__SellBox
               必須
             .Max
               最大5枚までアップロードできます
             #ImageBox
-            .Upload
+            .Upload#UploadImage
               = f.fields_for :images do |i|
                 = i.file_field :image, type: 'file', name: "item[images_attributes][][image]", id:"ImgFile", class: "Upload__Btn"
                 %label{for: "ImgFile", class: "Upload__BtnArea"}
@@ -26,14 +26,14 @@
               商品名
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.text_field :product_name, placeholder: "40文字まで", class: "SellPage__Information__Box__Inner__Form"
+            = f.text_field :product_name, placeholder: "40文字まで", class: "SellPage__Information__Box__Inner__Form", id: "ItemName", maxlength: 40
           
           .SellPage__Information__Box__Inner
             .SellPage__Information__Box__Inner__SellText
               商品の説明
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.text_area :description, maxlength: 1000, class: "SellPage__Information__Box__Inner__Form TextareaOption", placeholder: '商品の説明（必須 1000文字以内）'
+            = f.text_area :description, maxlength: 1000, class: "SellPage__Information__Box__Inner__Form TextareaOption", id:'ItemDes', placeholder: '商品の説明（必須 1000文字以内）'
 
         .SellPage__Information__Box
           .SellPage__Information__Box__About
@@ -90,7 +90,7 @@
               ¥
             .Value__Box
               -# jQueryに入力した値を渡すためにIDを付与
-              = f.number_field :price, class: 'SellPage__Information__Box__Inner__Form PriceBoxOption',id: "EntryPrice"
+              = f.number_field :price, class: 'SellPage__Information__Box__Inner__Form PriceBoxOption',id: "EntryPrice", min: "300", max: "9999999"
           .SellPage__Information__Box__Inner.FeeOption
             .SellPage__Information__Box__Inner__Left
               販売手数料（10%）  
