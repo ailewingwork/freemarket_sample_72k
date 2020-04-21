@@ -2,6 +2,7 @@ $(function(){
   //出品ボタンをクリックすると発火するイベント
   $('#new_itemID').on('submit', function (e) {
     e.preventDefault();
+
     // エラー数の初期化
     let errnum = 0
 
@@ -45,7 +46,6 @@ $(function(){
     // バリデーションチェックでエラーが一つ以上あったら画面の先頭にスクロールする
     if (errnum >= 1){
       //画面の先頭にスクロール
-      e.preventDefault()
       $(window).scrollTop(0) 
     }
   });

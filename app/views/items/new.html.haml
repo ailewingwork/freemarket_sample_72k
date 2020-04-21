@@ -3,7 +3,6 @@
   = render "devise/shared/devise_header"
   .SellPage
     .SellPage__Information
-      -# = form_with model: @item, local: true, url: items_path do |f|
       = form_with model: @item, local: true, id: "new_itemID" do |f|
         .SellPage__Information__Box
           .SellPage__Information__Box__Inner
