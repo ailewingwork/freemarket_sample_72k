@@ -57,10 +57,9 @@
           %tr
             %th 商品の状態
             %td
-              -binding.pry
               -case @item.condition_id
               -when "0"
-                "新品、未使用"
+                = "新品、未使用"
               -when "1"
                 = "未使用に近い"
               -when "2"
