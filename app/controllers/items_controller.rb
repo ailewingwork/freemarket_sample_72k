@@ -38,6 +38,25 @@ class ItemsController < ApplicationController
       @category_parent_array << parent.name
     end
 
+
+    # 子レコードのプルダウン用に配列で取得
+    @category_children_array = Category.find_by(ancestry: nil).children
+
+    #category_idに紐づいた子レコード（相対関係では親レコード）の取得
+    # 遷移時の初期値設定のため
+    @category_children = Category.find_by(id: @item.category_id).parent
+    
+    #孫レコートのプルダウン用に配列で取得
+    @category_grandchildren_array = Category.find_by(id: @category_children.id).children
+
+    #商品に紐づいている孫カテゴリーIDを取得
+    # 遷移時の初期値設定のため
+    @category_grandchildren = Category.find_by(id: @item.category_id)
+
+    #商品の紐づいている親カテゴリーIDを取得
+    # 遷移時の初期値設定のため
+    @category_parent = Category.find_by(id: @category_children.id).parent
+
     # @item = Item.new
     # #itemテーブルの子テーブルimagesテーブルにもレコードを追加できるように以下もインスタンス化。
     # @item.images.new
@@ -46,7 +65,8 @@ class ItemsController < ApplicationController
   def update
     item = Item.find([params[:id]])
     item.update(item_params)
-    redirect_to root_path
+    # .update_attributesに書き換えてみたが、結局 undifine method
+
   end
 
   def destroy
@@ -89,7 +109,7 @@ class ItemsController < ApplicationController
 
   #プライベートメソッドにしたいので、private配下に記述
   def item_params
-    params.require(:item).permit(:product_name, :price, :category_id, :condition,:description, :delivery_fee, :shipping_origin, :days_to_ship,:buyer_id, images_attributes: [:image]).merge(user_id: current_user.id, seller_id: current_user.id)
+    params.require(:item).permit(:category,:product_name, :price, :category_id, :condition,:description, :delivery_fee, :shipping_origin, :days_to_ship,:buyer_id, images_attributes: [:image]).merge(user_id: current_user.id, seller_id: current_user.id)
   end
 
 end

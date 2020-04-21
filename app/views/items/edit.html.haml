@@ -50,7 +50,12 @@
               カテゴリー
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :category, @category_parent_array, {}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
+            = f.select :category, @category_parent_array, {selected: @category_parent.name}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
+            #children_wrapper
+              = f.collection_select :category_id, @category_children_array, :id, :name, {},{value: @category_children.id, id: 'child_category', class: "SellPage__Information__Box__Inner__Form"}
+            #grandchildren_wrapper
+              = f.collection_select :category_id, @category_grandchildren_array,:id, :name, {},{value: @category_grandchildren.id, class: 'SellPage__Information__Box__Inner__Form', id: 'grandchild_category'}
+
 
           -# ブランドについては後日実装する為、一旦コメントアウト
           -# .SellPage__Information__Box__Inner
