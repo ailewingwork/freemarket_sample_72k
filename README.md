@@ -91,9 +91,9 @@
  - belongs_to :seller, class_name: 'User', :foreign_key => 'seller_id'
  - belongs_to :brand
  - belongs_to :category
- - belongs_to_active_hash :condition_id
- - belongs_to_active_hash :delivery_fee_id
- - belongs_to_active_hash :days_to_ship_id
+ - belongs_to_active_hash :condition
+ - belongs_to_active_hash :delivery_fee
+ - belongs_to_active_hash :days_to_ship
 
 ## comments テーブル
 |Column|Type|Options|
