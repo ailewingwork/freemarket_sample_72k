@@ -64,10 +64,9 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find([params[:id]])
+    item = Item.find(params[:id])
     item.update(item_params)
     # .update_attributesに書き換えてみたが、結局 undifine method
-
   end
 
   def destroy
