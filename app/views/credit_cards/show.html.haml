@@ -1,13 +1,10 @@
 = render "share/header"
 .FormContent
   .FormContent__Box
-    %br
-    %br
-    %h1 クレジットカード情報
-    %br
-    %br
+    .FormContent__Box__Title
+      クレジットカード情報
+    .FormContent__Box__Number
     %i クレジットカード番号
-    %br
     = "**** **** **** " + @default_card_information.last4
     %br
     %br
