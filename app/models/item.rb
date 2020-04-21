@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
 
-  validates :product_name,:category_id,:price,:condition,:description,:delivery_fee,:shipping_origin,:days_to_ship, :images, presence: true
+  validates :product_name,:category_id,:price,:condition_id,:description,:delivery_fee_id,:shipping_origin,:days_to_ship_id, :images, presence: true
 
   has_many :images, dependent: :destroy
   # 子モデルへのレコード登録を可能にするための入力フォーム"field_for"メソッドを利用するために、以下記述を追加
