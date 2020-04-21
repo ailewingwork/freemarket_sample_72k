@@ -1,5 +1,6 @@
 class CreditCardsController < ApplicationController
   before_action :set_mypage_menu
+  before_action :set_category_list, only: [:new, :show]
   before_action :set_card, only: [:show, :destroy]
 
   def new
@@ -44,5 +45,16 @@ class CreditCardsController < ApplicationController
       customer = Payjp::Customer.retrieve(@card.customer_id)
       @default_card_information = customer.cards.retrieve(@card.card_id)
     end
+  end
+
+  private
+
+  def set_card
+    @card = CreditCard.find_by(user_id: current_user.id)
+  end
+
+
+  def set_mypage_menu
+    @contents = [{name: "マイページ", path: "/users/#{current_user.id}", pattern: "GET",list_id: "my_page"},{name: "TOPへ戻る", path: "/", pattern: "GET",list_id: "to_top"},{name: "クレジットカード登録", path:new_credit_card_path, pattern: "GET",list_id: "credit_card"},{name: "ログアウト", path: "/users/sign_out", pattern: "DELETE",list_id: "logout"}]
   end
 end
