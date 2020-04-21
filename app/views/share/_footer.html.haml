@@ -26,8 +26,10 @@
       = link_to image_tag("logo-white.png", alt: "w-logo"), class: "Logo"
   .p
     @FURIMA
-  .SellBtn
-    .SellBtn__Text
-      出品する
-    .SellBtn__Icon
-      = link_to image_tag("icon_camera.png", alt: "出品する"), new_item_path, class: "Icon"
+  -if user_signed_in?
+    .SellBtn
+      .SellBtn__Text
+        出品する
+      .SellBtn__Icon
+        = link_to image_tag("icon_camera.png", alt: "出品する"), new_item_path, class: "Icon"
+  -else
