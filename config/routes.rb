@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     member do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'select_category_index'
+      get 'select_child_category_index'
+      get 'select_grandchild_category_index'
     end
   end
 end

@@ -65,7 +65,7 @@ $(function(){
     $('#PullDownCategory').on('change', '#child_category', function(){
       // カテゴリーの子要素に紐づくIDを取得して、そのIDに紐づく孫要素を取得する。
       // option:selected を指定する事で、プルダウンで選択したものの情報を取得できる事になる。
-      var childId = $('#child_category option:selected').val();
+      var childId = $('#child_category option:selected').data('category');
       if (childId != "---"){
         // 自身で作成したget_category_grandchildrenのルーティングへ飛ばす。その際、プルダウンで選択されている子要素のIDも渡す。
         $.ajax({

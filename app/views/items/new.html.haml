@@ -3,17 +3,17 @@
   = render "devise/shared/devise_header"
   .SellPage
     .SellPage__Information
-      = form_with(model: @item, local: true) do |f|
+      = form_with model: @item, local: true, id: "new_itemID" do |f|
         .SellPage__Information__Box
           .SellPage__Information__Box__Inner
-            .SellPage__Information__Box__Inner__SellText
+            .SellPage__Information__Box__Inner__SellText#SellImg
               出品画像
             .SellPage__Information__Box__Inner__SellBox
               必須
             .Max
               最大5枚までアップロードできます
             #ImageBox
-            .Upload
+            .Upload#UploadImage
               = f.fields_for :images do |i|
                 = i.file_field :image, type: 'file', name: "item[images_attributes][#{@item.images.count}][image]", id:"item[images_attributes][#{@item.images.count}][image]", class: "ImgFile Upload__Btn"
                 %label{for: "item[images_attributes][#{@item.images.count}][image]", class: "Upload__BtnArea"}
@@ -26,14 +26,14 @@
               商品名
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.text_field :product_name, placeholder: "40文字まで", class: "SellPage__Information__Box__Inner__Form"
+            = f.text_field :product_name, placeholder: "40文字まで", class: "SellPage__Information__Box__Inner__Form", id: "ItemName", maxlength: 40
           
           .SellPage__Information__Box__Inner
             .SellPage__Information__Box__Inner__SellText
               商品の説明
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.text_area :description, maxlength: 1000, class: "SellPage__Information__Box__Inner__Form TextareaOption", placeholder: '商品の説明（必須 1000文字以内）'
+            = f.text_area :description, maxlength: 1000, class: "SellPage__Information__Box__Inner__Form TextareaOption", id:'ItemDes', placeholder: '商品の説明（必須 1000文字以内）'
 
         .SellPage__Information__Box
           .SellPage__Information__Box__About
@@ -45,23 +45,12 @@
               必須
             = f.select :category_id, @category_parent_array, {}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
  
-          -# ブランドについては後日実装する為、一旦コメントアウト
-          -# .SellPage__Information__Box__Inner
-          -#   .SellPage__Information__Box__Inner__SellText
-          -#     ブランド
-          -#   .SellPage__Information__Box__Inner__SellBox.BoxOption
-          -#     任意
-          -#   = f.text_field :brand_id, placeholder: "例）シャネル", class: "SellPage__Information__Box__Inner__Form"
-
-
           .SellPage__Information__Box__Inner
             .SellPage__Information__Box__Inner__SellText
               商品の状態
             .SellPage__Information__Box__Inner__SellBox
               必須
-            -# 値が数字だったので文字列に変更
-            = f.select :condition_id, [["新品、未使用", 1],["未使用に近い", 2],["目立った傷や汚れなし", 3],["やや傷や汚れあり", 4],["傷や汚れあり", 5],["全体的に状態が悪い", 6]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
-
+            = f.collection_select :condition_id, Condition.all, :id, :name, {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
         .SellPage__Information__Box
           .SellPage__Information__Box__About
@@ -71,8 +60,7 @@
               配送料の負担
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :delivery_fee_id, [["送料込み(出品者負担)", 1],["着払い(購入者負担)", 2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
-
+            = f.collection_select :delivery_fee_id, DeliveryFee.all, :id, :name, {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
           .SellPage__Information__Box__Inner
             .SellPage__Information__Box__Inner__SellText
@@ -87,8 +75,7 @@
               発送までの日数
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :days_to_ship_id, [["1~2日で発送", 1],["2~3日で発送", 2],["4~7日で発送", 3]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
-
+            = f.collection_select :days_to_ship_id, DaysToShip.all, :id, :name, {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
         .SellPage__Information__Box
           .SellPage__Information__Box__About
@@ -103,7 +90,7 @@
               ¥
             .Value__Box
               -# jQueryに入力した値を渡すためにIDを付与
-              = f.number_field :price, class: 'SellPage__Information__Box__Inner__Form PriceBoxOption',id: "EntryPrice"
+              = f.number_field :price, class: 'SellPage__Information__Box__Inner__Form PriceBoxOption',id: "EntryPrice", min: "300", max: "9999999"
           .SellPage__Information__Box__Inner.FeeOption
             .SellPage__Information__Box__Inner__Left
               販売手数料（10%）  
