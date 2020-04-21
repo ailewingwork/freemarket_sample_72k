@@ -107,7 +107,7 @@ class ItemsController < ApplicationController
 
   #プライベートメソッドにしたいので、private配下に記述
   def item_params
-    params.require(:item).permit(:product_name, :price, :category_id, :condition,:description, :delivery_fee, :shipping_origin, :days_to_ship,:buyer_id, images_attributes: [:image]).merge(user_id: current_user.id, seller_id: current_user.id)
+    params.require(:item).permit(:product_name, :price, :category_id, :condition_id,:description, :delivery_fee_id, :shipping_origin, :days_to_ship_id,:buyer_id, images_attributes: [:image]).merge(user_id: current_user.id, seller_id: current_user.id)
   end
 
   # カテゴリー検索用にfind_itemメソッドを実装
