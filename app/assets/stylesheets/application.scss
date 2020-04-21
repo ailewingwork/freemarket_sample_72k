@@ -1,5 +1,6 @@
 @import "reset";
 @import "config/colors";
+@import "config/format";
 @import "header";
 @import "contents";
 @import "signin";
@@ -8,6 +9,7 @@
 @import "mypage_side_menu";
 @import "mypage_main_menu";
 @import "items";
+@import "select_category";
 @import "footer";
 @import "modules/flash";
 @import "font-awesome-sprockets";

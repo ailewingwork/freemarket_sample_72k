@@ -43,15 +43,14 @@
               カテゴリー
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :category_id, @category_parent_array, {}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
-
+            = f.select :category, @category_parent_array, {}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
+ 
           .SellPage__Information__Box__Inner
             .SellPage__Information__Box__Inner__SellText
               商品の状態
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :condition_id, [["新品、未使用", "新品、未使用"],["未使用に近い", "未使用に近い"],["目立った傷や汚れなし", "目立った傷や汚れなし"],["やや傷や汚れあり","やや傷や汚れあり"],["傷や汚れあり","傷や汚れあり"],["全体的に状態が悪い","全体的に状態が悪い"]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
-
+            = f.collection_select :condition_id, Condition.all, :id, :name, {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
         .SellPage__Information__Box
           .SellPage__Information__Box__About
@@ -61,8 +60,7 @@
               配送料の負担
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :delivery_fee_id, [["送料込み(出品者負担)", "送料込み(出品者負担)"],["着払い(購入者負担)", "着払い(購入者負担)"]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
-
+            = f.collection_select :delivery_fee_id, DeliveryFee.all, :id, :name, {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
           .SellPage__Information__Box__Inner
             .SellPage__Information__Box__Inner__SellText
@@ -77,7 +75,7 @@
               発送までの日数
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :days_to_ship_id, [["1~2日で発送", "1~2日で発送"],["2~3日で発送", "2~3日で発送"],["4~7日で発送","4~7日で発送"]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.collection_select :days_to_ship_id, DaysToShip.all, :id, :name, {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
         .SellPage__Information__Box
           .SellPage__Information__Box__About

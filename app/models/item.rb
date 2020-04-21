@@ -7,6 +7,13 @@ class Item < ApplicationRecord
   # 引数に"allow_destroy: true"を設定。
   #  -> itemを削除する時に紐づいたimagesも削除できるため記述
   accepts_nested_attributes_for :images, allow_destroy: true
+
+  #active_hashのアソシエーションを追記
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :delivery_fee
+  belongs_to_active_hash :days_to_ship
+  belongs_to_active_hash :condition
+
   belongs_to :user
   belongs_to :category
   belongs_to :buyer, class_name:'User', foreign_key: "buyer_id", optional: true

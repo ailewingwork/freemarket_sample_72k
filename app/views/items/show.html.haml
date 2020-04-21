@@ -53,28 +53,45 @@
                       = link_to '#' do
                         = grandchild.name
                       %br
-          -# %tr
-          -#   %th ブランド
-          -#   %td 
-          -# %tr
-          -#   %th 商品のサイズ
-          -#   %td 
               
           %tr
             %th 商品の状態
-            %td=@item.condition
-              
+            %td
+              -case @item.condition_id
+              -when 0
+                = "新品、未使用"
+              -when 1
+                = "未使用に近い"
+              -when 2
+                = "目立った傷や汚れなし"
+              -when 3
+                = "やや傷や汚れあり"
+              -when 4
+                = "傷や汚れあり"
+              -when 5
+                = "全体的に状態が悪い"
           %tr
             %th 配送料の負担
-            %td=@item.delivery_fee
-              
+            %td
+              -case @item.delivery_fee_id 
+              -when 0
+                = "送料込み(出品者負担)"
+              -when 1
+                = "着払い(購入者負担)"
           %tr
             %th 配送元の地域
             %td=@item.shipping_origin
               
           %tr
             %th 発送日の目安
-            %td=@item.days_to_ship
+            %td
+              -case @item.days_to_ship_id
+              -when 0
+                = "1~2日で発送"
+              -when 1
+                = "2~3日で発送"
+              -when 2
+                = "4~7日で発送"
         -# 追加機能時のビュー、ライクボタン、不適切ボタン。
         -# .ItemBox__ImageBody__OptionArea
         -#   .ItemBox__ImageBody__OptionArea__LikeBtn
@@ -122,5 +139,4 @@
       = link_to "次の商品＞", "#", class: "LinkText"
     .UnderLinkBox__ReratedItems
       -# =link_to "ベビーキッズをもっと見る"
--# = render "share/footer"
-= render "devise/shared/devise_footer"
+= render "share/footer"
