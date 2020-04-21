@@ -60,6 +60,7 @@ class ItemsController < ApplicationController
     # @item = Item.new
     # #itemテーブルの子テーブルimagesテーブルにもレコードを追加できるように以下もインスタンス化。
     # @item.images.new
+    # binding.pry
   end
 
   def update

@@ -13,14 +13,23 @@
             .Max
               最大5枚までアップロードできます
             #ImageBox
+              - @item.images.each do |image|
+                .ItemImage{data: {image: "#{image.id}"}}
+                  .ItemImage__Content
+                    .ItemImage__Content--Icon
+                      = image_tag image.image.url, height: "80", width: "114"
+                  .ItemImage__Operetion
+                    .ItemImage__Operetion--Delete 削除
+
+            .Upload
               = f.fields_for :images do |i|
-                .testman__content__Operation
-                  .testman__content__Operation--Edit
-                    編集
-                  .testman__content__Operation--Delete
-                    削除
-                  = image_tag i.object.image.url, class: "testman"
-                  = i.file_field :image, type: 'file', name: "item[images_attributes][][image]", id:"EditImg", class: "Upload__Btn"
+                = i.file_field :image, type: 'file', name: "item[images_attributes][][image]", id:"ImgFile", class: "Upload__Btn"
+                -# = i.file_field :image, type: 'file', name: "item[images_attributes][#{image.image}][image]", id:"ImgFile", class: "Upload__Btn"
+                -# `<input type="file" style="display:none" name="item[images_attributes][${num}][image]" id="ImgFile">`
+                %label{for: "ImgFile", class: "Upload__BtnArea"}
+                  = image_tag 'photo.png', alt: 'camera'
+                  <br>クリックしてファイルをアップロード
+
 
             .Upload
               %label{for: "EditImg", class: "Upload__BtnArea"}
