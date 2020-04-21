@@ -73,11 +73,11 @@
 |------|----|-------|
 |product_name|string|null: false|
 |price|integer|null: false|
-|condition|integer|null: false|
+|condition_id|string|null: false|
 |description|text(1000)|null: false|
-|delivery_fee|integer|null:false|
+|delivery_fee_id|string|null:false|
 |shipping_origin|integer|null:false|
-|days_to_ship|integer|null:false|
+|days_to_ship_id|string|null:false|
 |categorｙ_id|references|foreign_key true,null:false|
 |brand_id|references|foreign_key true,null:true|
 |user_id|references|foreign_key true,null:false|
@@ -91,6 +91,9 @@
  - belongs_to :seller, class_name: 'User', :foreign_key => 'seller_id'
  - belongs_to :brand
  - belongs_to :category
+ - belongs_to_active_hash :condition
+ - belongs_to_active_hash :delivery_fee
+ - belongs_to_active_hash :days_to_ship
 
 ## comments テーブル
 |Column|Type|Options|
