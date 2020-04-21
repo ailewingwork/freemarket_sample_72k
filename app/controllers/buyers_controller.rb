@@ -31,10 +31,6 @@ class BuyersController < ApplicationController
 
   private
 
-  def set_card
-    @card = CreditCard.find_by(user_id: current_user.id)
-  end
-
   def set_item
     @item = Item.find(params[:item_id])
   end
