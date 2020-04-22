@@ -37,30 +37,21 @@ class ItemsController < ApplicationController
     Category.where(ancestry: nil).each do |parent|
       @category_parent_array << parent.name
     end
-
-
+    
     # 子レコードのプルダウン用に配列で取得
     @category_children_array = Category.find_by(ancestry: nil).children
-
     #category_idに紐づいた子レコード（相対関係では親レコード）の取得
     # 遷移時の初期値設定のため
     @category_children = Category.find_by(id: @item.category_id).parent
-    
     #孫レコートのプルダウン用に配列で取得
     @category_grandchildren_array = Category.find_by(id: @category_children.id).children
-
     #商品に紐づいている孫カテゴリーIDを取得
     # 遷移時の初期値設定のため
     @category_grandchildren = Category.find_by(id: @item.category_id)
-
     #商品の紐づいている親カテゴリーIDを取得
     # 遷移時の初期値設定のため
     @category_parent = Category.find_by(id: @category_children.id).parent
 
-    # @item = Item.new
-    # #itemテーブルの子テーブルimagesテーブルにもレコードを追加できるように以下もインスタンス化。
-    # @item.images.new
-    # binding.pry
   end
 
   def update
@@ -81,8 +72,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    # カテゴリーのモデルを導入したらコメントアウト解除
-    # @category = Category.where(id: @item.category_id)
+
     @parents = Category.where(ancestry:nil)
   end
   
