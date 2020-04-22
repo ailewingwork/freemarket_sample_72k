@@ -67,7 +67,7 @@
               発送元の地域
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :shipping_origin,Address.shipping_areas.keys, {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
+            = f.select :shipping_origin,Address.shipping_areas.keys, {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
 
           .SellPage__Information__Box__Inner

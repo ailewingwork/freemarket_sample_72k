@@ -39,7 +39,7 @@ $(function(){
       $(this).css('color','#3CCACE');
       $.ajax({
         type: 'GET',
-        url: '/items/get_category_children',
+        url: '/get_category_children',
         data: {parent_id: id, parent_name: name},//どの親の要素かを送る。params[:parent_id,:parent_name]で送られる
         dataType: 'json'
       }).done(function(children) {
@@ -61,7 +61,7 @@ $(function(){
       $(".GrandChildrenMenu__List").remove();
       $.ajax({
         type: 'GET',
-        url: '/items/get_category_grandchildren',
+        url: '/get_category_grandchildren',
         data: {child_id: id},
         dataType: 'json'
       })

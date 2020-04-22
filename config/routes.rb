@@ -32,12 +32,10 @@ Rails.application.routes.draw do
       end
     end
   end
+  get 'get_category_children', to: 'items#get_category_children', defaults: { format: 'json' }
+  get 'get_category_grandchildren', to: 'items#get_category_grandchildren', defaults: { format: 'json' }
   resources :items, only: [:show, :new, :create, :edit, :update, :destroy] do
     #Ajaxで動かす為のルーティングを作成
-    collection do
-      get 'get_category_children', defaults: { format: 'json' }
-      get 'get_category_grandchildren', defaults: { format: 'json' }
-    end
     member do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
