@@ -15,14 +15,12 @@
             //JSで挿入したhtmlと同じ形　each文でのプレビュー表示
             #ImageBox
               - @item.images.each_with_index do |image, index|
-                .ItemImage.preview-box{id: "preview-box__#{index}"}
+                .ItemImage.AdjustMargin.preview-box{id: "preview-box__#{index}"}
                   .ItemImage__Content
                     .ItemImage__Content--Icon
-                      = image_tag image.image.url, width: "112", height: "112", alt: "preview"
-                  .ItemImage__Operetion.lower-box
-                    .ItemImage__Operetion--Edit.update-box 編集
+                      = image_tag image.image.url, width: "114", height: "80", alt: "preview"
                   .ItemImage__Operetion.delete-box
-                    .ItemImage__Operetion--Delete 削除
+                    .ItemImage__Operetion--Destroy 削除
             .Upload
               //プレビューの数に合わせてforオプションを指定
               = f.label :"images_attributes_#{@item.images.length}_image", class: "label-box Upload__BtnArea", id: "label-box--#{@item.images.length}" do

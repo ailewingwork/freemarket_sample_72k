@@ -241,6 +241,13 @@
     &__Operetion{
       display: flex;
       text-align: center;
+      &--Destroy{
+        width: 56px;
+        height: 44px;
+        line-height: 44px;
+        color: #0099E8;
+        cursor: pointer;
+      }
       &--Delete{
         width: 56px;
         height: 44px;
@@ -256,6 +263,9 @@
         cursor: pointer;
       }
     }
+  }
+  .AdjustMargin{
+    margin-left: 5px;
   }
 }
 
