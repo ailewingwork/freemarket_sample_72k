@@ -58,25 +58,25 @@
             %th 商品の状態
             %td
               -case @item.condition_id
-              -when 0
+              -when "0"
                 = "新品、未使用"
-              -when 1
+              -when "1"
                 = "未使用に近い"
-              -when 2
+              -when "2"
                 = "目立った傷や汚れなし"
-              -when 3
+              -when "3"
                 = "やや傷や汚れあり"
-              -when 4
+              -when "4"
                 = "傷や汚れあり"
-              -when 5
+              -when "5"
                 = "全体的に状態が悪い"
           %tr
             %th 配送料の負担
             %td
               -case @item.delivery_fee_id 
-              -when 0
+              -when "0"
                 = "送料込み(出品者負担)"
-              -when 1
+              -when "1"
                 = "着払い(購入者負担)"
           %tr
             %th 配送元の地域
@@ -86,11 +86,11 @@
             %th 発送日の目安
             %td
               -case @item.days_to_ship_id
-              -when 0
+              -when "0"
                 = "1~2日で発送"
-              -when 1
+              -when "1"
                 = "2~3日で発送"
-              -when 2
+              -when "2"
                 = "4~7日で発送"
         -# 追加機能時のビュー、ライクボタン、不適切ボタン。
         -# .ItemBox__ImageBody__OptionArea
@@ -110,7 +110,7 @@
       - if user_signed_in? && current_user.id == @item.seller_id
         .EditDeleteContent__EditBtn
           .EditDeleteContent__EditBtn__Text 
-            = link_to "#",class: 'EditTextBtn' do
+            = link_to edit_item_path,class: 'EditTextBtn' do
               商品の編集
             -# レコード削除確認済み4/14
             = link_to "商品の削除", item_path(@item.id), method: :delete, data: { confirm: "削除しますか？" }, class: 'DeleteTextBtn' 

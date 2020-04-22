@@ -25,7 +25,7 @@
               - @category_parent_array.each do |parent_categories|
                 .TopHeader__Inner__Lists__Left__Category__ParentCategories__List{data: {id: "#{parent_categories.id}"}}
                   =link_to "#{parent_categories.name}",select_category_index_item_path(parent_categories.id), class: "parent_category",id: "#{parent_categories.id}"
-            .CildrenMenu
+            .ChildrenMenu
             .GrandChildrenMenu
 
         .TopHeader__Inner__Lists__Left__Brand
