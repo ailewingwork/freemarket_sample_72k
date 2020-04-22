@@ -4,7 +4,7 @@ $(function(){
   //querySelectorでfile_fieldを取得
   var file_field = document.querySelector('input[type=file]')
   //fileが選択された時に発火するイベント
-  $('#ImgFile').change(function(){
+  $(document).on('change', '.ImgFile', function() {
     $.each(this.files, function(i, file){
       //FileReaderのreadAsDataURLで指定したFileオブジェクトを読み込む
       var fileReader = new FileReader();
@@ -24,7 +24,7 @@ $(function(){
       fileReader.onloadend = function() {
         let image = fileReader.result
 
-        let html = `<div class='ItemImage' data-image="${file.name}">
+        let html = `<div class='ItemImage' data-image="${file.name}" id='ItemImage'>
                     <div class='ItemImage__Content'>
                       <div class='ItemImage__Content--Icon'>
                         <img src=${image} width="114" height="80" >
@@ -35,12 +35,13 @@ $(function(){
                     </div>
                   </div>`
 
-        let input = `<input type="file" style="display:none" name="item[images_attributes][${num}][image]" id="ImgFile">`
+        let input = `<input type="file"  name="item[images_attributes][${num}][image]" id="item[images_attributes][${num}][image]" class="ImgFile Upload__Btn">`
 
         //#ImageBox要素の小要素として1を差し込む
         $('#ImageBox').append(html);
         $('label').before(input);
       };
+      $('.Upload__BtnArea').attr({for: `item[images_attributes][${num}][image]`})
     });
   });
   //削除ボタンをクリックすると発火するイベント
@@ -70,5 +71,5 @@ $(function(){
     target_image.remove()
     //画像投稿フォームが非表示の状態(画像を5枚投稿している)で削除ボタンを押したら、画像投稿フォームを表示する。
     $('.Upload').show()
-   })
+  })
 });

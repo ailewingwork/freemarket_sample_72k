@@ -135,11 +135,12 @@
 
 }
 
-.CildrenMenu{
+.ChildrenMenu{
   position: absolute;
   margin-left: 200px;
   margin-top: 0px;
   width: 100%;
+  min-height: 100%;
   &__List{
     color: $font_color;
     display: block;
@@ -158,6 +159,7 @@
   position: absolute;
   margin-left: 400px;
   width: 100%;
+  min-height: 100%;
   &__List{
     color: $font_color;
     display: block;

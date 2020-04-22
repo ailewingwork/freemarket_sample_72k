@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :item_params, only: :create
-  before_action :set_item, only: [:show, :destroy]
+  before_action :set_item, only: [:show, :destroy, :edit, :update]
 
   def index
     @items = Item.includes(:images).order('created_at DESC').limit(3)
@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(item_params)   
     if @item.save
       # 商品の投稿に成功したらindexに飛ばす処理
       redirect_to root_path, notice: '出品が完了しました。'
@@ -31,9 +31,43 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    #セレクトボックスの初期値設定
+    @category_parent_array = ["---"]
+    #DBから親カテゴリのみを抽出（親カテゴリはancestryカラムがnull）
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
+    end
+
+
+    # 子レコードのプルダウン用に配列で取得
+    @category_children_array = Category.find_by(ancestry: nil).children
+
+    #category_idに紐づいた子レコード（相対関係では親レコード）の取得
+    # 遷移時の初期値設定のため
+    @category_children = Category.find_by(id: @item.category_id).parent
+    
+    #孫レコートのプルダウン用に配列で取得
+    @category_grandchildren_array = Category.find_by(id: @category_children.id).children
+
+    #商品に紐づいている孫カテゴリーIDを取得
+    # 遷移時の初期値設定のため
+    @category_grandchildren = Category.find_by(id: @item.category_id)
+
+    #商品の紐づいている親カテゴリーIDを取得
+    # 遷移時の初期値設定のため
+    @category_parent = Category.find_by(id: @category_children.id).parent
+
+    # @item = Item.new
+    # #itemテーブルの子テーブルimagesテーブルにもレコードを追加できるように以下もインスタンス化。
+    # @item.images.new
+    # binding.pry
   end
 
   def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    # .update_attributesに書き換えてみたが、結局 undifine method
+    redirect_to root_path, notice: '商品の編集が完了しました。'
   end
 
   def destroy
@@ -112,7 +146,7 @@ class ItemsController < ApplicationController
 
   #プライベートメソッドにしたいので、private配下に記述
   def item_params
-    params.require(:item).permit(:product_name, :price, :category_id, :condition_id,:description, :delivery_fee_id, :shipping_origin, :days_to_ship_id,:buyer_id, images_attributes: [:image]).merge(user_id: current_user.id, seller_id: current_user.id)
+    params.require(:item).permit(:product_name, :price, :category_id, :condition_id,:description, :delivery_fee_id, :shipping_origin, :days_to_ship_id,:buyer_id, images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id, seller_id: current_user.id)
   end
 
   # カテゴリー検索用にfind_itemメソッドを実装
