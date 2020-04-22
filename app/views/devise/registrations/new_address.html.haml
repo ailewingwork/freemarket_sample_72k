@@ -10,10 +10,10 @@
         = render "devise/shared/error_messages", resource: @address
         .ContentSignUp__Infomation__PostCode
           .ContentSignUp__Infomation__PostCode__Title
-            .SignUpTitle 郵便番号(全角)
+            .SignUpTitle 郵便番号(半角数字)
             .SignUpRequired 必須
           .ContentSignUp__Infomation__PostCode__Form
-            = f.text_field :post_code, class:"SinUpInputForm"
+            = f.text_field :post_code, placeholder: "ハイフンを除いた7桁を入力", class:"SinUpInputForm"
 
         .ContentSignUp__Infomation__Prefecture
           .ContentSignUp__Infomation__Prefecture__Title
