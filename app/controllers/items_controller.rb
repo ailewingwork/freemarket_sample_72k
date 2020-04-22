@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :item_params, only: :create
-  before_action :set_item, only: [:show, :destroy, :edit, :update]
+  before_action :set_item, only: [:show, :destroy, :edit, :update, :buy_confirm]
 
   def index
     @items = Item.includes(:images).order('created_at DESC').limit(3)
@@ -87,11 +87,16 @@ class ItemsController < ApplicationController
   end
   
   def buy_confirm
-    @item = Item.find(params[:id])
     @card = CreditCard.find_by(user_id: current_user.id)
-    Payjp.api_key = Rails.application.credentials[:PAYJP_SECRET_KEY]
-    customer = Payjp::Customer.retrieve(@card.customer_id)
-    @default_card_information = customer.cards.retrieve(@card.card_id)
+    if @card.blank?
+      #登録された情報がない場合にカード登録画面に移動
+      redirect_to new_credit_card_path
+    else
+      @card = CreditCard.find_by(user_id: current_user.id)
+      Payjp.api_key = Rails.application.credentials[:PAYJP_SECRET_KEY]
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @default_card_information = customer.cards.retrieve(@card.card_id)
+    end
   end
 
   def select_category_index
