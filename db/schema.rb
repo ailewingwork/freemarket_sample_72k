@@ -59,9 +59,9 @@ ActiveRecord::Schema.define(version: 2020_04_21_025857) do
     t.string "days_to_ship_id", null: false
     t.bigint "user_id", null: false
     t.bigint "seller_id", null: false
-    t.bigint "buyer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "buyer_id"
     t.bigint "category_id"
     t.index ["buyer_id"], name: "index_items_on_buyer_id"
     t.index ["category_id"], name: "index_items_on_category_id"
