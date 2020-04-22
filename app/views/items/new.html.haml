@@ -15,8 +15,8 @@
             #ImageBox
             .Upload#UploadImage
               = f.fields_for :images do |i|
-                = i.file_field :image, type: 'file', name: "item[images_attributes][][image]", id:"ImgFile", class: "Upload__Btn"
-                %label{for: "ImgFile", class: "Upload__BtnArea"}
+                = i.file_field :image, type: 'file', name: "item[images_attributes][#{@item.images.count}][image]", id:"item[images_attributes][#{@item.images.count}][image]", class: "ImgFile Upload__Btn"
+                %label{for: "item[images_attributes][#{@item.images.count}][image]", class: "Upload__BtnArea"}
                   = image_tag 'photo.png', alt: 'camera'
                   <br>クリックしてファイルをアップロード
 
@@ -43,7 +43,7 @@
               カテゴリー
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :category, @category_parent_array, {}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
+            = f.select :category_id, @category_parent_array, {}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
  
           .SellPage__Information__Box__Inner
             .SellPage__Information__Box__Inner__SellText

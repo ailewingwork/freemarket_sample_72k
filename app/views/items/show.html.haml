@@ -110,7 +110,7 @@
       - if user_signed_in? && current_user.id == @item.seller_id
         .EditDeleteContent__EditBtn
           .EditDeleteContent__EditBtn__Text 
-            = link_to "#",class: 'EditTextBtn' do
+            = link_to edit_item_path,class: 'EditTextBtn' do
               商品の編集
             -# レコード削除確認済み4/14
             = link_to "商品の削除", item_path(@item.id), method: :delete, data: { confirm: "削除しますか？" }, class: 'DeleteTextBtn' 
