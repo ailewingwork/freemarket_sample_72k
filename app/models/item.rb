@@ -1,17 +1,23 @@
 class Item < ApplicationRecord
 
-  has_many :images
+  validates :product_name,:category_id,:price,:condition_id,:description,:delivery_fee_id,:shipping_origin,:days_to_ship_id, :images, presence: true
+
+  has_many :images, dependent: :destroy
   # 子モデルへのレコード登録を可能にするための入力フォーム"field_for"メソッドを利用するために、以下記述を追加
   # 引数に"allow_destroy: true"を設定。
   #  -> itemを削除する時に紐づいたimagesも削除できるため記述
   accepts_nested_attributes_for :images, allow_destroy: true
 
-  has_many :comments, dependent: :destroy
+  #active_hashのアソシエーションを追記
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :delivery_fee
+  belongs_to_active_hash :days_to_ship
+  belongs_to_active_hash :condition
+
   belongs_to :user
-  belongs_to :buyer, class_name:'User', foreign_key: "buyer_id"
-  belongs_to :seller, class_name:'User', foreign_key: "seller_id"
-  belongs_to :brand
   belongs_to :category
+  belongs_to :buyer, class_name:'User', foreign_key: "buyer_id", optional: true
+  belongs_to :seller, class_name:'User', foreign_key: "seller_id"
   
     #配送元エリアを設定する際に利用する47都道府県のenumを実装
     enum ship_orign:{

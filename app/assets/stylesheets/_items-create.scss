@@ -59,24 +59,29 @@
           .Max {
             margin-top: 16px;
           }
-    
+
           .Upload {
             font-size: 12px;
             margin-top: 16px;
             flex-wrap: wrap;
-            height: 112px;
             background-color: $imagebox;
             justify-content: center;
             border-width: 1px;
             border-style: dashed;
             border-color: $imagebox_border;
-            cursor: pointer;
             text-align: center;
-            &__Image {
-              margin-top: 20px;
+
+            &__Btn{
+              display: none;
+            }
+            &__BtnArea{
+              display: block;
+              padding: 60px 0;
+              width: 100%;
+              cursor: pointer;
             }
           }
-          
+
           &__Form{
             background-color: white;
             border: 1px solid #ccc;
@@ -94,18 +99,23 @@
             line-height: 3em;
             padding: 12px 0;
           }
+
           &__Right{
             font-size: 14px;
             line-height: 3em;
             padding: 12px 0;
           }
+
           &__SellBtn{
-            width: 50%;
-            text-align: center;
-            margin: 0 auto;
             font-size: 18px;
-            padding: 12px 0 12px 0;
-            border: 1px;
+            width: 50%;
+            height: 50px;
+            line-height: 50px;
+            margin: 0 auto;
+            text-align: center;
+            color: white;
+            border: 0px;
+            background-color: $sellbtn;
           }
         }
       }
@@ -119,6 +129,7 @@
   justify-content: space-between;
   margin-top: 0 !important;
   position: relative;
+  padding-bottom: 15px;
 
   &__Text{
     margin: 17px 0;
@@ -136,7 +147,6 @@
 
 }
 
-
 .BtnOption{
   margin-top: 0 !important;
   width: 90%;
@@ -147,20 +157,19 @@
   margin-bottom: 24px !important;
 }
 
-.SellBtnColor{
-  background-color: $sellbtn;
-  color: white;
-}
-
-.DraftBtnColor{
-  background-color: $draftbtn;
-  color: $draftbtn_text;
-}
-
 .BackOption{
   margin-top: 0 !important;
   text-align: center;
   color: #0095ee;
+}
+
+.CommentOption{
+  font-size: 12px;
+}
+
+.SellBtnColor{
+  background-color: $sellbtn;
+  color: white;
 }
 
 .CommentOption{
@@ -199,4 +208,68 @@
 
 .BoxOption{
   background-color:#bfbfbf !important;
+}
+
+//画像投稿フォーム
+#ImageBox {
+  display: inline-block;
+  width: 620px;
+  margin: 16px auto 0;
+  .ItemImage{
+    width: 116px;
+    box-sizing: border-box;
+    margin: 0 0 10px 10px;
+    position: relative;
+    display: inline-block;
+    border: 1px solid #eee;
+    vertical-align: top;
+    &:first-child,
+    &:nth-child(6n) {
+      margin-left: 0;
+    }
+    &__content{
+      height: 116px;
+      width: 114px;
+      position: relative;
+      &--icon{
+        position: absolute;
+        top: 18px;
+        width: 114px;
+        height: 80px;
+      }
+    }
+    &__Operetion{
+      display: flex;
+      text-align: center;
+      &--Destroy{
+        width: 56px;
+        height: 44px;
+        line-height: 44px;
+        color: #0099E8;
+        cursor: pointer;
+      }
+      &--Delete{
+        width: 56px;
+        height: 44px;
+        line-height: 44px;
+        color: #0099E8;
+        cursor: pointer;
+      }
+      &--Edit{
+        width: 56px;
+        height: 44px;
+        line-height: 44px;
+        color: #0099E8;
+        cursor: pointer;
+      }
+    }
+  }
+  .AdjustMargin{
+    margin-left: 5px;
+  }
+}
+
+// バリデーションチェックのエラーメッセージ
+.Validation{
+  color: $validation_message;
 }

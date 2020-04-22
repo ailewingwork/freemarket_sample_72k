@@ -1,0 +1,51 @@
+.SelectCategoryBody{
+  background-color: $content_bgcolor;
+  padding:$header-height;
+  width: 100%;
+  min-height: 100vh;
+  &__Title{
+    &--Head{
+      margin: 24px 0px 8px 15px;
+      font-size:22px;
+      font-weight: bold;
+    }
+  }
+  &__ContentsList{
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    &__Content{
+      background-color: #fff;
+      width: calc(100% / 5);
+      min-height: 200px;
+      margin: 0 15px 20px 15px;
+      &__ImageArea{
+        min-height: 140px;
+        position: relative;
+        &--Img{
+          max-width: 100%;
+          min-width: 100%;
+          min-height: 140px;
+          max-height:140px;
+          object-fit: cover;
+          
+        }
+        &--Price{
+          position: absolute;
+          bottom: 16px;
+          left:0px;
+          padding:2px 8px;
+          color: #ddd;
+          font-weight: bold;
+          background-color: #0000008a;
+          border-top-right-radius: 8px;
+          border-bottom-right-radius: 8px;
+        }
+      }
+      &__TextArea{
+
+        padding: 6px;
+      }
+    }
+  }
+}

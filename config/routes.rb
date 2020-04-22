@@ -14,6 +14,35 @@ Rails.application.routes.draw do
   root to: 'items#index'
   resources :users
   resource :users
-  resources :items
+  resources :items do
+    member do
+      get 'buy_confirm' # 実装後削除
+    end
+  end
+  resources :credit_cards, only: [:new, :show, :destroy] do
+    collection do
+      post 'pay', to: 'credit_cards#pay'
+    end
+  end
+  resources :items do
+    resources :buyers, only: [:index] do
+      collection do
+        get 'done', to: 'buyers#done'
+        post 'pay', to: 'buyers#pay'
+      end
+    end
+  end
+  get 'get_category_children', to: 'items#get_category_children', defaults: { format: 'json' }
+  get 'get_category_grandchildren', to: 'items#get_category_grandchildren', defaults: { format: 'json' }
+  resources :items, only: [:show, :new, :create, :edit, :update, :destroy] do
+    #Ajaxで動かす為のルーティングを作成
+    member do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'select_category_index'
+      get 'select_child_category_index'
+      get 'select_grandchild_category_index'
+    end
+  end
 end
 

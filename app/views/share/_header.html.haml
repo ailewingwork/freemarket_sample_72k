@@ -16,13 +16,21 @@
         .TopHeader__Inner__Lists__Left__Category
           -# aタグにスタイルを設定すると他のビューに影響が出そうなのでTopLinkクラスを設定
           = link_to "#", {class: "TopLink LeftColor"} do
+            =icon('fas','bars')
             カテゴリー
+          .CategoryList
+            .ParentsList
+              - @category_parent_array.each do |parent_categories|
+                .TopHeader__Inner__Lists__Left__Category__ParentCategories__List{data: {id: "#{parent_categories.id}"}}
+                  =link_to "#{parent_categories.name}",select_category_index_item_path(parent_categories.id), class: "parent_category",id: "#{parent_categories.id}"
+            .ChildrenMenu
+            .GrandChildrenMenu
+
         .TopHeader__Inner__Lists__Left__Brand
           = link_to "#", {class: "TopLink LeftColor"} do
             ブランド
       .TopHeader__Inner__Lists__Right
         -if user_signed_in?
-          -# 動作確認のため、ログアウト導線を仮置き
           .TopHeader__Inner__Lists__Right__Signin
             = link_to user_path(current_user.id), method: :get,class: "TopLink" do
               マイページ

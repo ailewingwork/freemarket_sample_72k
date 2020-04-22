@@ -1,1 +1,174 @@
-= render partial: 'form'
+.SellingPageBody
+  = render "layouts/notifications"
+  = render "devise/shared/devise_header"
+  .SellPage
+    .SellPage__Information
+      = form_with(model: @item, local: true) do |f|
+        .SellPage__Information__Box
+          .SellPage__Information__Box__Inner
+            .SellPage__Information__Box__Inner__SellText
+              出品画像
+            .SellPage__Information__Box__Inner__SellBox
+              必須
+            .Max
+              最大5枚までアップロードできます
+            //JSで挿入したhtmlと同じ形　each文でのプレビュー表示
+            #ImageBox
+              - @item.images.each_with_index do |image, index|
+                .ItemImage.AdjustMargin.preview-box{id: "preview-box__#{index}"}
+                  .ItemImage__Content
+                    .ItemImage__Content--Icon
+                      = image_tag image.image.url, width: "114", height: "80", alt: "preview"
+                  .ItemImage__Operetion.delete-box
+                    .ItemImage__Operetion--Destroy 削除
+            .Upload
+              //プレビューの数に合わせてforオプションを指定
+              = f.label :"images_attributes_#{@item.images.length}_image", class: "label-box Upload__BtnArea", id: "label-box--#{@item.images.length}" do
+                = image_tag 'photo.png', alt: 'camera'
+                <br>クリックしてファイルをアップロード
+            .hidden-content
+              = f.fields_for :images do |i|
+                //プレビューが出ている分のfile_fieldとdelete用のチェックボックスを設置
+                = i.file_field :image, class: "hidden-field Upload__Btn"
+                = i.check_box:_destroy, class: "hidden-checkbox Upload__Btn"
+                //5つのfile_fieldを準備するに当たって、足りない分を表示
+              - @item.images.length.upto(4) do |i|
+                %input{name: "item[images_attributes][#{i}][image]", id: "item_images_attributes_#{i}_image", class:"hidden-field Upload__Btn", type:"file"}
+              
+          -# #ImageBox
+          -#   - @item.images.each do |image|
+          -#     .ItemImage{data: {image: "#{image.id}"}}
+          -#       .ItemImage__Content
+          -#         .ItemImage__Content--Icon
+          -#           = image_tag image.image.url, height: "80", width: "114"
+          -#       .ItemImage__Operetion
+          -#         .ItemImage__Operetion--Delete 削除
+
+            -# .Upload
+            -#   = f.fields_for :images do |i|
+            -#     = i.file_field :image, type: 'file', name: "item[images_attributes][#{i.index}][image]", id:"ImgFile", class: "Upload__Btn"
+            -#   %label{for: "ImgFile", class: "Upload__BtnArea"}
+            -#     = image_tag 'photo.png', alt: 'camera'
+            -#     <br>クリックしてファイルをアップロード
+
+        .SellPage__Information__Box
+          .SellPage__Information__Box__Inner.InnerOption
+            .SellPage__Information__Box__Inner__SellText
+              商品名
+            .SellPage__Information__Box__Inner__SellBox
+              必須
+            = f.text_field :product_name, placeholder: "40文字まで", class: "SellPage__Information__Box__Inner__Form"
+          
+          .SellPage__Information__Box__Inner
+            .SellPage__Information__Box__Inner__SellText
+              商品の説明
+            .SellPage__Information__Box__Inner__SellBox
+              必須
+            = f.text_area :description, maxlength: 1000, class: "SellPage__Information__Box__Inner__Form TextareaOption", placeholder: '商品の説明（必須 1000文字以内）'
+
+        .SellPage__Information__Box
+          .SellPage__Information__Box__About
+            商品の詳細
+          #PullDownCategory.SellPage__Information__Box__Inner
+            .SellPage__Information__Box__Inner__SellText
+              カテゴリー
+            .SellPage__Information__Box__Inner__SellBox
+              必須
+            = f.select :category_id, @category_parent_array, {selected: @category_parent.name}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
+            #children_wrapper
+              = f.collection_select :category_id, @category_children_array, :id, :name, {},{value: @category_children.id, id: 'child_category', class: "SellPage__Information__Box__Inner__Form"}
+            #grandchildren_wrapper
+              = f.collection_select :category_id, @category_grandchildren_array,:id, :name, {},{value: @category_grandchildren.id, class: 'SellPage__Information__Box__Inner__Form', id: 'grandchild_category'}
+
+
+          -# ブランドについては後日実装する為、一旦コメントアウト
+          -# .SellPage__Information__Box__Inner
+          -#   .SellPage__Information__Box__Inner__SellText
+          -#     ブランド
+          -#   .SellPage__Information__Box__Inner__SellBox.BoxOption
+          -#     任意
+          -#   = f.text_field :brand_id, placeholder: "例）シャネル", class: "SellPage__Information__Box__Inner__Form"
+
+
+          .SellPage__Information__Box__Inner
+            .SellPage__Information__Box__Inner__SellText
+              商品の状態
+            .SellPage__Information__Box__Inner__SellBox
+              必須
+            -# 値が数字だったので文字列に変更
+            = f.select :condition_id, [["新品、未使用", 1],["未使用に近い", 2],["目立った傷や汚れなし", 3],["やや傷や汚れあり", 4],["傷や汚れあり", 5],["全体的に状態が悪い", 6]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+
+
+        .SellPage__Information__Box
+          .SellPage__Information__Box__About
+            配送について
+          .SellPage__Information__Box__Inner
+            .SellPage__Information__Box__Inner__SellText
+              配送料の負担
+            .SellPage__Information__Box__Inner__SellBox
+              必須
+            = f.select :delivery_fee_id, [["送料込み(出品者負担)", 1],["着払い(購入者負担)", 2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+
+
+          .SellPage__Information__Box__Inner
+            .SellPage__Information__Box__Inner__SellText
+              発送元の地域
+            .SellPage__Information__Box__Inner__SellBox
+              必須
+            = f.select :shipping_origin,Address.shipping_areas.keys, {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
+
+
+          .SellPage__Information__Box__Inner
+            .SellPage__Information__Box__Inner__SellText
+              発送までの日数
+            .SellPage__Information__Box__Inner__SellBox
+              必須
+            = f.select :days_to_ship_id, [["1~2日で発送", 1],["2~3日で発送", 2],["4~7日で発送", 3]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+
+
+        .SellPage__Information__Box
+          .SellPage__Information__Box__About
+            価格（¥300〜9,999,999）
+          .SellPage__Information__Box__Inner.Value
+            .Value__Text
+              .SellPage__Information__Box__Inner__SellText
+                販売価格
+              .SellPage__Information__Box__Inner__SellBox
+                必須
+            .Value__En
+              ¥
+            .Value__Box
+              -# jQueryに入力した値を渡すためにIDを付与
+              = f.number_field :price, class: 'SellPage__Information__Box__Inner__Form PriceBoxOption',id: "EntryPrice"
+          .SellPage__Information__Box__Inner.FeeOption
+            .SellPage__Information__Box__Inner__Left
+              販売手数料（10%）  
+            .SellPage__Information__Box__Inner__Right
+              -# jqueryで判断させるためにIDを付与
+              %p#SellCommission —
+          .SellPage__Information__Box__Inner.ProfitOption
+            .SellPage__Information__Box__Inner__Left
+              販売利益
+            .SellPage__Information__Box__Inner__Right
+              -# jqueryで判断させるためにIDを付与
+              %p#SalesProfit —
+          .SellPage__Information__Box__Inner.BtnOption
+            = f.submit "編集したものを更新する", class: "SellPage__Information__Box__Inner__SellBtn"
+
+          .SellPage__Information__Box__Inner.BackOption
+            = link_to "もどる", root_path
+          .SellPage__Information__Box__Inner
+            禁止されている
+            =link_to "行為", "#" 
+            および
+            =link_to "出品物", "#"
+            を必ずご確認ください。
+            =link_to "偽ブランド品", "#"
+            や
+            =link_to "盗品物", "#"
+            などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして
+            =link_to "加盟店規約", "#"
+            に同意したことになります。
+
+    = render "devise/shared/devise_footer"
+

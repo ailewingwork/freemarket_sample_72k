@@ -1,59 +1,56 @@
 .SellingPageBody
+  = render "layouts/notifications"
   = render "devise/shared/devise_header"
   .SellPage
     .SellPage__Information
-      = form_with(model: @item, local: true) do |f|
+      = form_with model: @item, local: true, id: "new_itemID" do |f|
         .SellPage__Information__Box
           .SellPage__Information__Box__Inner
-            .SellPage__Information__Box__Inner__SellText
+            .SellPage__Information__Box__Inner__SellText#SellImg
               出品画像
             .SellPage__Information__Box__Inner__SellBox
               必須
             .Max
-              最大10枚までアップロードできます
-            .Upload
-              = f.file_field :image, style: "display:none;"
-              = image_tag 'photo.png', alt: 'camera', class: "Upload__Image"
-              <br>ドラッグアンドドロップ<br>
-              またはクリックしてファイルをアップロード
-                
+              最大5枚までアップロードできます
+            #ImageBox
+            .Upload#UploadImage
+              = f.fields_for :images do |i|
+                = i.file_field :image, type: 'file', name: "item[images_attributes][#{@item.images.count}][image]", id:"item[images_attributes][#{@item.images.count}][image]", class: "ImgFile Upload__Btn"
+                %label{for: "item[images_attributes][#{@item.images.count}][image]", class: "Upload__BtnArea"}
+                  = image_tag 'photo.png', alt: 'camera'
+                  <br>クリックしてファイルをアップロード
+
         .SellPage__Information__Box
           .SellPage__Information__Box__Inner.InnerOption
             .SellPage__Information__Box__Inner__SellText
               商品名
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.text_field :product_name, placeholder: "40文字まで", class: "SellPage__Information__Box__Inner__Form"
+            = f.text_field :product_name, placeholder: "40文字まで", class: "SellPage__Information__Box__Inner__Form", id: "ItemName", maxlength: 40
           
           .SellPage__Information__Box__Inner
             .SellPage__Information__Box__Inner__SellText
               商品の説明
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.text_area :description, maxlength: 1000, class: "SellPage__Information__Box__Inner__Form TextareaOption", placeholder: '商品の説明（必須 1000文字以内）'
+            = f.text_area :description, maxlength: 1000, class: "SellPage__Information__Box__Inner__Form TextareaOption", id:'ItemDes', placeholder: '商品の説明（必須 1000文字以内）'
 
         .SellPage__Information__Box
           .SellPage__Information__Box__About
             商品の詳細
-          .SellPage__Information__Box__Inner
+          #PullDownCategory.SellPage__Information__Box__Inner
             .SellPage__Information__Box__Inner__SellText
               カテゴリー
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :categories_id, [["テスト1",1],["テスト2",2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
-          .SellPage__Information__Box__Inner
-            .SellPage__Information__Box__Inner__SellText
-              ブランド
-            .SellPage__Information__Box__Inner__SellBox.BoxOption
-              任意
-            = f.text_field :brand_id, placeholder: "例）シャネル", class: "SellPage__Information__Box__Inner__Form"
-
+            = f.select :category_id, @category_parent_array, {}, {class: 'SellPage__Information__Box__Inner__Form', id: 'parent_category'}
+ 
           .SellPage__Information__Box__Inner
             .SellPage__Information__Box__Inner__SellText
               商品の状態
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :condition, [["テスト1",1],["テスト2",2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.collection_select :condition_id, Condition.all, :id, :name, {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
         .SellPage__Information__Box
           .SellPage__Information__Box__About
@@ -63,21 +60,22 @@
               配送料の負担
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :delivery_fee, [["テスト1",1],["テスト2",2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.collection_select :delivery_fee_id, DeliveryFee.all, :id, :name, {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
           .SellPage__Information__Box__Inner
             .SellPage__Information__Box__Inner__SellText
               発送元の地域
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :shipping_origin, [["テスト1",1],["テスト2",2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.select :shipping_origin,Address.shipping_areas.keys, {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+
 
           .SellPage__Information__Box__Inner
             .SellPage__Information__Box__Inner__SellText
               発送までの日数
             .SellPage__Information__Box__Inner__SellBox
               必須
-            = f.select :days_to_ship, [["テスト1",1],["テスト2",2]], {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
+            = f.collection_select :days_to_ship_id, DaysToShip.all, :id, :name, {prompt: "選択してください"}, {class: 'SellPage__Information__Box__Inner__Form'}
 
         .SellPage__Information__Box
           .SellPage__Information__Box__About
@@ -91,26 +89,26 @@
             .Value__En
               ¥
             .Value__Box
-              = f.number_field :price, class: 'SellPage__Information__Box__Inner__Form PriceBoxOption'
+              -# jQueryに入力した値を渡すためにIDを付与
+              = f.number_field :price, class: 'SellPage__Information__Box__Inner__Form PriceBoxOption',id: "EntryPrice", min: "300", max: "9999999"
           .SellPage__Information__Box__Inner.FeeOption
             .SellPage__Information__Box__Inner__Left
               販売手数料（10%）  
             .SellPage__Information__Box__Inner__Right
-              —
+              -# jqueryで判断させるためにIDを付与
+              %p#SellCommission —
           .SellPage__Information__Box__Inner.ProfitOption
             .SellPage__Information__Box__Inner__Left
               販売利益
             .SellPage__Information__Box__Inner__Right
-              —
+              -# jqueryで判断させるためにIDを付与
+              %p#SalesProfit —
           .SellPage__Information__Box__Inner.BtnOption
-            .SellPage__Information__Box__Inner__SellBtn.SellBtnColor
-              出品する
-          .SellPage__Information__Box__Inner.BtnOption
-            .SellPage__Information__Box__Inner__SellBtn.DraftBtnColor
-              下書きに保存
+            = f.submit "出品する", class: "SellPage__Information__Box__Inner__SellBtn"
+
           .SellPage__Information__Box__Inner.BackOption
             = link_to "もどる", root_path
-          .SellPage__Information__Box__Inner.CommentOption
+          .SellPage__Information__Box__Inner
             禁止されている
             =link_to "行為", "#" 
             および
@@ -124,3 +122,4 @@
             に同意したことになります。
 
     = render "devise/shared/devise_footer"
+
