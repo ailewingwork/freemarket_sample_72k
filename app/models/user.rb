@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :password,length: { minimum: 7 }
   validates :nickname, presence: true
 
-
+  has_one :credit_card
   has_one :profile
   has_one :ship
 end

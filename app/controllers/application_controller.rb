@@ -23,4 +23,5 @@ class ApplicationController < ActionController::Base
   def set_category_list
     @category_parent_array = Category.where(ancestry: nil)
   end
+
 end

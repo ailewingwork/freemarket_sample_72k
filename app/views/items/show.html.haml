@@ -115,10 +115,12 @@
             -# レコード削除確認済み4/14
             = link_to "商品の削除", item_path(@item.id), method: :delete, data: { confirm: "削除しますか？" }, class: 'DeleteTextBtn' 
       -# ログインしているかつログインユーザーがseller_idでない時購入確認ボタンを表示
-      - if user_signed_in? && current_user.id != @item.seller_id
+      - if user_signed_in? && current_user.id != @item.seller_id && @item.buyer_id.blank?
         .BuyBtn
           .BuyBtn__Text
-            = link_to "購入画面に進む", "#", class: 'BBtn' 
+            = link_to "購入画面に進む", buy_confirm_item_path, class: 'BBtn' 
+      - elsif @item.buyer_id.present?
+        %p !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SOLD OUT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!i!!!!!!!!!!!!                
   .CommentBox
     .CommentBox__CommentArea
       %textarea{class: "CommentBox__CommentArea__Form"}

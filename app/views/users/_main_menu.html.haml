@@ -21,10 +21,10 @@
     %p.MyPageMainMenuTitle 
       クレジットカード
       -# クレジットカード機能を導入したら、ステータスによって表示内容を分岐させたいので、if文をコメントアウトしておきます。
-      -# - if current_user.credit_cards.card_number != nil
-      .MyPageMainMenu__Credit__Status
-        %p.UnregisteredCreditStatus 未登録
-      -# -else
-      -# クレジットカード機能を導入後、登録済みだった場合のマークアップです。現時点ではコメントアウトしておきます。
-      -# .MyPageMainMenu__ProfileUnder__Credit__Status
-      -#   %p.RegisteredCreditStatus 登録済み
+      - if current_user.credit_card == nil
+        .MyPageMainMenu__Credit__Status
+          %p.UnregisteredCreditStatus 未登録
+      -else
+        -# クレジットカード機能を導入後、登録済みだった場合のマークアップです。現時点ではコメントアウトしておきます。
+        .MyPageMainMenu__ProfileUnder__Credit__Status
+          %p.RegisteredCreditStatus 登録済み

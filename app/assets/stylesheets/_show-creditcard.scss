@@ -1,0 +1,48 @@
+* {
+  font-family: "Source Sans Pro", Arial, Helvetica, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
+}
+
+.FormContent {
+  background-color: #eeebeb;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: x-large;
+  position: relative;
+  &__Box {
+    // margin-bottom: 50px;
+    background-color: white;
+    width: 700px;
+    margin: 0 auto;
+    position: absolute;
+    top: 145px;
+    left: 0px;
+    right: 0px;
+    padding-bottom: 50px;
+    &__Title {
+      height: 100px;
+      line-height: 80px;
+      font-weight: bold;
+    } 
+    &__Number {
+      height: 90px;
+    }
+  }
+}
+h1 { 
+  font-weight: bold;
+}
+i { 
+  font-size: 15px;
+}
+.DeleteBtn {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  font-size: small;
+  height: 50px;
+  width: 110px;
+  margin-top: 50px;
+  border-radius: 5%;
+}
